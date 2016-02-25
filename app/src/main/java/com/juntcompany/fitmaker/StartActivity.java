@@ -8,8 +8,11 @@ import android.view.View;
 import android.widget.Button;
 
 import com.juntcompany.fitmaker.Curation.CurationActivity;
+import com.juntcompany.fitmaker.Curation.RecommendActivity;
 
 public class StartActivity extends AppCompatActivity {
+
+    private static final String ACTIVITY_TITLE = "운동 스타트다";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +20,7 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        setTitle("스타트다");
+        setTitle(ACTIVITY_TITLE);
 
         Button btn = (Button)findViewById(R.id.btn_curation);
         btn.setOnClickListener(new View.OnClickListener() {

@@ -3,13 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.juntcompany.fitmaker.RecommendActivity">
+    tools:context=".Curation.RecommendActivity">
 
     <include
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         layout="@layout/toolbar"
+        android:id="@+id/recommend_toolbar"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView_recommend"
+        android:layout_below="@+id/recommend_toolbar"
+        />
 
 </RelativeLayout>

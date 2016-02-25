@@ -1,6 +1,39 @@
 <resources>
     <string name="app_name">FitMaker</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!--navigation 버튼-->
+
+    <string name="navigation_button_login">로그인</string>
+    <string name="navigation_button_exercise_play">운동플레이</string>
+    <string name="navigation_button_recommend_curriculum">추천 커리큘럼</string>
+    <string name="navigation_button_my_style">마이스타일</string>
+    <string name="navigation_button_setting_curation">큐레이션 재설정</string>
+    <string name="navigation_button_ongoing_project">참여중인 프로젝트</string>
+    <string name="navigation_button_setting">설정하기</string>
+
+
+    <string name="setting_notice">공지사항</string>
+    <string name="setting_push">푸쉬 알림 설정</string>
+    <string name="setting_version">버전 정보</string>
+    <string name="setting_developers">만든 이</string>
+    <string name="setting_policy">이용약관</string>
+    <string name="setting_aggrement">개인정보 동의서</string>
+    <string name="setting_logout">로그아웃</string>
+
+
+    <string name="main_dialog">오늘의 운동 코스</string>
+
+
+    <string name="result">매일 꾸준히 하는 것이 중요합니다</string>
+    <string name="result_day">일일 운동 시간 : </string>
+    <string name="result_week">주간 운동 시간 : </string>
+
+
 </resources>

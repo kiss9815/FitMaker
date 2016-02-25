@@ -3,13 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.juntcompany.fitmaker.SpecificCurriculumActivity">
+    tools:context=".SpecificCurriculum.SpecificCurriculumActivity">
 
     <include
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/curriculum_toolbar"
         layout="@layout/toolbar"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_below="@id/curriculum_toolbar"
+        android:src="@drawable/avto"/>
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/content_specific_curriculum"
+        android:layout_below="@id/imageView"
+        />
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_start"
+        android:text="운동 시작하기"
+        />
+
 
 </RelativeLayout>

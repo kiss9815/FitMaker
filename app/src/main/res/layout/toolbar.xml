@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         android:id="@+id/toolbar"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorActionBar"
 
         />
 

@@ -3,12 +3,13 @@
     package="com.juntcompany.fitmaker">
 
     <application
+        android:name=".FitMaker"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Main.MainActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +19,16 @@
         </activity>
         <activity android:name=".StartActivity" />
         <activity android:name=".Curation.CurationActivity" />
-        <activity android:name=".RecommendActivity" />
-        <activity android:name=".SpecificCurriculumActivity"></activity>
+        <activity android:name=".Curation.RecommendActivity" />
+        <activity android:name=".SpecificCurriculum.SpecificCurriculumActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".Setting.SettingActivity" />
+        <activity android:name=".Setting.NoticeActivity" />
+        <activity android:name=".Setting.DevelopersActivity" />
+        <activity android:name=".Setting.PolicyActivity" />
+        <activity android:name=".play.PlayActivity" />
+        <activity android:name=".play.result.ResultActivity"></activity>
     </application>
 
 </manifest>

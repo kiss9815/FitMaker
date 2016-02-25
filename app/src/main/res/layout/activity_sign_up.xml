@@ -4,30 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.juntcompany.fitmaker.StartActivity">
+    tools:context="com.juntcompany.fitmaker.SignUpActivity">
+
 
     <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/sign_up_toolbar"
         layout="@layout/toolbar"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="시작하기"
-        android:id="@+id/btn_curation"
-        android:layout_above="@+id/btn_recommend"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="우선은 둘러볼게요~"
-        android:id="@+id/btn_recommend"
+        android:text="가입 완료"
+        android:id="@+id/btn_complete"
         android:layout_alignParentBottom="true"
-        />
-
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

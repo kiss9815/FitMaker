@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.juntcompany.fitmaker.Data.Curriculum;
 import com.juntcompany.fitmaker.R;
+import com.juntcompany.fitmaker.SpecificCurriculum.SpecificCurriculumActivity;
 
 
 /**
@@ -49,7 +50,10 @@ public class CurationResultFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Curriculum c = (Curriculum) listView.getItemAtPosition(position);
-                Intent intent = new Intent();
+                ////
+
+                Intent intent = new Intent(getActivity(), SpecificCurriculumActivity.class);
+                startActivity(intent);
             }
         });
         ////////////////////////////임시 데이터라 지울 코드임
