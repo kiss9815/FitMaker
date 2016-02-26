@@ -3,17 +3,30 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_exercise_play"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="@string/navigation_button_exercise_play" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_recommend_curriculum"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="@string/navigation_button_recommend_curriculum" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_friend_list"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="@string/navigation_button_friend_list" />
+        <item
+            android:id="@+id/nav_my_style"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/navigation_button_my_style" />
+        <item
+            android:id="@+id/nav_setting_curation"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/navigation_button_setting_curation" />
+        <item
+            android:id="@+id/nav_ongoing_project"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/navigation_button_ongoing_project" />
+
         <item
             android:id="@+id/nav_setting"
             android:icon="@drawable/ic_menu_manage"

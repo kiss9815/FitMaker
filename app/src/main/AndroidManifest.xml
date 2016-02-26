@@ -9,7 +9,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main.MainActivity" />
+        <activity
+            android:name=".Main.MainActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +30,11 @@
         <activity android:name=".Setting.DevelopersActivity" />
         <activity android:name=".Setting.PolicyActivity" />
         <activity android:name=".play.PlayActivity" />
-        <activity android:name=".play.result.ResultActivity"></activity>
+        <activity android:name=".play.result.ResultActivity" />
+        <activity android:name=".play.result.reward.RewardActivity" />
+        <activity android:name=".Friend.FriendListActivity" />
+        <activity android:name=".Friend.request.FriendRequestActivity" />
+        <activity android:name=".Friend.add.FriendSearchActivity"></activity>
     </application>
 
 </manifest>

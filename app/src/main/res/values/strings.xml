@@ -13,6 +13,7 @@
     <string name="navigation_button_login">로그인</string>
     <string name="navigation_button_exercise_play">운동플레이</string>
     <string name="navigation_button_recommend_curriculum">추천 커리큘럼</string>
+    <string name="navigation_button_friend_list">친구 목록</string>
     <string name="navigation_button_my_style">마이스타일</string>
     <string name="navigation_button_setting_curation">큐레이션 재설정</string>
     <string name="navigation_button_ongoing_project">참여중인 프로젝트</string>
@@ -35,5 +36,7 @@
     <string name="result_day">일일 운동 시간 : </string>
     <string name="result_week">주간 운동 시간 : </string>
 
+    <string name="friend_request_accept">수락</string>
+    <string name="friend_request_reject">거절</string>
 
 </resources>

@@ -17,8 +17,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.juntcompany.fitmaker.Data.Curriculum;
+import com.juntcompany.fitmaker.NetworkManager;
 import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.SpecificCurriculum.SpecificCurriculumActivity;
+
+import java.util.List;
 
 
 /**
@@ -57,10 +60,24 @@ public class CurationResultFragment extends Fragment {
             }
         });
         ////////////////////////////임시 데이터라 지울 코드임
-        for(int i = 0; i<3 ; i ++) {
-            Curriculum curriculum = new Curriculum();
-            mAdapter.add(curriculum);
-        }
+//        for(int i = 0; i<3 ; i ++) {
+//            Curriculum curriculum = new Curriculum();
+//            mAdapter.add(curriculum);
+//        }
+
+        NetworkManager.getInstance().geCCC(10, new NetworkManager.OnResultListener<List<Curriculum>>() {
+            @Override
+            public void onSuccess(List<Curriculum> result) {
+                for (Curriculum c : result) {
+                    mAdapter.add(c);
+                }
+            }
+
+            @Override
+            public void onFailure(int error) {
+
+            }
+        });
 ////////////////////////////////
         return view;
     }
