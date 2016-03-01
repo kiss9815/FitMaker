@@ -10,9 +10,9 @@ import android.widget.Button;
 import com.juntcompany.fitmaker.Curation.CurationActivity;
 import com.juntcompany.fitmaker.Curation.RecommendActivity;
 
-public class StartActivity extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity { // 로딩 되고 나오는 페이지로 처음 시작하는 유저만 나오는 페이지
 
-    private static final String ACTIVITY_TITLE = "운동 스타트다";
+    private static final String ACTIVITY_TITLE = "반갑습니다!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +22,14 @@ public class StartActivity extends AppCompatActivity {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         setTitle(ACTIVITY_TITLE);
 
-        Button btn = (Button)findViewById(R.id.btn_curation);
+        Button btn = (Button)findViewById(R.id.btn_curation); // 시작하기 버튼
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(StartActivity.this, CurationActivity.class));
             }
         });
-        btn = (Button)findViewById(R.id.btn_recommend);
+        btn = (Button)findViewById(R.id.btn_recommend); // 우선은 둘러불게요 ~~
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -5,5 +5,6 @@ package com.juntcompany.fitmaker.Data;
  */
 public class Badge {
     public int badge_id;
-    String badge_image;
+    public String badge_image;
+    public String badge_text;
 }

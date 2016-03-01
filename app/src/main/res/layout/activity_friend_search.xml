@@ -14,4 +14,13 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_below="@+id/friend_search_toolbar"
+        android:hint="이메일을 입력해주세요"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        />
+
 </RelativeLayout>

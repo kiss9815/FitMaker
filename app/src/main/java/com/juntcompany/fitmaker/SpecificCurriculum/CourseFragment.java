@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.juntcompany.fitmaker.Data.Course;
-import com.juntcompany.fitmaker.NetworkManager;
+import com.juntcompany.fitmaker.Manager.NetworkManager;
 import com.juntcompany.fitmaker.R;
 
 /**
@@ -37,6 +37,7 @@ public class CourseFragment extends Fragment {
         listView.setAdapter(mAdapter);
 
 
+        NetworkManager.getInstance();
         for (int i =0 ; i<5 ;i++) {
             Course course = new Course();
             course.course_name = "asd " + i;

@@ -13,10 +13,10 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listView_recommend"
+        android:id="@+id/recyclerView"
         android:layout_below="@+id/recommend_toolbar"
         />
 

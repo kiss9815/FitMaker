@@ -1,25 +1,25 @@
-package com.juntcompany.fitmaker.Curation;
+package com.juntcompany.fitmaker.Curation.Result;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.juntcompany.fitmaker.Data.Curriculum;
-import com.juntcompany.fitmaker.NetworkManager;
+import com.juntcompany.fitmaker.Data.CurationType;
+import com.juntcompany.fitmaker.Manager.NetworkManager;
 import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.SpecificCurriculum.SpecificCurriculumActivity;
+import com.juntcompany.fitmaker.util.OnItemClickListener;
 
 import java.util.List;
 
@@ -36,43 +36,38 @@ public class CurationResultFragment extends Fragment {
 
     }
 
-    ListView listView;
+    RecyclerView recyclerView;
     CurriculumAdapter mAdapter;
+    RecyclerView.LayoutManager layoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_curation_result, container, false);
-        listView = (ListView)view.findViewById(R.id.listView);
+        recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
         mAdapter = new CurriculumAdapter();
-
-        listView.setAdapter(mAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Curriculum c = (Curriculum) listView.getItemAtPosition(position);
-                ////
-
+            public void onItemClick(View view, int position) {
+                Curriculum c = (Curriculum) mAdapter.getItem(position);
                 Intent intent = new Intent(getActivity(), SpecificCurriculumActivity.class);
                 startActivity(intent);
             }
         });
-        ////////////////////////////임시 데이터라 지울 코드임
-//        for(int i = 0; i<3 ; i ++) {
-//            Curriculum curriculum = new Curriculum();
-//            mAdapter.add(curriculum);
-//        }
+        recyclerView.setAdapter(mAdapter);
+        layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        initData();
 
-        NetworkManager.getInstance().geCCC(10, new NetworkManager.OnResultListener<List<Curriculum>>() {
+
+        NetworkManager.getInstance().getCurriculum(10, new NetworkManager.OnResultListener<List<Curriculum>>() {
             @Override
             public void onSuccess(List<Curriculum> result) {
                 for (Curriculum c : result) {
                     mAdapter.add(c);
                 }
             }
-
             @Override
             public void onFailure(int error) {
 
@@ -80,6 +75,16 @@ public class CurationResultFragment extends Fragment {
         });
 ////////////////////////////////
         return view;
+    }
+
+    private void initData(){
+        CurationType type = new CurationType();
+        type.type_name = "ddd";
+        type.type_picture = String.valueOf(R.mipmap.ic_launcher);
+        type.type_info = "asdasdfasdffad";
+        View header = getActivity().getLayoutInflater().inflate(R.layout.header_curation_result,null);
+
+        mAdapter.addHeader(header, type);
     }
 
     @Override

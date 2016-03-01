@@ -2,17 +2,20 @@ package com.juntcompany.fitmaker.Curation;
 
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.juntcompany.fitmaker.Curation.Result.CurationResultFragment;
 import com.juntcompany.fitmaker.R;
 
 
@@ -33,10 +36,12 @@ public class CurationGenderFragment extends Fragment implements View.OnClickList
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_curation_gender, container, false);
 
+
         Button btn = (Button)view.findViewById(R.id.btn_woman);
         btn.setOnClickListener(this);
         btn = (Button)view.findViewById(R.id.btn_man);
         btn.setOnClickListener(this);
+
 
 
         return view;
@@ -48,6 +53,18 @@ public class CurationGenderFragment extends Fragment implements View.OnClickList
         super.onCreateOptionsMenu(menu, inflater);
 
         inflater.inflate(R.menu.menu_curation_gender, menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.menu_curation_skip){
+            Intent intent = new Intent(getContext(), RecommendActivity.class);
+
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

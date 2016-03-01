@@ -4,22 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.juntcompany.fitmaker.SignUpActivity">
-
+    tools:context="com.juntcompany.fitmaker.Badge.BadgeActivity">
 
     <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/sign_up_toolbar"
+        android:id="@+id/badge_toolbar"
         layout="@layout/toolbar"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="가입 완료"
-        android:id="@+id/btn_complete"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/badge_toolbar"
+        android:id="@+id/recyclerView"
+
+        >
+
+
+
+    </android.support.v7.widget.RecyclerView>
+
 </RelativeLayout>

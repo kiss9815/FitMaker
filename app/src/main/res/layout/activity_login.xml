@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    tools:context="com.juntcompany.fitmaker.LoginActivity">
+    android:orientation="vertical"
+    android:id="@+id/linear"
+    tools:context=".Login.LoginActivity">
 
     <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/notice_toolbar"
         layout="@layout/toolbar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+         />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="계정이 없으신 가요? 가입하기"
-        android:id="@+id/btn_sign_up"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container"
+        />
 
 
-</RelativeLayout>
+</LinearLayout>

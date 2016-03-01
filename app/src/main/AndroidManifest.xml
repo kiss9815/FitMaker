@@ -23,8 +23,7 @@
         <activity android:name=".Curation.CurationActivity" />
         <activity android:name=".Curation.RecommendActivity" />
         <activity android:name=".SpecificCurriculum.SpecificCurriculumActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SignUpActivity" />
+        <activity android:name=".Login.LoginActivity" />
         <activity android:name=".Setting.SettingActivity" />
         <activity android:name=".Setting.NoticeActivity" />
         <activity android:name=".Setting.DevelopersActivity" />
@@ -34,7 +33,8 @@
         <activity android:name=".play.result.reward.RewardActivity" />
         <activity android:name=".Friend.FriendListActivity" />
         <activity android:name=".Friend.request.FriendRequestActivity" />
-        <activity android:name=".Friend.add.FriendSearchActivity"></activity>
+        <activity android:name=".Friend.add.FriendSearchActivity" />
+        <activity android:name=".Badge.BadgeActivity"></activity>
     </application>
 
 </manifest>

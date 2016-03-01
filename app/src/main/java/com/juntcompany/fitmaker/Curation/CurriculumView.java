@@ -31,7 +31,7 @@ public class CurriculumView extends FrameLayout {
         if(!TextUtils.isEmpty(curriculum.curriculum_image)){
 
         }else {
-            imageView.setImageResource(R.mipmap.ic_launcher);
+            imageView.setImageResource(Integer.parseInt(String.valueOf(R.mipmap.ic_launcher)));
         }
     }
 
