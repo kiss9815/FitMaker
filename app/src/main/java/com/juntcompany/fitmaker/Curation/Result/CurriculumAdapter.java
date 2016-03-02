@@ -18,18 +18,15 @@ import java.util.List;
  * Created by EOM on 2016-02-20.
  */
 public class CurriculumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements OnItemClickListener, OnHeaderClickListener{
-    List<HeaderCurationResult> headers = new ArrayList<HeaderCurationResult>();
+    List<CurationType> headers = new ArrayList<CurationType>();
     List<Curriculum> items = new ArrayList<Curriculum>();
 
     private static final int VIEW_TYPE_HEADER = 0;
     private static final int VIEW_TYPE_ITEM = 100;
 
-    public void addHeader(View headerView, Object data){ // 클릭을 원하면 파라미터로 boolean isClick 도 추가
-        HeaderCurationResult header = new HeaderCurationResult();
-        header.headerView = headerView;
-        header.data = data;
-//        header.isClickable = isClick;
-        headers.add(header);
+    public void addHeader(CurationType type){ // 클릭을 원하면 파라미터로 boolean isClick 도 추가
+
+        headers.add(type);
         notifyDataSetChanged();
     }
 
@@ -64,9 +61,8 @@ public class CurriculumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 return holder;
             }
             default: { // 헤더뷰는 하나 무조건 있으므로
-//                 view = inflater.inflate(R.layout.header_curation_result, parent, false);
-                HeaderCurationResult header = headers.get(viewType);
-                HeaderCurationViewHolder holder = new HeaderCurationViewHolder(header.headerView);
+                 view = inflater.inflate(R.layout.header_curation_result, parent, false);
+                HeaderCurationViewHolder holder = new HeaderCurationViewHolder(view);
                 return holder;
             }
         }
@@ -74,13 +70,14 @@ public class CurriculumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if(position >= headers.size()){ // 헤더뷰 말고 커리큘럼 뷰
-            int index = position - headers.size();
+        if(position == 0) { // 헤더뷰가 하나인 경우
+            ((HeaderCurationViewHolder)holder).setData((CurationType)headers.get(position));
+        } else { // 헤더뷰 하나를 빼고 나머지 아이템 뷰 인 경우
+            int index = position - 1;
             ((CurriculumViewHolder)holder).setData(items.get(index));
         }
-        //헤더뷰
-            int headerIndex = position - items.size();
-//        ((HeaderCurationViewHolder)holder).setData(headers.get(headerIndex));
+
+
     }
 
     @Override
@@ -109,7 +106,7 @@ public class CurriculumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public Curriculum getItem(int position){
         if (position < 0 || position >= items.size()+ headers.size()) return null;
 
-        return items.get(position);
+        return items.get(position-1); // -1은 헤더뷰가 하나 있다고 가정하고 헤더뷰를 제외한 값
     }
 
 

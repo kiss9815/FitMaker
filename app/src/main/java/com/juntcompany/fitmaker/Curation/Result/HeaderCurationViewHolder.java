@@ -38,7 +38,7 @@ public class HeaderCurationViewHolder extends RecyclerView.ViewHolder{
         text_type_info = (TextView)itemView.findViewById(R.id.text_type_info);
     }
 
-        public void setData(Object data){
+        public void setData(CurationType type){
             image_picture.setImageResource(Integer.valueOf(type.type_picture));
             text_type_name.setText(type.type_name);
             text_type_info.setText(type.type_info);

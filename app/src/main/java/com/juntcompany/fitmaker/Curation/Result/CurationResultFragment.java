@@ -82,9 +82,8 @@ public class CurationResultFragment extends Fragment {
         type.type_name = "ddd";
         type.type_picture = String.valueOf(R.mipmap.ic_launcher);
         type.type_info = "asdasdfasdffad";
-        View header = getActivity().getLayoutInflater().inflate(R.layout.header_curation_result,null);
 
-        mAdapter.addHeader(header, type);
+        mAdapter.addHeader(type);
     }
 
     @Override

@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.juntcompany.fitmaker.Data.Content;
 import com.juntcompany.fitmaker.Data.Friend;
 import com.juntcompany.fitmaker.Friend.add.FriendSearchActivity;
 import com.juntcompany.fitmaker.Friend.request.FriendRequestActivity;
@@ -56,8 +55,8 @@ public class FriendListActivity extends AppCompatActivity {   // MainActivity의
         for(int i =0; i<6; i ++) {
             Friend friend = new Friend();
             Random r = new Random();
-            friend.friend_name = "이름" +i;
-            friend.friend_exercise_hour =  r.nextInt(100);
+            friend.user_name = "이름" +i;
+            friend.user_exercise_hour =  r.nextInt(100);
             mAdapter.add(friend);
         }
 

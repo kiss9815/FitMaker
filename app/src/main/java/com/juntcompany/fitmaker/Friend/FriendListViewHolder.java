@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.juntcompany.fitmaker.Data.Content;
 import com.juntcompany.fitmaker.Data.Friend;
 import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.util.OnItemClickListener;
@@ -44,9 +43,9 @@ public class FriendListViewHolder extends RecyclerView.ViewHolder{
 
     public void setData(Friend friend){
         this.friend = friend;
-        text_name.setText(friend.friend_name);
-        text_hour.setText(friend.friend_exercise_hour);
-        if(!TextUtils.isEmpty(friend.friend_image)){
+        text_name.setText(friend.user_name);
+        text_hour.setText(friend.user_exercise_hour);
+        if(!TextUtils.isEmpty(friend.user_image)){
 
         }else {
             image_profile.setImageResource(R.mipmap.ic_launcher);

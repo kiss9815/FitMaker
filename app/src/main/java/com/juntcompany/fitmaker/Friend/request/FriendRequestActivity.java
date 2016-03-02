@@ -1,6 +1,5 @@
 package com.juntcompany.fitmaker.Friend.request;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,11 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.juntcompany.fitmaker.Data.Friend;
-import com.juntcompany.fitmaker.Friend.FriendListActivity;
-import com.juntcompany.fitmaker.Friend.add.FriendSearchActivity;
 import com.juntcompany.fitmaker.R;
-
-import java.util.Random;
 
 public class FriendRequestActivity extends AppCompatActivity {
 
@@ -50,7 +45,7 @@ public class FriendRequestActivity extends AppCompatActivity {
     private void initData(){
         for(int i =0; i<6; i ++) {
             Friend friend = new Friend();
-            friend.friend_name = "이름" +i;
+            friend.user_name = "이름" +i;
             mAdapter.add(friend);
         }
 
