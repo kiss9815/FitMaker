@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.juntcompany.fitmaker.Curation.Recommend.RecommendActivity;
 import com.juntcompany.fitmaker.Curation.Result.CurationResultFragment;
 import com.juntcompany.fitmaker.R;
 

@@ -16,18 +16,22 @@ import android.view.ViewGroup;
 
 import com.juntcompany.fitmaker.Data.Curriculum;
 import com.juntcompany.fitmaker.Data.CurationType;
+import com.juntcompany.fitmaker.Data.TypeCurriculumResult;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
 import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.SpecificCurriculum.SpecificCurriculumActivity;
 import com.juntcompany.fitmaker.util.OnItemClickListener;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+
+import okhttp3.Request;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CurationResultFragment extends Fragment {
+public class CurationResultFragment extends Fragment { // 헤더는 무조건 하나 들어가게 설계함
 
 
     public CurationResultFragment() {
@@ -61,19 +65,68 @@ public class CurationResultFragment extends Fragment {
         initData();
 
 
-        NetworkManager.getInstance().getCurriculum(10, new NetworkManager.OnResultListener<List<Curriculum>>() {
-            @Override
-            public void onSuccess(List<Curriculum> result) {
-                for (Curriculum c : result) {
-                    mAdapter.add(c);
-                }
-            }
-            @Override
-            public void onFailure(int error) {
+//        try { // 커리큘럼만 받아오게 함
+//            NetworkManager.getInstance().getCurriculum(getContext(),""+1, ""+1, ""+1, new NetworkManager.OnResultListener<List<Curriculum>>() {
+//                @Override
+//                public void onSuccess(Request request, List<Curriculum> result) {
+//                    for(Curriculum c : result) {
+//                        mAdapter.add(c);
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Request request, int code, Throwable cause) {
+//
+//                }
+//
+//                //        for(int i =0; i<5; i++){
+//                //            Curriculum curriculum = new Curriculum();
+//                //            mAdapter.add(curriculum);
+//                //        }
+//            });
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//
+//        try { //큐레이션만 받아오게 함
+//            NetworkManager.getInstance().getCuration(getContext(), "" + 1, "" + 1, "" + 1, new NetworkManager.OnResultListener<CurationType>() {
+//                @Override
+//                public void onSuccess(Request request, CurationType result) {
+//                    mAdapter.addHeader(result);
+//                }
+//
+//                @Override
+//                public void onFailure(Request request, int code, Throwable cause) {
+//
+//                }
+//            });
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
 
-            }
-        });
-////////////////////////////////
+        try { //큐레이션만 받아오게 함
+            NetworkManager.getInstance().getCurriculumCuration(getContext(), "" + 1, "" + 1, "" + 1, new NetworkManager.OnResultListener<TypeCurriculumResult>() {
+                @Override
+                public void onSuccess(Request request, TypeCurriculumResult result) {
+                    for(Curriculum c : result.curriculums) {
+                        mAdapter.add(c);
+                    }
+                    mAdapter.addHeader(result.exctype);
+                }
+
+                @Override
+                public void onFailure(Request request, int code, Throwable cause) {
+
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+//////////////////////////////////
         return view;
     }
 
@@ -83,7 +136,7 @@ public class CurationResultFragment extends Fragment {
         type.type_picture = String.valueOf(R.mipmap.ic_launcher);
         type.type_info = "asdasdfasdffad";
 
-        mAdapter.addHeader(type);
+//        mAdapter.addHeader(type);
     }
 
     @Override

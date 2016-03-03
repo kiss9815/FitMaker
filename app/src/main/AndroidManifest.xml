@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.juntcompany.fitmaker">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".FitMaker"
         android:allowBackup="true"
@@ -21,7 +22,7 @@
         </activity>
         <activity android:name=".StartActivity" />
         <activity android:name=".Curation.CurationActivity" />
-        <activity android:name=".Curation.RecommendActivity" />
+        <activity android:name=".Curation.Recommend.RecommendActivity" />
         <activity android:name=".SpecificCurriculum.SpecificCurriculumActivity" />
         <activity android:name=".Login.LoginActivity" />
         <activity android:name=".Setting.SettingActivity" />

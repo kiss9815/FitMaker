@@ -71,7 +71,7 @@ public class CurriculumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(position == 0) { // 헤더뷰가 하나인 경우
-            ((HeaderCurationViewHolder)holder).setData((CurationType)headers.get(position));
+            ((HeaderCurationViewHolder)holder).setData(headers.get(position));
         } else { // 헤더뷰 하나를 빼고 나머지 아이템 뷰 인 경우
             int index = position - 1;
             ((CurriculumViewHolder)holder).setData(items.get(index));

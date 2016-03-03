@@ -11,10 +11,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.juntcompany.fitmaker.Data.JoinResult;
 import com.juntcompany.fitmaker.Main.MainActivity;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
 import com.juntcompany.fitmaker.Manager.PropertyManager;
 import com.juntcompany.fitmaker.R;
+
+import java.io.UnsupportedEncodingException;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,23 +54,43 @@ public class SignUpFragment extends Fragment {
                 final String userId = edit_email.getText().toString();
                 final String password = edit_password.getText().toString();
                 String name = edit_name.getText().toString();
+//
+                try {
+                    NetworkManager.getInstance().signUp(getContext(), new NetworkManager.OnResultListener<JoinResult>() {
+                        @Override
+                        public void onSuccess(Request request, JoinResult result) {
 
-                NetworkManager.getInstance().signUp(getContext(), userId, name, password, new NetworkManager.OnResultListener<String>() {
-                    @Override
-                    public void onSuccess(String result) {
-                        //로컬에 저장하는 과정
-                        PropertyManager.getInstance().setUserId(userId);
-                        PropertyManager.getInstance().setPassword(password);
-                        startActivity(new Intent(getContext(), MainActivity.class));
-                        getActivity().finish();
-                    }
+                            PropertyManager.getInstance().setUserId(userId);
+                            PropertyManager.getInstance().setPassword(password);
+                            startActivity(new Intent(getContext(), MainActivity.class));
+//                        getActivity().finish();
+                        }
 
-                    @Override
-                    public void onFailure(int error) {
+                        @Override
+                        public void onFailure(Request request, int code, Throwable cause) {
 
+                        }
+                    });
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
 
-                    }
-                });
+//                NetworkManager.getInstance().signUp(getContext(), userId, name, password, new NetworkManager.OnResultListener<String>() {
+//                    @Override
+//                    public void onSuccess(String result) {
+//                        //로컬에 저장하는 과정
+//                        PropertyManager.getInstance().setUserId(userId);
+//                        PropertyManager.getInstance().setPassword(password);
+//                        startActivity(new Intent(getContext(), MainActivity.class));
+//                        getActivity().finish();
+//                    }
+//
+//                    @Override
+//                    public void onFailure(int error) {
+//
+//
+//                    }
+//                });
                 getActivity().finish();
             }
         });

@@ -39,7 +39,7 @@ public class HeaderCurationViewHolder extends RecyclerView.ViewHolder{
     }
 
         public void setData(CurationType type){
-            image_picture.setImageResource(Integer.valueOf(type.type_picture));
+//            image_picture.setImageResource(Integer.parseInt(type.type_picture));
             text_type_name.setText(type.type_name);
             text_type_info.setText(type.type_info);
         }

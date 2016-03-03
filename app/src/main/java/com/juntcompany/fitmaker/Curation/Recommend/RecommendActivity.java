@@ -1,4 +1,4 @@
-package com.juntcompany.fitmaker.Curation;
+package com.juntcompany.fitmaker.Curation.Recommend;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -17,13 +17,16 @@ import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.SpecificCurriculum.SpecificCurriculumActivity;
 import com.juntcompany.fitmaker.util.OnItemClickListener;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+
+import okhttp3.Request;
 
 public class RecommendActivity extends AppCompatActivity {
 
 
     RecyclerView recyclerView;
-    CurriculumAdapter mAdapter;
+    RecommendAdapter mAdapter;
     RecyclerView.LayoutManager layoutManager;
 
     @Override
@@ -34,8 +37,8 @@ public class RecommendActivity extends AppCompatActivity {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         setTitle("추천커리큘럼");
 
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
-        mAdapter = new CurriculumAdapter();
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mAdapter = new RecommendAdapter();
         mAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -48,26 +51,30 @@ public class RecommendActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        NetworkManager.getInstance().getCurriculum(5, new NetworkManager.OnResultListener<List<Curriculum>>() {
-            @Override
-            public void onSuccess(List<Curriculum> result) {
-                for(Curriculum c : result) {
-                   mAdapter.add(c);
+        try {
+            NetworkManager.getInstance().getCurriculum(getApplicationContext(),""+1, ""+1, ""+1, new NetworkManager.OnResultListener<List<Curriculum>>() {
+                @Override
+                public void onSuccess(Request request, List<Curriculum> result) {
+                    for(Curriculum c : result) {
+                        mAdapter.add(c);
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(int error) {
+                @Override
+                public void onFailure(Request request, int code, Throwable cause) {
 
-            }
-        });
+                }
 
-//        for(int i =0; i<5; i++){
-//            Curriculum curriculum = new Curriculum();
-//            mAdapter.add(curriculum);
-//        }
+
+    //        for(int i =0; i<5; i++){
+    //            Curriculum curriculum = new Curriculum();
+    //            mAdapter.add(curriculum);
+    //        }
+            });
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 

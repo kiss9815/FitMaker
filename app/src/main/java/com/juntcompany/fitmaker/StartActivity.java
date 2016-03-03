@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.juntcompany.fitmaker.Curation.CurationActivity;
-import com.juntcompany.fitmaker.Curation.RecommendActivity;
+import com.juntcompany.fitmaker.Curation.Recommend.RecommendActivity;
+import com.juntcompany.fitmaker.Main.MainActivity;
 
 public class StartActivity extends AppCompatActivity { // 로딩 되고 나오는 페이지로 처음 시작하는 유저만 나오는 페이지
 
@@ -34,6 +35,13 @@ public class StartActivity extends AppCompatActivity { // 로딩 되고 나오�
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(StartActivity.this, RecommendActivity.class));
+            }
+        });
+        btn = (Button)findViewById(R.id.button_test);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
     }

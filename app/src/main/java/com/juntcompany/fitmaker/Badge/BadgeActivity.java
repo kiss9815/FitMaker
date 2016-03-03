@@ -47,7 +47,7 @@ public class BadgeActivity extends AppCompatActivity {
     private void initData(){
         for(int i = 0; i<14; i ++){
             Badge badge = new Badge();
-            badge.badge_text = "" + i;
+//            badge.badge_text = "" + i;
             mAdapter.add(badge);
         }
     }

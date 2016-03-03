@@ -11,4 +11,6 @@ public class TypeCurriculumResult {
     public CurationType exctype;
     @SerializedName("curriculum")
     public ArrayList<Curriculum> curriculums;
+
+
 }

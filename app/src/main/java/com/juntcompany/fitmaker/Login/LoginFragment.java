@@ -48,21 +48,21 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 final String userId = edit_email.getText().toString();
                 final String password = edit_password.getText().toString();
-                NetworkManager.getInstance().login(getContext(), userId, password, new NetworkManager.OnResultListener<String>() {
-                    @Override
-                    public void onSuccess(String result) {
-                        PropertyManager.getInstance().setUserId(userId);
-                        PropertyManager.getInstance().setPassword(password);
-                        ////로그인
-                        startActivity(new Intent(getContext(), MainActivity.class));
-                        getActivity().finish();
-                    }
-
-                    @Override
-                    public void onFailure(int error) {
-
-                    }
-                });
+//                NetworkManager.getInstance().login(getContext(), userId, password, new NetworkManager.OnResultListener<String>() {
+//                    @Override
+//                    public void onSuccess(String result) {
+//                        PropertyManager.getInstance().setUserId(userId);
+//                        PropertyManager.getInstance().setPassword(password);
+//                        ////로그인
+//                        startActivity(new Intent(getContext(), MainActivity.class));
+//                        getActivity().finish();
+//                    }
+//
+//                    @Override
+//                    public void onFailure(int error) {
+//
+//                    }
+//                });
             }
         });
 

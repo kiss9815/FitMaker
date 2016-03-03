@@ -41,7 +41,7 @@ public class BadgeViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(Badge badge){
-        text_badge.setText(badge.badge_text);
+//        text_badge.setText(badge.badge_text);
         if(!TextUtils.isEmpty(badge.badge_image)) {
 
         }else {

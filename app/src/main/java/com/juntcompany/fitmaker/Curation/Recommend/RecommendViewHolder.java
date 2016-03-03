@@ -1,6 +1,5 @@
-package com.juntcompany.fitmaker.Curation.Result;
+package com.juntcompany.fitmaker.Curation.Recommend;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,10 +11,9 @@ import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.util.OnItemClickListener;
 
 /**
- * Created by EOM on 2016-03-01.
+ * Created by EOM on 2016-03-03.
  */
-public class CurriculumViewHolder extends RecyclerView.ViewHolder{
-
+public class RecommendViewHolder extends RecyclerView.ViewHolder{
 
     OnItemClickListener itemClickListener;
     public void setOnItemClickListener(OnItemClickListener listener){
@@ -27,7 +25,7 @@ public class CurriculumViewHolder extends RecyclerView.ViewHolder{
     ImageView image_picture;
     Curriculum curriculum;
 
-    public CurriculumViewHolder(View itemView) {
+    public RecommendViewHolder(View itemView) {
         super(itemView);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +41,7 @@ public class CurriculumViewHolder extends RecyclerView.ViewHolder{
     }
 
     public void setData(Curriculum curriculum){
+
         textName.setText(curriculum.curriculum_name);
         if(!TextUtils.isEmpty(curriculum.curriculum_image)) {
 
