@@ -43,9 +43,9 @@ public class FriendListViewHolder extends RecyclerView.ViewHolder{
 
     public void setData(Friend friend){
         this.friend = friend;
-        text_name.setText(friend.user_name);
-        text_hour.setText(friend.user_exercise_hour);
-        if(!TextUtils.isEmpty(friend.user_image)){
+        text_name.setText(friend.userName);
+        text_hour.setText(friend.userExerciseHour);
+        if(!TextUtils.isEmpty(friend.userImage)){
 
         }else {
             image_profile.setImageResource(R.mipmap.ic_launcher);

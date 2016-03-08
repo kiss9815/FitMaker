@@ -18,6 +18,7 @@ public class CurationType { // 서버에서 exctype 임
     @SerializedName("exctype_photourl")
     public String type_picture;//o
 
+
     @SerializedName("curriculum")
     public List<Curriculum> curriculums;
 

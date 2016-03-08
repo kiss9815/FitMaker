@@ -1,0 +1,95 @@
+package com.juntcompany.fitmaker.Curation;
+
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.juntcompany.fitmaker.Curation.Result.CurationResultFragment;
+import com.juntcompany.fitmaker.R;
+
+import java.util.ArrayList;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class CurationQuestion6Fragment extends Fragment implements View.OnClickListener{
+
+
+    public CurationQuestion6Fragment() {
+        // Required empty public constructor
+    }
+
+
+    ArrayList<Integer> curationValues;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        Bundle extra = getArguments();
+        curationValues = extra.getIntegerArrayList(CurationQuestion3Fragment.FRAGMENT_CURATION_KEY); //큐레이션5에서 결과값 받아오고 리스트에 넣기
+        View view =null;
+        if(curationValues.get(0) ==1 && curationValues.get(2) == 3) { // 1번 문항 1번(여자)이고 3번 문항 3번인 사람
+            view = inflater.inflate(R.layout.fragment_curation_question6_1, container, false);
+            Button btn = (Button) view.findViewById(R.id.btn_1);
+            btn.setOnClickListener(this);
+            btn = (Button) view.findViewById(R.id.btn_2);
+            btn.setOnClickListener(this);
+            btn = (Button) view.findViewById(R.id.btn_3);
+            btn.setOnClickListener(this);
+            btn = (Button) view.findViewById(R.id.btn_4);
+            btn.setOnClickListener(this);
+
+        }else { // 1번 문항 2번(남자)이고 3번 문항 3번인 사람
+            view = inflater.inflate(R.layout.fragment_curation_question6_2, container, false);
+            Button btn = (Button) view.findViewById(R.id.btn_1);
+            btn.setOnClickListener(this);
+            btn = (Button) view.findViewById(R.id.btn_2);
+            btn.setOnClickListener(this);
+            btn = (Button) view.findViewById(R.id.btn_3);
+            btn.setOnClickListener(this);
+            btn = (Button) view.findViewById(R.id.btn_4);
+            btn.setOnClickListener(this);
+        }
+        return view;
+    }
+    private static final String ARRAY_LIST_TEST = "array_list";
+    public static final String FRAGMENT_CURATION_KEY = "fragment_key";
+
+    private static final String BACK_STACK_COUNT = "back_stack_count";
+
+    private int btnMessage;
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_1:
+                btnMessage =1;
+            case R.id.btn_2:
+                btnMessage =2;
+            case R.id.btn_3:
+                btnMessage =3;
+            case R.id.btn_4:
+                btnMessage =4;
+                break;
+        }
+
+
+        curationValues.add(btnMessage);
+        //테스트용
+                Log.i(ARRAY_LIST_TEST, curationValues.toString());
+
+        int count = getActivity().getSupportFragmentManager().getBackStackEntryCount();
+        Fragment f = new CurationResultFragment();
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.curation_container, f);
+        ft.addToBackStack("" + count);
+        ft.commit();
+        Log.i(BACK_STACK_COUNT, "" + count);
+    }
+}

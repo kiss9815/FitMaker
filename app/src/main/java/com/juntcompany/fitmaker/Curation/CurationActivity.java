@@ -18,16 +18,19 @@ public class CurationActivity extends AppCompatActivity {
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
-//        genderFragment = (CurationGenderFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_gender);
 
-        Fragment f = new CurationGenderFragment();
+        Fragment f = new CurationQuestion1Fragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.curation_container, f);
         ft.commit();
 
     }
 
+    boolean isBackPressed = false;
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
 
-
-
+//        if(getSupportFragmentManager().findFragmentById(R.id.))
+    }
 }

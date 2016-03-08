@@ -42,7 +42,7 @@ public class BadgeViewHolder extends RecyclerView.ViewHolder {
 
     public void setData(Badge badge){
 //        text_badge.setText(badge.badge_text);
-        if(!TextUtils.isEmpty(badge.badge_image)) {
+        if(!TextUtils.isEmpty(badge.badgeImage)) {
 
         }else {
             image_badge.setImageResource(Integer.parseInt(String.valueOf(R.mipmap.ic_launcher)));

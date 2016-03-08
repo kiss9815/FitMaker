@@ -19,14 +19,16 @@ import com.juntcompany.fitmaker.Curation.Recommend.RecommendActivity;
 import com.juntcompany.fitmaker.Curation.Result.CurationResultFragment;
 import com.juntcompany.fitmaker.R;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CurationGenderFragment extends Fragment implements View.OnClickListener {
+public class CurationQuestion1Fragment extends Fragment implements View.OnClickListener {
 
 
-    public CurationGenderFragment() {
+    public CurationQuestion1Fragment() {
         setHasOptionsMenu(true); // 옵션메뉴 만들기
     }
 
@@ -35,14 +37,13 @@ public class CurationGenderFragment extends Fragment implements View.OnClickList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_curation_gender, container, false);
+        View view =  inflater.inflate(R.layout.fragment_curation_question1, container, false);
 
 
-        Button btn = (Button)view.findViewById(R.id.btn_woman);
+        Button btn = (Button)view.findViewById(R.id.btn_1);
         btn.setOnClickListener(this);
-        btn = (Button)view.findViewById(R.id.btn_man);
+        btn = (Button)view.findViewById(R.id.btn_2);
         btn.setOnClickListener(this);
-
 
 
         return view;
@@ -76,31 +77,36 @@ public class CurationGenderFragment extends Fragment implements View.OnClickList
         }
     }
 
+    private int btnMessage;
     @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id){
-            case R.id.btn_woman: {
+            case R.id.btn_1: {
                 ///////////////////////////////////////////////////////////////////////////////아직 디자인 안나와서 바꿔야함
                 Toast.makeText(getContext(), "여자", Toast.LENGTH_SHORT).show();
-                int count = getActivity().getSupportFragmentManager().getBackStackEntryCount(); // 백스택 개수
-                Fragment f = new CurationResultFragment();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.curation_container, f);
-                ft.addToBackStack(""+count);
-                ft.commit();
+                 btnMessage = 1;
                 break;
             }
 
-            case R.id.btn_man: {
+            case R.id.btn_2: {
                 Toast.makeText(getContext(), "남자", Toast.LENGTH_SHORT).show();
-                Fragment f = new CurationResultFragment();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.curation_container, f);
-                ft.commit();
+                 btnMessage = 2;
                 break;
             }
         }
+        ArrayList<Integer> curationValues = new ArrayList<Integer>();
+        curationValues.add(btnMessage);
+        int count = getActivity().getSupportFragmentManager().getBackStackEntryCount();
+        Fragment f = new CurationQuestion2Fragment();
+        Bundle bundle = new Bundle();
+        bundle.putIntegerArrayList(CurationQuestion2Fragment.FRAGMENT_CURATION_KEY, curationValues);
+        f.setArguments(bundle);
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.curation_container, f);
+        ft.addToBackStack(""+count);
+        ft.commit();    //어떤 버튼이 눌리던 백스택에 해당 프래그먼트가 저장됨
+
     }
 
 

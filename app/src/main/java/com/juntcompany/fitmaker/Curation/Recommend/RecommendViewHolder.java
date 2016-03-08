@@ -42,7 +42,7 @@ public class RecommendViewHolder extends RecyclerView.ViewHolder{
 
     public void setData(Curriculum curriculum){
 
-        textName.setText(curriculum.curriculum_name);
+        textName.setText(curriculum.curriculumName);
         if(!TextUtils.isEmpty(curriculum.curriculum_image)) {
 
         }else {

@@ -12,5 +12,4 @@ public class TypeCurriculumResult {
     @SerializedName("curriculum")
     public ArrayList<Curriculum> curriculums;
 
-
 }

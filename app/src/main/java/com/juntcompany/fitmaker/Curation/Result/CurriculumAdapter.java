@@ -17,7 +17,8 @@ import java.util.List;
 /**
  * Created by EOM on 2016-02-20.
  */
-public class CurriculumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements OnItemClickListener, OnHeaderClickListener{
+public class
+        CurriculumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements OnItemClickListener, OnHeaderClickListener{
     List<CurationType> headers = new ArrayList<CurationType>();
     List<Curriculum> items = new ArrayList<Curriculum>();
 
@@ -60,6 +61,7 @@ public class CurriculumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 holder.setOnItemClickListener(this);
                 return holder;
             }
+
             default: { // 헤더뷰는 하나 무조건 있으므로
                  view = inflater.inflate(R.layout.header_curation_result, parent, false);
                 HeaderCurationViewHolder holder = new HeaderCurationViewHolder(view);
@@ -71,7 +73,8 @@ public class CurriculumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(position == 0) { // 헤더뷰가 하나인 경우
-            ((HeaderCurationViewHolder)holder).setData(headers.get(position));
+            ((HeaderCurationViewHolder) holder).setData(headers.get(position));
+
         } else { // 헤더뷰 하나를 빼고 나머지 아이템 뷰 인 경우
             int index = position - 1;
             ((CurriculumViewHolder)holder).setData(items.get(index));

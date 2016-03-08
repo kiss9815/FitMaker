@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">FitMaker</string>
+    <string name="facebook_app_id">457551064449409</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -7,6 +8,40 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="action_settings">Settings</string>
 
+
+    <!--큐레이션 질문-->
+    <string name="curation_question1">당신의 성별이 궁금해요!</string>
+    <string name="curation_question2">운동은 자주 하시는 편인가요?</string>
+    <string name="curation_question3_1">운동을 자주하시는 군요! 이유가 듣고 싶어요</string>
+    <string name="curation_question3_2">운동을 하지 않은 이유가 궁금해요!</string>
+    <string name="curation_question4">핏메이커를 찾으신 이유를 알려주세요!</string>
+    <string name="curation_question5">당신이 원하는 운동 스타일을 알려주세요!</string>
+    <string name="curation_question6">당신이 원하는 몸매는 무엇인가요?</string>
+
+    <!--큐레이션 대답-->
+    <string name="curation_answer1_A">여성</string>
+    <string name="curation_answer1_B">남성</string>
+    <string name="curation_answer2_A">네 자주하는 편이에요!</string>
+    <string name="curation_answer2_B">아니요.. 거의 하지 않는편이에요</string>
+    <string name="curation_answer3_1_A">운동하는게 즐거워요!</string>
+    <string name="curation_answer3_1_B">건강관리를 위해서 하는편이에요</string>
+    <string name="curation_answer3_2_A">시간이 없어요!</string>
+    <string name="curation_answer3_2_B">운동이 싫어서요..</string>
+    <string name="curation_answer3_2_C">힘들어서 하기 싫어요</string>
+    <string name="curation_answer4_A">체력이 너무 약해요.. 체력을 기르고 싶어요</string>
+    <string name="curation_answer4_B">난 너무 통통해.... 다이어트하고싶어요</string>
+    <string name="curation_answer4_C">너무 마르기만했어요.. 멋진 몸매를 가지고싶어요</string>
+    <string name="curation_answer5_A">집에서도 할 수있는 간단한 운동</string>
+    <string name="curation_answer5_B">힘들어도 강력한 효과를 발휘하는 운동!</string>
+    <string name="curation_answer5_C">C. 무리없이 언제 어디서나 가능한 운동!</string>
+    <string name="curation_answer6_1_A">가슴-어깨-팔	</string>
+    <string name="curation_answer6_1_B">허리 -복부</string>
+    <string name="curation_answer6_1_C">엉덩이</string>
+    <string name="curation_answer6_1_D">허벅지-종아리</string>
+    <string name="curation_answer6_2_A">가슴-어깨-팔</string>
+    <string name="curation_answer6_2_B">등</string>
+    <string name="curation_answer6_2_C">복부</string>
+    <string name="curation_answer6_2_D">엉덩이 허벅지 종아리</string>
 
     <!--navigation 버튼-->
 
@@ -69,5 +104,6 @@
     <string name="login">로그인</string>
     <string name="login_facebook">Facebook으로 로그인</string>
     <string name="forget_id">아이디나 비밀번호를 잊으셨나요?</string>
+    <string name="recommend">추천운동</string>
 
 </resources>

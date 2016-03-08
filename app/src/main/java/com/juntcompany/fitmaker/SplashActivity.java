@@ -6,6 +6,8 @@ import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.juntcompany.fitmaker.Login.LoginActivity;
+
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -19,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this, StartActivity.class));
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                 finish();
             }
         },1000);

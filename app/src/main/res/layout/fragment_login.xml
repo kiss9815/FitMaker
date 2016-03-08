@@ -55,12 +55,17 @@
             android:id="@+id/btn_login"
             />
 
+        <com.facebook.login.widget.LoginButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_facebook_login"
+            android:layout_gravity="center_horizontal" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_facebook"
             android:layout_gravity="center"
-            android:id="@+id/btn_facebook_login"
             />
 
         <TextView

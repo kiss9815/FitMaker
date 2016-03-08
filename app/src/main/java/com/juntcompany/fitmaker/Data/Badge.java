@@ -8,11 +8,13 @@ import com.google.gson.annotations.SerializedName;
 public class Badge {
 
     public int badge_id;
-    public int badge_location; //o
-    public String badge_name; //첫 걸음마 달성 //o
+//    public int badge_location; //o
+
+    @SerializedName("badge_name")
+    public String badgeName; //첫 걸음마 달성 //o
     @SerializedName("badge_photourl")
-    public String badge_image; //o
-//    public String badge_text; //x
+    public String badgeImage; //o
+
     public boolean own_badge; //o
 
     public String badge_date; //o

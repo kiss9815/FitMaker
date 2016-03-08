@@ -7,21 +7,21 @@
     app:orientation="vertical"
     app:columnCount="2"
 
-    tools:context=".Curation.CurationGenderFragment">
+    tools:context=".Curation.CurationQuestion1Fragment">
 
     <!-- TODO: Update blank fragment layout -->
     <Button
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="여성"
-        android:id="@+id/btn_woman"
+        android:text="@string/curation_answer1_A"
+        android:id="@+id/btn_1"
         app:layout_rowWeight="1"
         />
     <Button
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="남성"
-        android:id="@+id/btn_man"
+        android:text="@string/curation_answer1_B"
+        android:id="@+id/btn_2"
         app:layout_rowWeight="1"
         />
 

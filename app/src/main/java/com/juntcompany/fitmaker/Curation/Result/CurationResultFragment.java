@@ -54,8 +54,9 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
         mAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Curriculum c = (Curriculum) mAdapter.getItem(position);
+                Curriculum curriculum = (Curriculum) mAdapter.getItem(position);
                 Intent intent = new Intent(getActivity(), SpecificCurriculumActivity.class);
+                intent.putExtra(SpecificCurriculumActivity.CURRICULUM_MESSAGE, curriculum);
                 startActivity(intent);
             }
         });
@@ -123,10 +124,9 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
             e.printStackTrace();
         }
 
-
-
-
 //////////////////////////////////
+
+
         return view;
     }
 
@@ -157,4 +157,6 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

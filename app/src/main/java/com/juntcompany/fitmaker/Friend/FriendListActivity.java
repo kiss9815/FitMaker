@@ -55,8 +55,8 @@ public class FriendListActivity extends AppCompatActivity {   // MainActivity의
         for(int i =0; i<6; i ++) {
             Friend friend = new Friend();
             Random r = new Random();
-            friend.user_name = "이름" +i;
-            friend.user_exercise_hour =  r.nextInt(100);
+            friend.userName = "이름" +i;
+            friend.userExerciseHour =  r.nextInt(100);
             mAdapter.add(friend);
         }
 

@@ -4,6 +4,7 @@ package com.juntcompany.fitmaker.Login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,11 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.juntcompany.fitmaker.Curation.CurationActivity;
 import com.juntcompany.fitmaker.Data.JoinResult;
 import com.juntcompany.fitmaker.Main.MainActivity;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
 import com.juntcompany.fitmaker.Manager.PropertyManager;
 import com.juntcompany.fitmaker.R;
+import com.juntcompany.fitmaker.StartActivity;
 
 import java.io.UnsupportedEncodingException;
 
@@ -29,6 +32,7 @@ public class SignUpFragment extends Fragment {
 
     public SignUpFragment() {
         // Required empty public constructor
+//        setHasOptionsMenu(true);
 
     }
 
@@ -38,9 +42,12 @@ public class SignUpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragmen
+
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         getActivity().setTitle(FRAGMENT_TITLE);
+
+//        actionBar.setDisplayHomeAsUpEnabled(true);
 
         edit_name = (EditText)view.findViewById(R.id.edit_name);
         edit_email = (EditText)view.findViewById(R.id.edit_email);
@@ -56,14 +63,16 @@ public class SignUpFragment extends Fragment {
                 String name = edit_name.getText().toString();
 //
                 try {
-                    NetworkManager.getInstance().signUp(getContext(), new NetworkManager.OnResultListener<JoinResult>() {
+                    NetworkManager.getInstance().signUp(getContext(), name, userId, password, new NetworkManager.OnResultListener<JoinResult>() {
                         @Override
                         public void onSuccess(Request request, JoinResult result) {
 
-                            PropertyManager.getInstance().setUserId(userId);
+                            PropertyManager.getInstance().setUserId(userId); // 가입하면 sharedPrference에 저장
                             PropertyManager.getInstance().setPassword(password);
                             startActivity(new Intent(getContext(), MainActivity.class));
-//                        getActivity().finish();
+                            Intent intent = new Intent(getContext(), StartActivity.class);
+                            startActivity(intent);
+                            getActivity().finish();
                         }
 
                         @Override
@@ -91,7 +100,7 @@ public class SignUpFragment extends Fragment {
 //
 //                    }
 //                });
-                getActivity().finish();
+
             }
         });
 
@@ -109,5 +118,6 @@ public class SignUpFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 }

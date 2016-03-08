@@ -1,14 +1,17 @@
 package com.juntcompany.fitmaker.Data;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by EOM on 2016-03-02.
  */
 public class ProjectResponseResult {
     public String message;
-
-    public ArrayList<Course> courses;
-    public ArrayList<Badge> badges;
+    @SerializedName("projects_ing")
+    public List<ProjectsIng> projectsIng;
+    public List<Course> courses;
 
 }

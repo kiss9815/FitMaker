@@ -1,8 +1,10 @@
-package com.juntcompany.fitmaker.Data;
+package com.juntcompany.fitmaker.Data.Structure;
 
 import com.google.gson.annotations.SerializedName;
+import com.juntcompany.fitmaker.Data.Friend;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by EOM on 2016-03-02.
@@ -10,5 +12,5 @@ import java.util.ArrayList;
 public class RankingResult {
     public String message;
     @SerializedName("rankfriends")
-    public ArrayList<Friend> friends;
+    public List<Friend> friends;
 }

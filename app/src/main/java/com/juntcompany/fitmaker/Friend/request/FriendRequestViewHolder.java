@@ -45,9 +45,9 @@ public class FriendRequestViewHolder extends RecyclerView.ViewHolder {
 
     public void setData(Friend friend) {
         this.friend = friend;
-        text_name.setText(friend.user_name);
+        text_name.setText(friend.userName);
 
-        if (!TextUtils.isEmpty(friend.user_image)) {
+        if (!TextUtils.isEmpty(friend.userImage)) {
 
         } else {
             image_profile.setImageResource(R.mipmap.ic_launcher);
