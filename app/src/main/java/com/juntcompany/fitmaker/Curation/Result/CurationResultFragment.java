@@ -23,6 +23,7 @@ import com.juntcompany.fitmaker.SpecificCurriculum.SpecificCurriculumActivity;
 import com.juntcompany.fitmaker.util.OnItemClickListener;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Request;
@@ -43,6 +44,17 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
     RecyclerView recyclerView;
     CurriculumAdapter mAdapter;
     RecyclerView.LayoutManager layoutManager;
+
+    public static final String FRAGMENT_CURATION_KEY = "fragment_key";
+
+    ArrayList<Integer> curationKey;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Bundle extra = getArguments();
+        curationKey = extra.getIntegerArrayList(FRAGMENT_CURATION_KEY);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,47 +78,9 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
         initData();
 
 
-//        try { // 커리큘럼만 받아오게 함
-//            NetworkManager.getInstance().getCurriculum(getContext(),""+1, ""+1, ""+1, new NetworkManager.OnResultListener<List<Curriculum>>() {
-//                @Override
-//                public void onSuccess(Request request, List<Curriculum> result) {
-//                    for(Curriculum c : result) {
-//                        mAdapter.add(c);
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Request request, int code, Throwable cause) {
-//
-//                }
-//
-//                //        for(int i =0; i<5; i++){
-//                //            Curriculum curriculum = new Curriculum();
-//                //            mAdapter.add(curriculum);
-//                //        }
-//            });
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-//
-//        try { //큐레이션만 받아오게 함
-//            NetworkManager.getInstance().getCuration(getContext(), "" + 1, "" + 1, "" + 1, new NetworkManager.OnResultListener<CurationType>() {
-//                @Override
-//                public void onSuccess(Request request, CurationType result) {
-//                    mAdapter.addHeader(result);
-//                }
-//
-//                @Override
-//                public void onFailure(Request request, int code, Throwable cause) {
-//
-//                }
-//            });
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
 
-        try { //큐레이션만 받아오게 함
-            NetworkManager.getInstance().getCurriculumCuration(getContext(), "" + 1, "" + 1, "" + 1, new NetworkManager.OnResultListener<TypeCurriculumResult>() {
+        try { //큐레이션만 받아오게 함 , 큐레이션 질문은 1번, 4번, 6번만 받아오게 함
+            NetworkManager.getInstance().getCurriculumCuration(getContext(), ""+curationKey.get(0), ""+curationKey.get(3),""+curationKey.get(5), new NetworkManager.OnResultListener<TypeCurriculumResult>() {
                 @Override
                 public void onSuccess(Request request, TypeCurriculumResult result) {
                     for(Curriculum c : result.curriculums) {

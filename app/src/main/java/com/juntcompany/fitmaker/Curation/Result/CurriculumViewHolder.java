@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.juntcompany.fitmaker.Data.Curriculum;
 import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.util.OnItemClickListener;
@@ -26,6 +27,7 @@ public class CurriculumViewHolder extends RecyclerView.ViewHolder{
     TextView textName;
     ImageView image_picture;
     Curriculum curriculum;
+    Context mContext;
 
     public CurriculumViewHolder(View itemView) {
         super(itemView);
@@ -37,7 +39,7 @@ public class CurriculumViewHolder extends RecyclerView.ViewHolder{
                 }
             }
         });
-
+        mContext = itemView.getContext();
         image_picture = (ImageView)itemView.findViewById(R.id.image_picture);
         textName = (TextView)itemView.findViewById(R.id.text_name);
     }
@@ -45,9 +47,9 @@ public class CurriculumViewHolder extends RecyclerView.ViewHolder{
     public void setData(Curriculum curriculum){
         textName.setText(curriculum.curriculumName);
         if(!TextUtils.isEmpty(curriculum.curriculum_image)) {
-
+            Glide.with(mContext).load(curriculum.curriculum_image).into(image_picture);
         }else {
-            image_picture.setImageResource(Integer.parseInt(String.valueOf(R.mipmap.ic_launcher)));
+            image_picture.setImageResource(Integer.parseInt(String.valueOf(R.mipmap.fit_logo)));
         }
     }
 }

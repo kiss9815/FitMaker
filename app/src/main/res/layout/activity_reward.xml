@@ -36,24 +36,28 @@
             android:src="@drawable/avto"
             android:id="@+id/image_reward_card"
             />
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/image_reward_coment"
+            android:id="@+id/text_reward_coment"
+            android:text="배지 코멘트"
             android:layout_gravity="center"
-            android:src="@drawable/avto"
             />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="확인"
-            android:id="@+id/btn_ok"
-            />
+
 
 
     </LinearLayout>
 
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="확인"
+        android:id="@+id/btn_ok"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
 
 </RelativeLayout>

@@ -1,13 +1,10 @@
 package com.juntcompany.fitmaker.Main.MainSpinner;
 
-import android.graphics.Color;
-import android.support.v7.widget.GridLayout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
-import com.juntcompany.fitmaker.R;
+import com.juntcompany.fitmaker.Data.Project;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +13,15 @@ import java.util.List;
  * Created by EOM on 2016-03-04.
  */
 public class MainSpinnerAdapter extends BaseAdapter {
-    List<String> items = new ArrayList<String>();
+    List<Project> items = new ArrayList<Project>();
 
-    public void add(String s) {
-        items.add(s);
+    public void add(Project p) {
+        items.add(p);
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<Project> projects){
+        items.addAll(projects);
         notifyDataSetChanged();
     }
 
@@ -40,26 +42,26 @@ public class MainSpinnerAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TextView tv;
+        MainSpinnerView spinnerView;
         if (convertView == null) {
-            tv = new TextView(parent.getContext());
+            spinnerView = new MainSpinnerView(parent.getContext());
         } else {
-            tv = (TextView)convertView;
+            spinnerView = (MainSpinnerView)convertView;
         }
-        tv.setText(items.get(position));
-        return tv;
+            spinnerView.setData(items.get(position));
+        return spinnerView;
     }
 
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
-        TextView tv;
+        MainSpinnerView spinnerView;
         if (convertView == null) {
-            tv = new TextView(parent.getContext());
+            spinnerView = new MainSpinnerView(parent.getContext());
         } else {
-            tv = (TextView)convertView;
+            spinnerView = (MainSpinnerView)convertView;
         }
-        tv.setText(items.get(position));
-        tv.setBackgroundResource(R.color.colorActionBar);
-        return tv;
+        spinnerView.setData(items.get(position));
+
+        return spinnerView;
     }
 }

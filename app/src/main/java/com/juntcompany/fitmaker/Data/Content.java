@@ -8,9 +8,11 @@ import java.io.Serializable;
  * Created by EOM on 2016-02-22.
  */
 public class Content implements Serializable{
-    public int content_id;  //0
+
+    @SerializedName("content_id")
+    public int contentId;  //0
     @SerializedName("contents_seq")
-    public String content_status; //o
+    public int content_status; //o
     @SerializedName("contents_name")
     public String contentName; //0
     public String content_type; // ex반복운동 //0

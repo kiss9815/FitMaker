@@ -45,7 +45,7 @@ public class FriendRequestActivity extends AppCompatActivity {
     private void initData(){
         for(int i =0; i<6; i ++) {
             Friend friend = new Friend();
-            friend.userName = "이름" +i;
+            friend.friendName = "이름" +i;
             mAdapter.add(friend);
         }
 

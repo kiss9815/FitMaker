@@ -210,7 +210,6 @@ public class LoginFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
-        inflater.inflate(R.menu.menu_login, menu);
 
     }
 
@@ -221,11 +220,6 @@ public class LoginFragment extends Fragment {
                 getActivity().finish();
                 break;
 
-            case R.id.login_login_menu:
-                //게스트 입장 처리.......
-                Intent intent = new Intent(getContext(), CurationActivity.class);
-                startActivity(intent);
-                break;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -11,18 +11,10 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         android:id="@+id/recyclerView"
-        android:layout_above="@+id/btn_1"
+        android:layout_above="@+id/btn_ranking"
       />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1"
-        android:id="@+id/btn_1"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="71dp" />
+
 
 
 
@@ -32,6 +24,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:background="@drawable/btn_ranking"
         android:id="@+id/btn_ranking"
         />
 </RelativeLayout>

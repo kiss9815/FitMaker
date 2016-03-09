@@ -86,6 +86,10 @@ public class CurationQuestion6Fragment extends Fragment implements View.OnClickL
 
         int count = getActivity().getSupportFragmentManager().getBackStackEntryCount();
         Fragment f = new CurationResultFragment();
+        Bundle args = new Bundle();
+        args.putIntegerArrayList(CurationResultFragment.FRAGMENT_CURATION_KEY, curationValues);
+        f.setArguments(args);
+
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.curation_container, f);
         ft.addToBackStack("" + count);

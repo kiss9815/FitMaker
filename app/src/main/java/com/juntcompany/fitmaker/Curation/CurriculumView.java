@@ -22,7 +22,7 @@ public class CurriculumView extends FrameLayout {
     Curriculum curriculum;
     private void init(){
         inflate(getContext(), R.layout.view_curriculum, this);
-        imageView = (ImageView)findViewById(R.id.imageView);
+        imageView = (ImageView)findViewById(R.id.image_picture);
 
     }
 

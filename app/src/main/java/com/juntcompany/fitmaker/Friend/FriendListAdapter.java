@@ -24,6 +24,11 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListViewHolder
         notifyDataSetChanged();
     }
 
+    public void addAll(List<Friend> friends){
+        items.addAll(friends);
+        notifyDataSetChanged();
+    }
+
     @Override
     public FriendListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());

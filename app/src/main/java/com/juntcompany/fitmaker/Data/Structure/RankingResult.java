@@ -11,6 +11,6 @@ import java.util.List;
  */
 public class RankingResult {
     public String message;
-    @SerializedName("rankfriends")
-    public List<Friend> friends;
+
+    public List<Friend> friends; //서버 0
 }

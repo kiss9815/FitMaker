@@ -10,29 +10,104 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/image_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
         android:src="@android:drawable/sym_def_app_icon" />
 
-
-
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_nav_login"
-        android:text="로그인"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/image_profile"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_marginTop="20dp"
+        android:id="@+id/linear"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="시간"
+            android:id="@+id/btn_nav_hour"
+            />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_curation_type"
+            android:text="발레리나 타입"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="엄준태"
+            android:gravity="center"
+            android:id="@+id/text_name"
+
+            />
+    </LinearLayout>
+
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:text="배지"
         android:id="@+id/btn_nav_badge"
-        android:layout_toRightOf="@+id/btn_nav_login"/>
+        />
 
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="주간 운동 시간"
+            android:id="@+id/text_hour"
+            android:layout_weight="1"
+            android:gravity="center"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전신운동"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:id="@+id/text_exercise_part"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="걷기 회수"
+            android:id="@+id/text_exercise_count"
+            android:layout_weight="1"
+            android:gravity="center"
+
+            />
+
+
+    </LinearLayout>
 </RelativeLayout>

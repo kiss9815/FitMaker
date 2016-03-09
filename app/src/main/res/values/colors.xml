@@ -6,6 +6,7 @@
     <color name="colorActionBar">#d5255b</color>
     <color name="FitActionBarTitle">#FFFFFF</color>
     <color name="FitActionBarText">#e695a9</color>
+    <color name="FitGray">#efefef</color>
     <color name="colorActionBarTextSub">#ffffff</color>
     <color name="ddd">#303030</color>
     <color name="FitTutorial">#dfdfdf</color>

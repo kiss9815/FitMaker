@@ -29,6 +29,7 @@ public class RecommendActivity extends AppCompatActivity {
     RecommendAdapter mAdapter;
     RecyclerView.LayoutManager layoutManager;
 
+    Curriculum curriculum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +43,9 @@ public class RecommendActivity extends AppCompatActivity {
         mAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Curriculum c = (Curriculum) mAdapter.getItem(position);
+                curriculum = (Curriculum) mAdapter.getItem(position);
                 Intent intent = new Intent(RecommendActivity.this, SpecificCurriculumActivity.class);
+                intent.putExtra(SpecificCurriculumActivity.CURRICULUM_MESSAGE, curriculum);
                 startActivity(intent);
             }
         });
@@ -51,30 +53,31 @@ public class RecommendActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
+        setData();
+
+
+    }
+
+    private void setData() {
         try {
-            NetworkManager.getInstance().getCurriculum(getApplicationContext(),""+1, ""+1, ""+1, new NetworkManager.OnResultListener<List<Curriculum>>() {
+            NetworkManager.getInstance().getCurriculum(getApplicationContext(), new NetworkManager.OnResultListener<List<Curriculum>>() {
                 @Override
                 public void onSuccess(Request request, List<Curriculum> result) {
-                    for(Curriculum c : result) {
-                        mAdapter.add(c);
-                    }
+
+                    mAdapter.addAll(result);
+
                 }
 
                 @Override
                 public void onFailure(Request request, int code, Throwable cause) {
 
                 }
-
-
-    //        for(int i =0; i<5; i++){
-    //            Curriculum curriculum = new Curriculum();
-    //            mAdapter.add(curriculum);
-    //        }
             });
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 

@@ -17,8 +17,7 @@ import java.util.List;
 /**
  * Created by EOM on 2016-02-20.
  */
-public class
-        CurriculumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements OnItemClickListener, OnHeaderClickListener{
+public class CurriculumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements OnItemClickListener, OnHeaderClickListener{
     List<CurationType> headers = new ArrayList<CurationType>();
     List<Curriculum> items = new ArrayList<Curriculum>();
 

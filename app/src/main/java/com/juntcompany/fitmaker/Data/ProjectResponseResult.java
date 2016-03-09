@@ -2,7 +2,6 @@ package com.juntcompany.fitmaker.Data;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +10,7 @@ import java.util.List;
 public class ProjectResponseResult {
     public String message;
     @SerializedName("projects_ing")
-    public List<ProjectsIng> projectsIng;
+    public List<Project> projects;
     public List<Course> courses;
 
 }

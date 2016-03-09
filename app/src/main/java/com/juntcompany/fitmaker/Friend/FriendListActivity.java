@@ -11,11 +11,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.juntcompany.fitmaker.Data.Friend;
+import com.juntcompany.fitmaker.Data.Structure.FriendListResult;
 import com.juntcompany.fitmaker.Friend.add.FriendSearchActivity;
 import com.juntcompany.fitmaker.Friend.request.FriendRequestActivity;
+import com.juntcompany.fitmaker.Manager.NetworkManager;
 import com.juntcompany.fitmaker.R;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Random;
+
+import okhttp3.Request;
 
 public class FriendListActivity extends AppCompatActivity {   // MainActivity의 메뉴에서 들어옴
 
@@ -47,19 +52,29 @@ public class FriendListActivity extends AppCompatActivity {   // MainActivity의
         layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        initData();
+        setData();
+
+       // initData();
     }
 
-    private void initData(){
 
-        for(int i =0; i<6; i ++) {
-            Friend friend = new Friend();
-            Random r = new Random();
-            friend.userName = "이름" +i;
-            friend.userExerciseHour =  r.nextInt(100);
-            mAdapter.add(friend);
+
+    private void setData(){
+        try {
+            NetworkManager.getInstance().getFriendList(getApplicationContext(), new NetworkManager.OnResultListener<FriendListResult>() {
+                @Override
+                public void onSuccess(Request request, FriendListResult result) {
+                    mAdapter.addAll(result.friends);
+                }
+
+                @Override
+                public void onFailure(Request request, int code, Throwable cause) {
+
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
-
     }
 
     @Override

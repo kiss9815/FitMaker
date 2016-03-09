@@ -5,4 +5,9 @@
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+    <dimen name="fit_friend_left_margin">20dp</dimen>
+    <dimen name="fit_friend_right_margin">20dp</dimen>
+    <dimen name="fit_space">10dp</dimen>
 </resources>

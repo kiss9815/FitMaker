@@ -20,6 +20,10 @@ public class Course implements Serializable{
     public String course_name;
    public List<Content> contents;
 
+    public boolean isFinish;
+    public boolean isSelectable;
+
+
     @Override
     public String toString() {
         return "courseid : "+courseId +", courseSeq : " + courseSeq;

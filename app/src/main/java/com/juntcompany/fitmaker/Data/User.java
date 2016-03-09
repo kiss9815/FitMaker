@@ -13,17 +13,13 @@ public class User {
     @SerializedName("user_name")
     public String userName;
     @SerializedName("user_photourl")
-    public String userImage;
+    public String userProfile;
 
     @SerializedName("badgeCnt")
     public int badgeCount;
     @SerializedName("exctype_name")
     public String curationName;
 
-    @SerializedName("project_history")
-    public List<Project> projectHistories;
-
-    public List<Badge> badges;
 
 
 }
