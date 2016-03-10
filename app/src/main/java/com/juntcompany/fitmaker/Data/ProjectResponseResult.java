@@ -12,5 +12,5 @@ public class ProjectResponseResult {
     @SerializedName("projects_ing")
     public List<Project> projects;
     public List<Course> courses;
-
+    public Today today;
 }

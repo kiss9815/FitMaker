@@ -92,7 +92,7 @@ public class LoginFragment extends Fragment {
         edit_password = (EditText)view.findViewById(R.id.edit_password);
 
         Button btn = (Button)view.findViewById(R.id.btn_login);
-        btn.setOnClickListener(new View.OnClickListener() { // 일반 로그인 기능
+        btn.setOnClickListener(new View.OnClickListener() { // 일반 로그인 기능 버튼
             @Override
             public void onClick(View v) {
                 final String userId = edit_email.getText().toString();
@@ -101,12 +101,14 @@ public class LoginFragment extends Fragment {
                     NetworkManager.getInstance().login(getContext(), userId, password, new NetworkManager.OnResultListener<JoinResult>() {
                         @Override
                         public void onSuccess(Request request, JoinResult result) {
-
+                            Toast.makeText(getContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getContext(), MainActivity.class); // 로그인을 했다는건 이미 가입을 했다고 하고 메인으로 가자
+                            startActivity(intent);
                         }
 
                         @Override
                         public void onFailure(Request request, int code, Throwable cause) {
-
+                            Toast.makeText(getContext(), "서버 에러 로그인 실패", Toast.LENGTH_SHORT).show();
                         }
                     });
                 } catch (UnsupportedEncodingException e) {

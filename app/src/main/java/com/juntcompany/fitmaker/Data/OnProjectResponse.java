@@ -5,5 +5,5 @@ package com.juntcompany.fitmaker.Data;
  */
 public class OnProjectResponse {
     OnProjectResult result;
-    Error error;
+    com.juntcompany.fitmaker.Data.Structure.Error error;
 }

@@ -14,6 +14,8 @@ public class User {
     public String userName;
     @SerializedName("user_photourl")
     public String userProfile;
+    @SerializedName("hours")
+    public int userExerciseHours;
 
     @SerializedName("badgeCnt")
     public int badgeCount;

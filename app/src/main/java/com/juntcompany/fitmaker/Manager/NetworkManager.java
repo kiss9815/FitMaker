@@ -18,6 +18,9 @@ import com.juntcompany.fitmaker.Data.ProjectResponseResult;
 import com.juntcompany.fitmaker.Data.Structure.FriendListResult;
 import com.juntcompany.fitmaker.Data.Structure.FriendResponse;
 import com.juntcompany.fitmaker.Data.Structure.FriendResult;
+import com.juntcompany.fitmaker.Data.Structure.FriendSearchResponse;
+import com.juntcompany.fitmaker.Data.Structure.FriendSearchResult;
+import com.juntcompany.fitmaker.Data.Structure.GeneralRequest;
 import com.juntcompany.fitmaker.Data.Structure.MyResponse;
 import com.juntcompany.fitmaker.Data.Structure.MyResult;
 import com.juntcompany.fitmaker.Data.Structure.RankingResult;
@@ -26,6 +29,7 @@ import com.juntcompany.fitmaker.Data.RecordResult;
 import com.juntcompany.fitmaker.Data.Structure.BadgeResponse;
 import com.juntcompany.fitmaker.Data.Structure.BadgeResult;
 import com.juntcompany.fitmaker.Data.Structure.RankingResponse;
+import com.juntcompany.fitmaker.Data.Structure.Result;
 import com.juntcompany.fitmaker.Data.TypeCurriculumResponse;
 import com.juntcompany.fitmaker.Data.TypeCurriculumResult;
 import com.juntcompany.fitmaker.FitMaker;
@@ -517,7 +521,7 @@ public class NetworkManager {
 
     public Request setRecord(Context context, String projectId, final OnResultListener<RecordResult> listener)throws UnsupportedEncodingException {
 
-        String url = String.format(URL_FORMAT_GET_PROJECT);
+        String url = String.format(URL_FORMAT_SET_RECORD);
         final CallbackObject<RecordResult> callbackObject = new CallbackObject<RecordResult>();
         RequestBody body = new FormBody.Builder()
                 .add(POST_BODY_PROJECT_ID, projectId)
@@ -721,4 +725,150 @@ public class NetworkManager {
         return request;
     }
 
+    private static final String URL_FORMAT_GET_FRIEND_REQUEST_LIST = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/resfriends";
+
+    public Request getFriendRequestList(Context context, final OnResultListener<FriendListResult> listener)throws UnsupportedEncodingException {
+
+        String url = String.format(URL_FORMAT_GET_FRIEND_REQUEST_LIST);
+        final CallbackObject<FriendListResult> callbackObject = new CallbackObject<FriendListResult>();
+
+        Request request = new Request.Builder().url(url)
+                .tag(context)
+                .build();
+
+        callbackObject.request = request;
+        callbackObject.listener = listener;
+
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callbackObject.exception = e;
+                Message msg = mHandler.obtainMessage(MESSAGE_FAILURE, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                FriendListResponse friendList = gson.fromJson(response.body().string(), FriendListResponse.class);
+                callbackObject.result = friendList.result;
+                Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+        });
+        return request;
+    }
+
+
+    private static final String URL_FORMAT_SEND_FRIEND_REQUEST = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/relation";
+    private static final String POST_BODY_FRIEND_ID = "friend_id";
+
+    public Request sendFriendRequest(Context context, String friendId, final OnResultListener<Result> listener)throws UnsupportedEncodingException {
+
+        String url = String.format(URL_FORMAT_SEND_FRIEND_REQUEST);
+        final CallbackObject<Result> callbackObject = new CallbackObject<Result>();
+        RequestBody body = new FormBody.Builder()
+                .add(POST_BODY_FRIEND_ID, friendId)
+                .build();
+
+        Request request = new Request.Builder().url(url)
+                .tag(context)
+                .post(body)
+                .build();
+
+        callbackObject.request = request;
+        callbackObject.listener = listener;
+
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callbackObject.exception = e;
+                Message msg = mHandler.obtainMessage(MESSAGE_FAILURE, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                GeneralRequest project = gson.fromJson(response.body().string(), GeneralRequest.class);
+                callbackObject.result = project.result;
+                Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+        });
+        return request;
+    }
+
+    private static final String URL_FORMAT_RESPONSE_FRIEND_REQUEST = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/relation/%s";
+    private static final String POST_BODY_STATE = "state";
+
+    public Request answerFriendRequest(Context context, String friendId, String state, final OnResultListener<Result> listener)throws UnsupportedEncodingException {
+
+        String url = String.format(URL_FORMAT_RESPONSE_FRIEND_REQUEST, URLEncoder.encode(friendId, "utf-8"));
+        final CallbackObject<Result> callbackObject = new CallbackObject<Result>();
+
+        RequestBody body = new FormBody.Builder()
+                .add(POST_BODY_STATE, state)
+                .build();
+
+        Request request = new Request.Builder().url(url)
+                .tag(context)
+                .build();
+
+        callbackObject.request = request;
+        callbackObject.listener = listener;
+
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callbackObject.exception = e;
+                Message msg = mHandler.obtainMessage(MESSAGE_FAILURE, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                GeneralRequest project = gson.fromJson(response.body().string(), GeneralRequest.class);
+                callbackObject.result = project.result;
+                Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+        });
+        return request;
+    }
+
+    private static final String URL_FORMAT_SEARCH_FRIEND = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/users?email=%s";
+
+    public Request searchFriend(Context context, String email,final OnResultListener<FriendSearchResult> listener)throws UnsupportedEncodingException {
+
+        String url = String.format(URL_FORMAT_SEARCH_FRIEND, URLEncoder.encode(email, "utf-8"));
+        final CallbackObject<FriendSearchResult> callbackObject = new CallbackObject<FriendSearchResult>();
+
+        Request request = new Request.Builder().url(url)
+                .tag(context)
+                .build();
+
+        callbackObject.request = request;
+        callbackObject.listener = listener;
+
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callbackObject.exception = e;
+                Message msg = mHandler.obtainMessage(MESSAGE_FAILURE, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                FriendSearchResponse friendList = gson.fromJson(response.body().string(), FriendSearchResponse.class);
+                callbackObject.result = friendList.result;
+                Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+        });
+        return request;
+    }
 }

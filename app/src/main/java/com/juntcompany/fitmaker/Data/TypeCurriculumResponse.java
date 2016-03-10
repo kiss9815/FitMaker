@@ -5,6 +5,6 @@ package com.juntcompany.fitmaker.Data;
  */
 public class TypeCurriculumResponse { // get으로 받아올 것임
    public TypeCurriculumResult result;
-    Error error;
+    com.juntcompany.fitmaker.Data.Structure.Error error;
 
 }

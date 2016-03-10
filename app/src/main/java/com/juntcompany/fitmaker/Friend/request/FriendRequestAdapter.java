@@ -16,13 +16,21 @@ import java.util.List;
 /**
  * Created by EOM on 2016-02-26.
  */
-public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestViewHolder> implements OnItemClickListener {
+public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestViewHolder> implements FriendRequestViewHolder.OnItemSelectClickListener {
 
     List<Friend> items = new ArrayList<Friend>();
 
     public void add(Friend friend){
         items.add(friend);
         notifyDataSetChanged();
+    }
+
+    public void addAll(List<Friend> friends){
+        items.addAll(friends);
+        notifyDataSetChanged();
+    }
+    public void clear(){
+        items.clear();
     }
 
     @Override
@@ -45,20 +53,41 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestView
         return items.size();
     }
 
-    OnItemClickListener itemClickListener;
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        itemClickListener = listener;
-    }
+//    OnItemClickListener itemClickListener;
+//    public void setOnItemClickListener(OnItemClickListener listener) {
+//        itemClickListener = listener;
+//    }
 
-    @Override
-    public void onItemClick(View view, int position) {
-        if(itemClickListener!=null){
-            itemClickListener.onItemClick(view, position);
-        }
-    }
+
+
+
     public Friend getItem(int position){
         if (position < 0 || position >= items.size()) return null;
 
         return items.get(position);
+    }
+
+    public interface OnAdapterItemClickListener {
+        public void onAdapterItemAcceptClick(View view, int position);
+        public void onAdapterItemRejectClick(View view, int position);
+    }
+
+    OnAdapterItemClickListener mAdapterClickListener;
+    public void setOnItemClickListener(OnAdapterItemClickListener listener){
+        mAdapterClickListener = listener;
+    }
+
+    @Override // viewHolder에서 아이템을 클릭했을 경우, viewHolder에서 accept와 reject이 나누어짐
+    public void onAdapterItemAcceptClick(View view, int position) {
+        if(mAdapterClickListener!=null){
+            mAdapterClickListener.onAdapterItemAcceptClick(view, position);
+        }
+    }
+
+    @Override
+    public void onAdapterItemRejectClick(View view, int position) {
+        if(mAdapterClickListener!=null){
+            mAdapterClickListener.onAdapterItemRejectClick(view, position);
+        }
     }
 }

@@ -10,4 +10,11 @@
     <dimen name="fit_friend_left_margin">20dp</dimen>
     <dimen name="fit_friend_right_margin">20dp</dimen>
     <dimen name="fit_space">10dp</dimen>
+    <dimen name="fit_dismiss">50dp</dimen>
+    <dimen name="fit_dialog_marginTop">5dp</dimen>
+    <dimen name="fit_dialog_title">30dp</dimen>
+    <dimen name="fit_dialog_margin_left">20dp</dimen>
+    <dimen name="fit_dialog_margin_right">20dp</dimen>
+    <dimen name="dialog_course">40dp</dimen>
+
 </resources>

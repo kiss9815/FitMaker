@@ -21,7 +21,7 @@ public class Content implements Serializable{
     @SerializedName("contents_time")
     public String contentTime; //0
     @SerializedName("contents_count")
-    public String content_set_count; // 현재 진행 중인 세트 //0 ?? 서버에서 왜 필요하지??
+    public String content_set_count; // 세트 1회당 횟수
     @SerializedName("contents_set")
     public String contentSet; //운동 시 마쳐야 하는 세트 //0
     @SerializedName("contents_target")
@@ -32,6 +32,8 @@ public class Content implements Serializable{
     public String contentCaution; //o
     @SerializedName("content_voiceurl")
     public String contentVoiceurl; //o
+
+    public Boolean isFinished;
 
     @Override
     public String toString() {

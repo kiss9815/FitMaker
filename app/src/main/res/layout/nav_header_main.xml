@@ -26,11 +26,11 @@
         android:id="@+id/linear"
         >
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="시간"
-            android:id="@+id/btn_nav_hour"
+            android:id="@+id/text_exercise_hour"
             />
 
     <LinearLayout
@@ -45,16 +45,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/text_curation_type"
-            android:text="발레리나 타입"
+            android:text="타입"
 
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="엄준태"
+            android:text="개발자"
             android:gravity="center"
-            android:id="@+id/text_name"
+            android:id="@+id/text_user_name"
 
             />
     </LinearLayout>

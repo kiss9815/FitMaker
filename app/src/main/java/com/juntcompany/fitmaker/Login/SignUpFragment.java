@@ -4,15 +4,17 @@ package com.juntcompany.fitmaker.Login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.juntcompany.fitmaker.Curation.CurationActivity;
 import com.juntcompany.fitmaker.Data.JoinResult;
 import com.juntcompany.fitmaker.Main.MainActivity;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
@@ -35,10 +37,11 @@ public class SignUpFragment extends Fragment {
 //        setHasOptionsMenu(true);
 
     }
+    private static final String EMAIL_PATTERN = "\"^[_A-Za-z0-9-]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$";
 
     private static final String FRAGMENT_TITLE = "회원 가입";
 
-    EditText edit_email, edit_password, edit_name;
+    EditText editEmail, editPassword, editName;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,18 +52,32 @@ public class SignUpFragment extends Fragment {
 
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 
-        edit_name = (EditText)view.findViewById(R.id.edit_name);
-        edit_email = (EditText)view.findViewById(R.id.edit_email);
-        edit_password = (EditText)view.findViewById(R.id.edit_password);
+        editName = (EditText)view.findViewById(R.id.edit_name);
+        editEmail = (EditText)view.findViewById(R.id.edit_email);
+        editEmail.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {///.. 액션을 뭘로 해야하지....
+                    String email = editEmail.getText().toString();
+                    if (email.matches(EMAIL_PATTERN)) {
+
+                    } else {
+                        Toast.makeText(getContext(), "이메일이 아닙니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                return true;
+            }
+        });
+        editPassword = (EditText)view.findViewById(R.id.edit_password);
 
         Button btn = (Button)view.findViewById(R.id.btn_complete);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { // 가입완료 처리
 
-                final String userId = edit_email.getText().toString();
-                final String password = edit_password.getText().toString();
-                String name = edit_name.getText().toString();
+                final String userId = editEmail.getText().toString();
+                final String password = editPassword.getText().toString();
+                String name = editName.getText().toString();
 //
                 try {
                     NetworkManager.getInstance().signUp(getContext(), name, userId, password, new NetworkManager.OnResultListener<JoinResult>() {

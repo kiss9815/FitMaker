@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/hint_email"
+                android:id="@+id/edit_email"
                 />
         </android.support.design.widget.TextInputLayout>
 
@@ -35,6 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/hint_password"
+                android:id="@+id/edit_password"
                 />
         </android.support.design.widget.TextInputLayout>
 

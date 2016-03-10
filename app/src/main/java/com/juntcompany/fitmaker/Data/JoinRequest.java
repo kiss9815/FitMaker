@@ -5,5 +5,5 @@ package com.juntcompany.fitmaker.Data;
  */
 public class JoinRequest {
     public JoinResult result;
-    public Error error;
+    public com.juntcompany.fitmaker.Data.Structure.Error error;
 }

@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 
 import com.juntcompany.fitmaker.Data.Badge;
 import com.juntcompany.fitmaker.Main.MainActivity;
+import com.juntcompany.fitmaker.Manager.NetworkManager;
 import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.util.MyDecoration;
 
@@ -42,6 +43,7 @@ public class BadgeActivity extends AppCompatActivity {
 
         recyclerView.addItemDecoration(new MyDecoration(BadgeActivity.this, MyDecoration.GRIDVIEW_VERTICAL_LIST));
         initData();
+        //setData();
     }
 
     private void initData(){
@@ -51,6 +53,10 @@ public class BadgeActivity extends AppCompatActivity {
             mAdapter.add(badge);
         }
     }
+
+//    private void setData(){
+//        NetworkManager.getInstance().getBadge(getApplicationContext(), )
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

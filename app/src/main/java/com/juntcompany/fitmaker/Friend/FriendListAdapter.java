@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.juntcompany.fitmaker.Data.Friend;
+import com.juntcompany.fitmaker.Friend.request.FriendRequestAdapter;
+import com.juntcompany.fitmaker.Friend.request.FriendRequestViewHolder;
 import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.util.OnItemClickListener;
 
@@ -15,7 +17,7 @@ import java.util.List;
 /**
  * Created by EOM on 2016-02-26.
  */
-public class FriendListAdapter extends RecyclerView.Adapter<FriendListViewHolder> implements OnItemClickListener {
+public class FriendListAdapter extends RecyclerView.Adapter<FriendListViewHolder> implements FriendListViewHolder.OnItemSelectorClickListener {
 
     List<Friend> items = new ArrayList<Friend>();
 
@@ -49,17 +51,38 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListViewHolder
         return items.size();
     }
 
-    OnItemClickListener itemClickListener;
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        itemClickListener = listener;
+
+
+//    OnItemClickListener itemClickListener;
+//    public void setOnItemClickListener(OnItemClickListener listener) {
+//        itemClickListener = listener;
+//    }
+//    @Override
+//    public void onItemClick(View view, int position) {
+//        if(itemClickListener!=null){
+//            itemClickListener.onItemClick(view, position);
+//        }
+//    }
+
+    public interface OnAdapterItemClickListener {
+        public void onAdapterItemProfileClick(View view, int position);
+    }
+
+
+    OnAdapterItemClickListener mAdapterClickListener;
+    public void setOnItemClickListener(OnAdapterItemClickListener listener){
+        mAdapterClickListener = listener;
     }
 
     @Override
-    public void onItemClick(View view, int position) {
-        if(itemClickListener!=null){
-            itemClickListener.onItemClick(view, position);
+    public void onAdapterItemProfileClick(View view, int position) {
+        if(mAdapterClickListener != null){
+            mAdapterClickListener.onAdapterItemProfileClick(view, position);
         }
     }
+
+
+
     public Friend getItem(int position){
         if (position < 0 || position >= items.size()) return null;
 

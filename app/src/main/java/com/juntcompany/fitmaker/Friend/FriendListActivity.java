@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.juntcompany.fitmaker.Data.Friend;
 import com.juntcompany.fitmaker.Data.Structure.FriendListResult;
@@ -46,7 +47,13 @@ public class FriendListActivity extends AppCompatActivity {   // MainActivity의
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         mAdapter = new FriendListAdapter();
-
+        mAdapter.setOnItemClickListener(new FriendListAdapter.OnAdapterItemClickListener() {
+            @Override
+            public void onAdapterItemProfileClick(View view, int position) {
+                Friend friend = (Friend) mAdapter.getItem(position);
+                ////프로필 보기 버튼 .....
+            }
+        });
         recyclerView.setAdapter(mAdapter);
 
         layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);

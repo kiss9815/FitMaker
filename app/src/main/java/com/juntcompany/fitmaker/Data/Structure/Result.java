@@ -1,4 +1,4 @@
-package com.juntcompany.fitmaker.Data;
+package com.juntcompany.fitmaker.Data.Structure;
 
 import com.google.gson.annotations.SerializedName;
 

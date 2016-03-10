@@ -1,11 +1,11 @@
 package com.juntcompany.fitmaker.Data.Structure;
 
 
+import com.juntcompany.fitmaker.Data.Structure.Error;
 /**
  * Created by EOM on 2016-03-02.
  */
-public class MyResponse {
-    public MyResult result;
+public class GeneralRequest {
+    public Result result;
     public Error error;
-
 }

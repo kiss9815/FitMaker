@@ -23,12 +23,12 @@
         android:layout_centerVertical="true"
         />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/text_hour"
+        android:id="@+id/btn_friend_profile"
         android:layout_alignParentRight="true"
-        android:text="500h"
+        android:text="@string/see_friend_profile"
         android:layout_marginRight="10dp"
         android:layout_centerVertical="true"
 

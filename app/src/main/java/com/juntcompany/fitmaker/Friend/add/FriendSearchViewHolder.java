@@ -1,4 +1,4 @@
-package com.juntcompany.fitmaker.Friend.request;
+package com.juntcompany.fitmaker.Friend.add;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -13,23 +13,18 @@ import com.juntcompany.fitmaker.Data.Friend;
 import com.juntcompany.fitmaker.R;
 
 /**
- * Created by EOM on 2016-02-26.
+ * Created by EOM on 2016-03-10.
  */
-public class FriendRequestViewHolder extends RecyclerView.ViewHolder {
+public class FriendSearchViewHolder extends RecyclerView.ViewHolder {
 
-    TextView textName, text_accept, text_reject;
+    TextView textEmail;
     ImageView imageProfile;
     Friend friend;
     Context mContext;
+    Button btnAddFriend;
 
-//    public OnItemClickListener itemClickListener;
-//
-//    public void setOnItemClickListener(OnItemClickListener listener) {
-//        itemClickListener = listener;
-//    }
     public interface OnItemSelectClickListener {
-        public void onAdapterItemAcceptClick(View view, int position);
-        public void onAdapterItemRejectClick(View view, int position);
+        public void onAdapterItemAddClick(View view, int position);
     }
 
     OnItemSelectClickListener mAdapterClickListener;
@@ -38,31 +33,22 @@ public class FriendRequestViewHolder extends RecyclerView.ViewHolder {
     }
 
 
-    Button rejectView, acceptView;
 
-    public FriendRequestViewHolder(final View itemView) {
+    public FriendSearchViewHolder(final View itemView) {
         super(itemView);
 
-        rejectView = (Button)itemView.findViewById(R.id.btn_reject);
-        acceptView = (Button)itemView.findViewById(R.id.btn_accept);
-        acceptView.setOnClickListener(new View.OnClickListener() {
+
+        btnAddFriend = (Button)itemView.findViewById(R.id.btn_add_friend);
+        btnAddFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mAdapterClickListener != null) {
-                    mAdapterClickListener.onAdapterItemAcceptClick(itemView, getAdapterPosition());
-                }
-            }
-        });
-        rejectView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mAdapterClickListener != null) {
-                    mAdapterClickListener.onAdapterItemRejectClick(itemView,getAdapterPosition());
+                    mAdapterClickListener.onAdapterItemAddClick(itemView, getAdapterPosition());
                 }
             }
         });
         mContext = itemView.getContext();
-        textName = (TextView) itemView.findViewById(R.id.text_name);
+        textEmail = (TextView) itemView.findViewById(R.id.text_email);
 //        text_accept = (TextView) itemView.findViewById(R.id.text_accept);
 //        text_reject = (TextView) itemView.findViewById(R.id.text_reject);
         imageProfile = (ImageView) itemView.findViewById(R.id.image_profile);
@@ -71,7 +57,7 @@ public class FriendRequestViewHolder extends RecyclerView.ViewHolder {
 
     public void setData(Friend friend) {
         this.friend = friend;
-        textName.setText(friend.friendName);
+        textEmail.setText(friend.friendEmail);
 
         if (!TextUtils.isEmpty(friend.friendProfile)) {
             Glide.with(mContext).load(friend.friendProfile).into(imageProfile);

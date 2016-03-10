@@ -5,5 +5,5 @@ package com.juntcompany.fitmaker.Data;
  */
 public class RecordRequest {
     public RecordResult result;
-    public Error error;
+    public com.juntcompany.fitmaker.Data.Structure.Error error;
 }
