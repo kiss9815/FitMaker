@@ -32,6 +32,7 @@ import com.juntcompany.fitmaker.Main.MainActivity;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
 import com.juntcompany.fitmaker.Manager.PropertyManager;
 import com.juntcompany.fitmaker.R;
+import com.juntcompany.fitmaker.StartActivity;
 
 import org.json.JSONObject;
 
@@ -77,7 +78,7 @@ public class LoginFragment extends Fragment {
     private static final String FRAGMENT_TITLE = "로그인";
 
     EditText edit_email, edit_password;
-    LoginButton loginButton;
+    Button loginButton;
     CallbackManager callbackManager;
     LoginManager loginManager;
     AccessTokenTracker tracker;
@@ -132,59 +133,66 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        loginButton = (LoginButton)view.findViewById(R.id.btn_facebook_login);
-        loginButton.setFragment(this); // 프래그먼트일 경우 이 코드 꼭 해야함
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() { // 페이스북 로그인
+        loginManager = LoginManager.getInstance();
+        loginButton = (Button)view.findViewById(R.id.btn_facebook_login);
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(LoginResult loginResult) {
-                AccessToken token = AccessToken.getCurrentAccessToken();
-                if (token == null) { //토큰이 만료된 경우 로그인 매니저로 로그인
-                    loginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-                        @Override
-                        public void onSuccess(LoginResult loginResult) {
-
-                        }
-
-                        @Override
-                        public void onCancel() {
-
-                        }
-
-                        @Override
-                        public void onError(FacebookException error) {
-
-                        }
-                    });
-                    Toast.makeText(getContext(), "success : " + token.getToken(), Toast.LENGTH_SHORT).show();
-                    loginManager.setLoginBehavior(LoginBehavior.NATIVE_WITH_FALLBACK);
-                    loginManager.setDefaultAudience(DefaultAudience.FRIENDS);
-                    LoginManager.getInstance().logInWithReadPermissions(getActivity(), null);
-
-                }else { //토큰이 있는 경우 토큰을 서버에 전송
-                    GraphRequest request = GraphRequest.newMeRequest(token, new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(JSONObject object, GraphResponse response) {
-                            if(response.getError() == null){ // 토큰이 잘 넘어간 경우
-                                Toast.makeText(getContext(), "data : " + response.getJSONObject().toString(), Toast.LENGTH_SHORT).show();
-                            }else {
-                                Toast.makeText(getContext(), "error : " + response.getError().toString(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                    request.executeAsync();
-                }
-            }
-
-            @Override
-            public void onCancel() {
-                Toast.makeText(getContext(), "cancel", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                loginOrLogout();
             }
         });
+//        loginButton.setFragment(this); // 프래그먼트일 경우 이 코드 꼭 해야함
+//        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() { // 페이스북 로그인
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                AccessToken token = AccessToken.getCurrentAccessToken();
+//                if (token == null) { //토큰이 만료된 경우 로그인 매니저로 로그인
+//                    loginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//                        @Override
+//                        public void onSuccess(LoginResult loginResult) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onCancel() {
+//
+//                        }
+//
+//                        @Override
+//                        public void onError(FacebookException error) {
+//
+//                        }
+//                    });
+//                    Toast.makeText(getContext(), "success : " + token.getToken(), Toast.LENGTH_SHORT).show();
+//                    loginManager.setLoginBehavior(LoginBehavior.NATIVE_WITH_FALLBACK);
+//                    loginManager.setDefaultAudience(DefaultAudience.FRIENDS);
+//                    LoginManager.getInstance().logInWithReadPermissions(getActivity(), null);
+//
+//                }else { //토큰이 있는 경우 토큰을 서버에 전송
+//                    GraphRequest request = GraphRequest.newMeRequest(token, new GraphRequest.GraphJSONObjectCallback() {
+//                        @Override
+//                        public void onCompleted(JSONObject object, GraphResponse response) {
+//                            if(response.getError() == null){ // 토큰이 잘 넘어간 경우
+//                                Toast.makeText(getContext(), "data : " + response.getJSONObject().toString(), Toast.LENGTH_SHORT).show();
+//                            }else {
+//                                Toast.makeText(getContext(), "error : " + response.getError().toString(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
+//                    request.executeAsync();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                Toast.makeText(getContext(), "cancel", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//                Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 
          btn = (Button)view.findViewById(R.id.btn_sign_up); // 아이디 없을때 회원 가입하기 페이지로 이동
@@ -199,6 +207,37 @@ public class LoginFragment extends Fragment {
         });
         return view;
     }
+
+
+    private void loginOrLogout() {
+        AccessToken token = AccessToken.getCurrentAccessToken();
+        if (token == null) { //토큰이 있는 경우는 스플래시에서 한다. 이미 가입을 한 상태이므로
+            loginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+                @Override
+                public void onSuccess(LoginResult loginResult) {
+                    //페이스북 로그인 성공
+                    startActivity(new Intent(getContext(), StartActivity.class));
+
+                }
+
+                @Override
+                public void onCancel() {
+
+                }
+
+                @Override
+                public void onError(FacebookException error) {
+
+                }
+            });
+            loginManager.setLoginBehavior(LoginBehavior.NATIVE_WITH_FALLBACK);
+            loginManager.setDefaultAudience(DefaultAudience.FRIENDS);
+            loginManager.logInWithReadPermissions(this, null);
+        } else {
+            loginManager.logOut();
+        }
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

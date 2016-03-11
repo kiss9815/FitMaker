@@ -46,10 +46,10 @@ public class HeaderCurationViewHolder extends RecyclerView.ViewHolder{
 
         public void setData(CurationType type){
 
-            textTypeName.setText(type.type_name);
-            textTypeInfo.setText(type.type_info);
-            if(!TextUtils.isEmpty(type.type_picture)){
-                Glide.with(mContext).load(type.type_picture).into(imagePicture);
+            textTypeName.setText(type.typeName);
+            textTypeInfo.setText(type.typeInfo);
+            if(!TextUtils.isEmpty(type.typePicture)){
+                Glide.with(mContext).load(type.typePicture).into(imagePicture);
             }else {
                 imagePicture.setImageResource(R.mipmap.fit_logo);
             }

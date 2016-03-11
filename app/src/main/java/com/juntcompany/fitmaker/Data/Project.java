@@ -10,5 +10,7 @@ public class Project {
     public int projectId;
     @SerializedName("project_name")
     public String projectName ;
+    @SerializedName("project_on")
+    public boolean projectOn;
 
 }

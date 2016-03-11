@@ -7,5 +7,5 @@ import com.juntcompany.fitmaker.Data.Badge;
  */
 public class BadgeResult {
     public String message;
-    public Badge badge;
+    public Badge badge; //서버 o
 }

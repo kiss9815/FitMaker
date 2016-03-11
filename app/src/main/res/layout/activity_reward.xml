@@ -51,13 +51,15 @@
 
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/fit_red_btn_width"
+        android:layout_height="@dimen/fit_red_btn_height"
         android:layout_gravity="center"
         android:text="확인"
         android:id="@+id/btn_ok"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_rounded_pink"
+        android:layout_marginBottom="@dimen/btn_fit_complete_margin"
         />
 
 </RelativeLayout>

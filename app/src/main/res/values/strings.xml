@@ -60,7 +60,7 @@
     <string name="setting_version">버전 정보</string>
     <string name="setting_developers">만든 이</string>
     <string name="setting_policy">이용약관</string>
-    <string name="setting_aggrement">개인정보 동의서</string>
+    <string name="setting_agreement">개인정보 동의서</string>
     <string name="setting_logout">로그아웃</string>
 
 
@@ -107,4 +107,7 @@
     <string name="recommend">추천운동</string>
     <string name="friend_ranking">친구 랭킹</string>
     <string name="see_friend_profile">프로필 보기</string>
+    <string name="logout_text">정말로 로그아웃 하시겠습니까?</string>
+    <string name="btn_no">아니오</string>
+    <string name="btn_yes">예</string>
 </resources>

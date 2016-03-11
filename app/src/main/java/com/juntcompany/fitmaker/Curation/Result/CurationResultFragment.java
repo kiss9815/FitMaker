@@ -24,7 +24,6 @@ import com.juntcompany.fitmaker.util.OnItemClickListener;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.Request;
 
@@ -86,7 +85,7 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
                     for(Curriculum c : result.curriculums) {
                         mAdapter.add(c);
                     }
-                    mAdapter.addHeader(result.exctype);
+                    mAdapter.addHeader(result.curationType);
                 }
 
                 @Override
@@ -106,9 +105,9 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
 
     private void initData(){
         CurationType type = new CurationType();
-        type.type_name = "ddd";
-        type.type_picture = String.valueOf(R.mipmap.ic_launcher);
-        type.type_info = "asdasdfasdffad";
+        type.typeName = "ddd";
+        type.typePicture = String.valueOf(R.mipmap.ic_launcher);
+        type.typeInfo = "asdasdfasdffad";
 
 //        mAdapter.addHeader(type);
     }

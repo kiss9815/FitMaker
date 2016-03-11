@@ -21,12 +21,15 @@
         />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/fit_red_btn_width"
+        android:layout_height="@dimen/fit_red_btn_height"
         android:layout_centerHorizontal="true"
         android:text="시작하기"
+        android:textColor="@color/fit_white"
         android:id="@+id/btn_curation"
+
         android:layout_above="@+id/btn_recommend"
+        android:background="@drawable/btn_rounded_pink"
         />
 
     <Button

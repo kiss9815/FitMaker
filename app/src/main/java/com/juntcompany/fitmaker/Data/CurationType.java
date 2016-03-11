@@ -7,16 +7,17 @@ import java.util.List;
 /**
  * Created by EOM on 2016-03-01.
  */
-public class CurationType { // 서버에서 exctype 임
+public class CurationType {
     public String message; //o
 //    public int type_id; // 서버에 프로토콜에 없음
-
+    @SerializedName("exctype_id")
+    public int typeId;
     @SerializedName("exctype_name")
-    public String type_name;//o
+    public String typeName;//o
     @SerializedName("exctype_info")
-    public String type_info;//o
+    public String typeInfo;//o
     @SerializedName("exctype_photourl")
-    public String type_picture;//o
+    public String typePicture;//o
 
 
     @SerializedName("curriculum")

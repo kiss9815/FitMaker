@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="@dimen/fit_list_friend">
 
 
     <ImageView
@@ -10,6 +10,7 @@
         android:id="@+id/image_profile"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"
+        android:layout_centerVertical="true"
         android:src="@android:mipmap/sym_def_app_icon"
         />
 

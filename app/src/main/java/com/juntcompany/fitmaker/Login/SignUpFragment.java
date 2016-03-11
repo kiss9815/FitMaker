@@ -78,9 +78,9 @@ public class SignUpFragment extends Fragment {
                 final String userId = editEmail.getText().toString();
                 final String password = editPassword.getText().toString();
                 String name = editName.getText().toString();
-//
+                String birthDay = "19900905";
                 try {
-                    NetworkManager.getInstance().signUp(getContext(), name, userId, password, new NetworkManager.OnResultListener<JoinResult>() {
+                    NetworkManager.getInstance().signUp(getContext(), name, userId, password, birthDay, new NetworkManager.OnResultListener<JoinResult>() {
                         @Override
                         public void onSuccess(Request request, JoinResult result) {
 

@@ -85,7 +85,7 @@ public class NetworkManager {
     private static final String POST_BODY_LOGIN_NAME = "name";
     private static final String POST_BODY_LOGIN_EMAIL = "email";
     private static final String POST_BODY_LOGIN_PASSWORD = "password";
-
+    private static final String POST_BODY_LOGIN_BIRTHDAY = "birthday";
     OkHttpClient mClient;
     private static final int MAX_CACHE_SIZE = 10 * 1024 * 1024;
 
@@ -261,7 +261,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
                 TypeCurriculumResponse curriculum = gson.fromJson(response.body().string(), TypeCurriculumResponse.class);
-                callbackObject.result = curriculum.result.exctype;
+                callbackObject.result = curriculum.result.curationType;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }
@@ -335,7 +335,7 @@ public class NetworkManager {
 
     private static final String URL_FORMAT_SIGN_UP= "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/users"; //post는 url에 요청하는거 안들어감
 
-    public Request signUp(Context context, String name, String email, String password, final OnResultListener<JoinResult> listener)throws UnsupportedEncodingException {
+    public Request signUp(Context context, String name, String email, String password, String birthDay, final OnResultListener<JoinResult> listener)throws UnsupportedEncodingException {
 
         String url = String.format(URL_FORMAT_SIGN_UP);
         final CallbackObject<JoinResult> callbackObject = new CallbackObject<JoinResult>();
@@ -343,6 +343,7 @@ public class NetworkManager {
                 .add(POST_BODY_LOGIN_NAME,name)  // 1이 네임으로 들어가는 값
                 .add(POST_BODY_LOGIN_EMAIL, email)
                 .add(POST_BODY_LOGIN_PASSWORD, password)
+                .add(POST_BODY_LOGIN_BIRTHDAY, birthDay)
                 .build();
         Request request = new Request.Builder().url(url)
                 .post(body)
@@ -444,6 +445,47 @@ public class NetworkManager {
         return request;
     }
 
+
+    private static final String URL_FORMAT_FACEBOOK_LOGIN = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/auth/facebook/token";
+    private static final String POST_BODY_TOKEN ="registration_token";
+
+    public Request facebookLogin(Context context, String registrationToken, final OnResultListener<JoinResult> listener)throws UnsupportedEncodingException {
+
+        String url = String.format(URL_FORMAT_FACEBOOK_LOGIN);
+        final CallbackObject<JoinResult> callbackObject = new CallbackObject<JoinResult>();
+        RequestBody body = new FormBody.Builder()
+                .add(POST_BODY_TOKEN, registrationToken)
+                .build();
+
+        Request request = new Request.Builder().url(url)
+                .post(body)
+                .build();
+
+        callbackObject.request = request;
+        callbackObject.listener = listener;
+
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callbackObject.exception = e;
+                Message msg = mHandler.obtainMessage(MESSAGE_FAILURE, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                JoinRequest join = gson.fromJson(response.body().string(), JoinRequest.class);
+                callbackObject.result = join.result;
+                Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+        });
+        return request;
+    }
+
+
+
     private static final String URL_FORMAT_SET_PROJECT = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/projects";
     private static final String POST_BODY_CURRI_ID = "curri_id";
 
@@ -518,13 +560,15 @@ public class NetworkManager {
 
     private static final String URL_FORMAT_SET_RECORD = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/records";
     private static final String POST_BODY_PROJECT_ID = "project_id";
+    private static final String POST_BODY_COURSE_SEQ = "course_seq";
 
-    public Request setRecord(Context context, String projectId, final OnResultListener<RecordResult> listener)throws UnsupportedEncodingException {
+    public Request setRecord(Context context, String projectId, String courseSeq, final OnResultListener<RecordResult> listener)throws UnsupportedEncodingException {
 
         String url = String.format(URL_FORMAT_SET_RECORD);
         final CallbackObject<RecordResult> callbackObject = new CallbackObject<RecordResult>();
         RequestBody body = new FormBody.Builder()
                 .add(POST_BODY_PROJECT_ID, projectId)
+                .add(POST_BODY_COURSE_SEQ, courseSeq)
                 .build();
 
         Request request = new Request.Builder().url(url)
@@ -657,11 +701,11 @@ public class NetworkManager {
         return request;
     }
 
-    private static final String URL_FORMAT_GET_FRIEND = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/friends/%s";
+    private static final String URL_FORMAT_GET_FRIEND_PROFILE = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/friends/%s";
 
-    public Request getFriend(Context context, String friendId, final OnResultListener<FriendResult> listener)throws UnsupportedEncodingException {
+    public Request getFriendProfile(Context context, String friendId, final OnResultListener<FriendResult> listener)throws UnsupportedEncodingException {
 
-        String url = String.format(URL_FORMAT_GET_FRIEND, URLEncoder.encode(friendId, "utf-8"));
+        String url = String.format(URL_FORMAT_GET_FRIEND_PROFILE, URLEncoder.encode(friendId, "utf-8"));
         final CallbackObject<FriendResult> callbackObject = new CallbackObject<FriendResult>();
 
         Request request = new Request.Builder().url(url)
@@ -800,7 +844,7 @@ public class NetworkManager {
     }
 
     private static final String URL_FORMAT_RESPONSE_FRIEND_REQUEST = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/relation/%s";
-    private static final String POST_BODY_STATE = "state";
+    private static final String PUT_BODY_STATE = "state";
 
     public Request answerFriendRequest(Context context, String friendId, String state, final OnResultListener<Result> listener)throws UnsupportedEncodingException {
 
@@ -808,11 +852,12 @@ public class NetworkManager {
         final CallbackObject<Result> callbackObject = new CallbackObject<Result>();
 
         RequestBody body = new FormBody.Builder()
-                .add(POST_BODY_STATE, state)
+                .add(PUT_BODY_STATE, state)
                 .build();
 
         Request request = new Request.Builder().url(url)
                 .tag(context)
+                .put(body)
                 .build();
 
         callbackObject.request = request;
