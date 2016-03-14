@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.juntcompany.fitmaker.Data.Badge;
 import com.juntcompany.fitmaker.Data.Structure.BadgeResult;
 import com.juntcompany.fitmaker.Main.MainActivity;
@@ -26,6 +27,7 @@ import okhttp3.Request;
 public class RewardActivity extends AppCompatActivity {
 
     private static final String ACTIVITY_TITLE = "미션 완료";
+    public static final String BADGE_ID_MESSAGE = "badge_id_message";
 
     ImageView image_badge, image_reward_card;
     TextView textBadgeComment;
@@ -40,6 +42,7 @@ public class RewardActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
 
         setTitle(ACTIVITY_TITLE);
 
@@ -47,7 +50,9 @@ public class RewardActivity extends AppCompatActivity {
         image_reward_card = (ImageView)findViewById(R.id.image_reward_card);
         textBadgeComment = (TextView)findViewById(R.id.text_reward_coment);
 
-        setData();
+        Intent intent = getIntent();
+        int badgeId = intent.getIntExtra(BADGE_ID_MESSAGE, 0);
+        setBadgeData(badgeId);
 
 
         Button btn = (Button)findViewById(R.id.btn_ok);
@@ -55,6 +60,7 @@ public class RewardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(), MainActivity.class);
+                intent.putExtra(MainActivity.BADGE_MESSAGE, badge.badgeName);
                 startActivity(intent);
             }
         });
@@ -70,13 +76,15 @@ public class RewardActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setData(){
+    private void setBadgeData(int badgeId){
         try {
-            NetworkManager.getInstance().getBadge(getApplicationContext(), ""+1, new NetworkManager.OnResultListener<BadgeResult>() {
+            NetworkManager.getInstance().getBadge(getApplicationContext(), ""+ badgeId, new NetworkManager.OnResultListener<BadgeResult>() {
                 @Override
                 public void onSuccess(Request request, BadgeResult result) {
                     badge = result.badge;
                     textBadgeComment.setText(badge.badgeName);
+                    Glide.with(getApplicationContext()).load(badge.badgeImage).into(image_badge);
+
                     Log.i("aaa", badge.badgeName);
                 }
 

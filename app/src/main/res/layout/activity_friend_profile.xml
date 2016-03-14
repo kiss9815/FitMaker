@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.juntcompany.fitmaker.Friend.Profile.FriendProfileActivity">
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/friend_profile_toolbar"
+        layout="@layout/toolbar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/linear"
+        android:layout_below="@+id/friend_profile_toolbar"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="@dimen/fit_friend_profile_width"
+            android:layout_height="@dimen/fit_friend_profile_width"
+            android:layout_marginTop="@dimen/fit_friend_profile_margin"
+            android:layout_marginBottom="@dimen/fit_friend_profile_margin"
+            android:id="@+id/image_friend_profile"
+            android:src="@drawable/default_friend"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/friend_exercise_hour"
+                android:text="00"
+                android:gravity="center"
+                android:layout_weight="1"
+                />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linear2"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    >
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/friend_exctype_name"
+                                android:text="아이돌"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/friend_name"
+                                android:text="엄준태"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                />
+                </LinearLayout>
+
+            <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/friend_badge_count"
+            android:text="배지개수"
+            android:gravity="center"
+            android:layout_weight="1"
+            />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/linear"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        />
+
+
+
+</RelativeLayout>

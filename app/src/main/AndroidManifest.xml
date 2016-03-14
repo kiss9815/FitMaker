@@ -2,16 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.juntcompany.fitmaker">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".FitMaker"
         android:allowBackup="true"
         android:icon="@mipmap/fit_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
         <activity
             android:name=".Main.MainActivity"
             android:launchMode="singleTask" />
@@ -22,14 +25,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <provider android:authorities="com.facebook.app.FacebookContentProvider457551064449409"
+        <provider
             android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider457551064449409"
             android:exported="true" />
 
         <activity android:name=".StartActivity" />
@@ -47,7 +51,9 @@
         <activity android:name=".Friend.FriendListActivity" />
         <activity android:name=".Friend.request.FriendRequestActivity" />
         <activity android:name=".Friend.add.FriendSearchActivity" />
-        <activity android:name=".Badge.BadgeActivity"></activity>
+        <activity android:name=".Badge.BadgeActivity" />
+        <activity android:name=".Friend.Profile.FriendProfileActivity" />
+        <activity android:name=".Youtube.YoutubeActivity"></activity>
     </application>
 
 </manifest>

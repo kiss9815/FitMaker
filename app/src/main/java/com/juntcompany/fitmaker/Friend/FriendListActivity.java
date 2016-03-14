@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.juntcompany.fitmaker.Data.Friend;
 import com.juntcompany.fitmaker.Data.Structure.FriendListResult;
+import com.juntcompany.fitmaker.Friend.Profile.FriendProfileActivity;
 import com.juntcompany.fitmaker.Friend.add.FriendSearchActivity;
 import com.juntcompany.fitmaker.Friend.request.FriendRequestActivity;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
@@ -52,6 +53,9 @@ public class FriendListActivity extends AppCompatActivity {   // MainActivity의
             public void onAdapterItemProfileClick(View view, int position) {
                 Friend friend = (Friend) mAdapter.getItem(position);
                 ////프로필 보기 버튼 .....
+                Intent intent = new Intent(getApplicationContext(), FriendProfileActivity.class);
+                intent.putExtra(FriendProfileActivity.FRIEND_MESSAGE, friend.friendId);
+                startActivity(intent);
             }
         });
         recyclerView.setAdapter(mAdapter);

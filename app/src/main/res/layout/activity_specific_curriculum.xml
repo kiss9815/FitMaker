@@ -20,12 +20,19 @@
         android:layout_below="@id/curriculum_toolbar"
         android:src="@drawable/avto"/>
 
-    <include
+
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/content_specific_curriculum"
-        android:layout_below="@id/image_title"
+        android:id="@+id/recyclerView"
+        android:layout_below="@+id/image_title"
         />
+    <!--<include-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--layout="@layout/content_specific_curriculum"-->
+        <!--android:layout_below="@id/image_title"-->
+        <!--/>-->
 
     <Button
         android:layout_alignParentBottom="true"

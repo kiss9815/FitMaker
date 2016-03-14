@@ -23,8 +23,9 @@ public class Curriculum implements Serializable{
     @SerializedName("curri_info")
     public String curriculum_info;//o
 
-    public ArrayList<Course> courses;
+    public List<Course> courses;
 
+    public List<Content> contents;
 
 //    public Curriculum(){
 //

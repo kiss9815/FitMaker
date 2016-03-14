@@ -5,14 +5,14 @@
     <item
         android:id="@+id/menu_friend_request"
         android:orderInCategory="100"
-        android:icon="@android:drawable/ic_lock_idle_alarm"
+        android:icon="@drawable/ic_social_notifications"
         android:title="request"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/menu_friend_plus"
         android:orderInCategory="200"
-        android:icon="@android:drawable/ic_input_add"
+        android:icon="@drawable/ic_content_add"
         android:title="request"
         app:showAsAction="always" />
 

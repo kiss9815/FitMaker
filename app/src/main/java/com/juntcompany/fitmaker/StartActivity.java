@@ -1,10 +1,12 @@
 package com.juntcompany.fitmaker;
 
 import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import com.juntcompany.fitmaker.Curation.CurationActivity;
@@ -15,6 +17,9 @@ public class StartActivity extends AppCompatActivity { // 로딩 되고 나오�
 
     private static final String ACTIVITY_TITLE = "반갑습니다!";
 
+//    ViewPager viewPager;
+//    Cir
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +27,8 @@ public class StartActivity extends AppCompatActivity { // 로딩 되고 나오�
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         setTitle(ACTIVITY_TITLE);
+
+
 
         Button btn = (Button)findViewById(R.id.btn_curation); // 시작하기 버튼
         btn.setOnClickListener(new View.OnClickListener() {

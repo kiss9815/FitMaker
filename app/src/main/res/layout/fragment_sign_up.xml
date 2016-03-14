@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.juntcompany.fitmaker.Login.SignUpFragment">
+    tools:context="com.juntcompany.fitmaker.Login.SignUpFragment"
+
+    android:background="@color/fit_white">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -23,7 +25,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/fit_space"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/fit_space">
 
 
         <android.support.design.widget.TextInputLayout
@@ -36,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/edit_name"
                 android:inputType="text"
+                android:singleLine="true"
                 android:hint="@string/hint_name"
                 />
 
@@ -51,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/edit_email"
                 android:inputType="textPassword"
+                android:singleLine="true"
                 android:hint="@string/hint_email"
                 />
         </android.support.design.widget.TextInputLayout>
@@ -64,8 +71,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
+                android:singleLine="true"
                 android:id="@+id/edit_password"
-                android:hint="@string/hint_name"
+                android:hint="@string/hint_password"
                 />
         </android.support.design.widget.TextInputLayout>
 

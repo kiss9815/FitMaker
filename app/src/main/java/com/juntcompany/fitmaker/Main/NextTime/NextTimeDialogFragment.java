@@ -22,6 +22,12 @@ public class NextTimeDialogFragment extends DialogFragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.MyDialog);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

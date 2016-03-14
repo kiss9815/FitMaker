@@ -45,7 +45,6 @@ public class SignUpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragmen
 
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         getActivity().setTitle(FRAGMENT_TITLE);
@@ -86,9 +85,7 @@ public class SignUpFragment extends Fragment {
 
                             PropertyManager.getInstance().setUserId(userId); // 가입하면 sharedPrference에 저장
                             PropertyManager.getInstance().setPassword(password);
-                            startActivity(new Intent(getContext(), MainActivity.class));
-                            Intent intent = new Intent(getContext(), StartActivity.class);
-                            startActivity(intent);
+
                             getActivity().finish();
                         }
 

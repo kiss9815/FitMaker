@@ -37,7 +37,10 @@
         android:layout_height="wrap_content"
         android:text="우선은 둘러볼게요~"
         android:id="@+id/btn_recommend"
+        android:layout_marginTop="@dimen/fit_space"
+        android:textColor="@color/fit_white"
         android:layout_alignParentBottom="true"
+        android:background="@color/fit_light_black"
         />
 
 </RelativeLayout>

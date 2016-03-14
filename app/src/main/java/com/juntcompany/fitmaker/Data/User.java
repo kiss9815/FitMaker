@@ -10,6 +10,8 @@ import java.util.List;
  */
 public class User {
 
+    @SerializedName("id")
+    public int userId;
     @SerializedName("user_name")
     public String userName;
     @SerializedName("user_photourl")

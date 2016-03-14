@@ -28,6 +28,8 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.juntcompany.fitmaker.Curation.CurationActivity;
 import com.juntcompany.fitmaker.Data.JoinResult;
+import com.juntcompany.fitmaker.Data.Structure.LoginRequest;
+import com.juntcompany.fitmaker.Data.User;
 import com.juntcompany.fitmaker.Main.MainActivity;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
 import com.juntcompany.fitmaker.Manager.PropertyManager;
@@ -99,11 +101,14 @@ public class LoginFragment extends Fragment {
                 final String userId = edit_email.getText().toString();
                 final String password = edit_password.getText().toString();
                 try {
-                    NetworkManager.getInstance().login(getContext(), userId, password, new NetworkManager.OnResultListener<JoinResult>() {
+                    NetworkManager.getInstance().login(getContext(), userId, password, new NetworkManager.OnResultListener<LoginRequest>() {
                         @Override
-                        public void onSuccess(Request request, JoinResult result) {
+                        public void onSuccess(Request request, LoginRequest result) {
+                            User user = new User();
+                            user.userId = result.userId;
                             Toast.makeText(getContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getContext(), MainActivity.class); // 로그인을 했다는건 이미 가입을 했다고 하고 메인으로 가자
+                            Intent intent = new Intent(getContext(), StartActivity.class); // sharedPreference 값 exctype 이 있으면 메인, 없으면 큐레이션으로 가자.
+//                            intent.putExtra(MainActivity.USER_MESSAGE, userId);
                             startActivity(intent);
                         }
 
@@ -210,13 +215,29 @@ public class LoginFragment extends Fragment {
 
 
     private void loginOrLogout() {
-        AccessToken token = AccessToken.getCurrentAccessToken();
+         AccessToken token = AccessToken.getCurrentAccessToken();
         if (token == null) { //토큰이 있는 경우는 스플래시에서 한다. 이미 가입을 한 상태이므로
             loginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                 @Override
                 public void onSuccess(LoginResult loginResult) {
                     //페이스북 로그인 성공
                     startActivity(new Intent(getContext(), StartActivity.class));
+                    AccessToken accessToken = AccessToken.getCurrentAccessToken();
+                    try {
+                        NetworkManager.getInstance().facebookLogin(getContext(), accessToken.getToken(), new NetworkManager.OnResultListener<JoinResult>() {
+                            @Override
+                            public void onSuccess(Request request, JoinResult result) {
+                                Toast.makeText(getContext(), "페이스북 토큰 보냄", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(Request request, int code, Throwable cause) {
+
+                            }
+                        });
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
 
                 }
 

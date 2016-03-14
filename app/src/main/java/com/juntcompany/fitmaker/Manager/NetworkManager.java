@@ -21,6 +21,7 @@ import com.juntcompany.fitmaker.Data.Structure.FriendResult;
 import com.juntcompany.fitmaker.Data.Structure.FriendSearchResponse;
 import com.juntcompany.fitmaker.Data.Structure.FriendSearchResult;
 import com.juntcompany.fitmaker.Data.Structure.GeneralRequest;
+import com.juntcompany.fitmaker.Data.Structure.LoginRequest;
 import com.juntcompany.fitmaker.Data.Structure.MyResponse;
 import com.juntcompany.fitmaker.Data.Structure.MyResult;
 import com.juntcompany.fitmaker.Data.Structure.RankingResult;
@@ -30,8 +31,8 @@ import com.juntcompany.fitmaker.Data.Structure.BadgeResponse;
 import com.juntcompany.fitmaker.Data.Structure.BadgeResult;
 import com.juntcompany.fitmaker.Data.Structure.RankingResponse;
 import com.juntcompany.fitmaker.Data.Structure.Result;
-import com.juntcompany.fitmaker.Data.TypeCurriculumResponse;
-import com.juntcompany.fitmaker.Data.TypeCurriculumResult;
+import com.juntcompany.fitmaker.Data.Structure.TypeCurriculumResponse;
+import com.juntcompany.fitmaker.Data.Structure.TypeCurriculumResult;
 import com.juntcompany.fitmaker.FitMaker;
 import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.util.PersistentCookieStore;
@@ -82,7 +83,7 @@ public class NetworkManager {
     }
 
     private static final String URL_FORMAT = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com";
-    private static final String POST_BODY_LOGIN_NAME = "name";
+    private static final String POST_BODY_LOGIN_NAME = "user_name";
     private static final String POST_BODY_LOGIN_EMAIL = "email";
     private static final String POST_BODY_LOGIN_PASSWORD = "password";
     private static final String POST_BODY_LOGIN_BIRTHDAY = "birthday";
@@ -235,7 +236,7 @@ public class NetworkManager {
 
     }
 
-    private static final String URL_FORMAT_CURATION_QUESTION = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/curriculum?q1=%s&q2=%s&q3=%s";
+    private static final String URL_FORMAT_CURATION_QUESTION = "http://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/curriculum?q1=%s&q2=%s&q3=%s";
 
     //파라미터에 Context 가 꼭 있어야 함 없으면 백키를 누를때 액티비티가 없는데어서도 구동하려 함
     public Request getCuration(Context context, String q1, String q2, String q3, final OnResultListener<CurationType> listener) throws UnsupportedEncodingException {
@@ -269,10 +270,12 @@ public class NetworkManager {
         return request;
     }
 
-    public Request getCurriculumCuration(Context context, String q1, String q2, String q3, final OnResultListener<TypeCurriculumResult> listener)
+    private static final String URL_FORMAT_GET_CURRICULUM_CURATION = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/curriculum?q1=%s&q3=%s&q6=%s";
+
+    public Request getCurriculumCuration(Context context, String q1, String q3, String q6, final OnResultListener<TypeCurriculumResult> listener)
             throws UnsupportedEncodingException {
 
-        String url = String.format(URL_FORMAT_CURATION_QUESTION, URLEncoder.encode(q1, "utf-8"), URLEncoder.encode(q1, "utf-8"), URLEncoder.encode(q1, "utf-8"));
+        String url = String.format(URL_FORMAT_GET_CURRICULUM_CURATION, URLEncoder.encode(q1, "utf-8"), URLEncoder.encode(q3, "utf-8"), URLEncoder.encode(q6, "utf-8"));
         final CallbackObject<TypeCurriculumResult> callbackObject = new CallbackObject<TypeCurriculumResult>();
 
         Request request = new Request.Builder().url(url)
@@ -374,10 +377,10 @@ public class NetworkManager {
 
     private static final String URL_FORMAT_LOGIN = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/auth/login";//post는 url에 요청하는거 안들어감
 
-    public Request login(Context context, String email, String password, final OnResultListener<JoinResult> listener)throws UnsupportedEncodingException {
+    public Request login(Context context, String email, String password, final OnResultListener<LoginRequest> listener)throws UnsupportedEncodingException {
 
         String url = String.format(URL_FORMAT_LOGIN);
-        final CallbackObject<JoinResult> callbackObject = new CallbackObject<JoinResult>();
+        final CallbackObject<LoginRequest> callbackObject = new CallbackObject<LoginRequest>();
         RequestBody body = new FormBody.Builder()
                 .add(POST_BODY_LOGIN_EMAIL, email)
                 .add(POST_BODY_LOGIN_PASSWORD, password)
@@ -400,8 +403,8 @@ public class NetworkManager {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
-                JoinRequest join = gson.fromJson(response.body().string(), JoinRequest.class);
-                callbackObject.result = join.result;
+                LoginRequest login = gson.fromJson(response.body().string(), LoginRequest.class);
+                callbackObject.result = login;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }

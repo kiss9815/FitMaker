@@ -24,6 +24,8 @@ public class Course implements Serializable{
     public boolean isSelectable;
 
 
+    public String badgeName; // 메인에서 뷰홀더 setData에서 사용하려고 변수 만듬
+
     @Override
     public String toString() {
         return "courseid : "+courseId +", courseSeq : " + courseSeq;

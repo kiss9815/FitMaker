@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 
 import com.juntcompany.fitmaker.Data.Curriculum;
 import com.juntcompany.fitmaker.Data.CurationType;
-import com.juntcompany.fitmaker.Data.TypeCurriculumResult;
+import com.juntcompany.fitmaker.Data.Structure.TypeCurriculumResult;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
 import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.SpecificCurriculum.SpecificCurriculumActivity;
@@ -74,12 +74,11 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
         recyclerView.setAdapter(mAdapter);
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        initData();
-
+      //  initData();
 
 
         try { //큐레이션만 받아오게 함 , 큐레이션 질문은 1번, 4번, 6번만 받아오게 함
-            NetworkManager.getInstance().getCurriculumCuration(getContext(), ""+curationKey.get(0), ""+curationKey.get(3),""+curationKey.get(5), new NetworkManager.OnResultListener<TypeCurriculumResult>() {
+            NetworkManager.getInstance().getCurriculumCuration(getContext(),""+curationKey.get(0), ""+curationKey.get(2),""+curationKey.get(5),new NetworkManager.OnResultListener<TypeCurriculumResult>() {
                 @Override
                 public void onSuccess(Request request, TypeCurriculumResult result) {
                     for(Curriculum c : result.curriculums) {

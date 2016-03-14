@@ -9,12 +9,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
+
+
+    <com.github.siyamed.shapeimageview.CircularImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/image_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
+        android:scaleType="fitCenter"
+        app:siBorderWidth="6dp"
+        app:siBorderColor="#ffffff"
         android:src="@android:drawable/sym_def_app_icon" />
 
     <LinearLayout
@@ -71,43 +77,43 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        >
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!-->-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="주간 운동 시간"
-            android:id="@+id/text_hour"
-            android:layout_weight="1"
-            android:gravity="center"
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="주간 운동 시간"-->
+            <!--android:id="@+id/text_hour"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
 
-            />
+            <!--/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="전신운동"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:id="@+id/text_exercise_part"
-            />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="전신운동"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:id="@+id/text_exercise_part"-->
+            <!--/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="걷기 회수"
-            android:id="@+id/text_exercise_count"
-            android:layout_weight="1"
-            android:gravity="center"
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="걷기 회수"-->
+            <!--android:id="@+id/text_exercise_count"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
 
-            />
+            <!--/>-->
 
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 </RelativeLayout>
