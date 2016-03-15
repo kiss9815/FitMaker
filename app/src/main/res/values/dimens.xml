@@ -19,7 +19,7 @@
 
 
     <dimen name="btn_text_size">14sp</dimen>
-    <dimen name="fit_btn_complete">19dp</dimen>
+    <dimen name="fit_btn_size_complete">19dp</dimen>
     <dimen name="btn_fit_complete_margin">21dp</dimen>
     <dimen name="fit_red_btn_width">350dp</dimen>
     <dimen name="fit_red_btn_height">48dp</dimen>
@@ -34,4 +34,8 @@
     <dimen name="fit_friend_profile_margin">50dp</dimen>
     <dimen name="fit_dialog_btn_margin_bottom">30dp</dimen>
     <dimen name="fit_dialog_ok_button_width">250dp</dimen>
+
+    <dimen name="fit_text_size_curation_answer">16sp</dimen>
+
+
 </resources>

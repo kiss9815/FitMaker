@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/FitGray"
     tools:context="com.juntcompany.fitmaker.play.result.reward.RewardActivity">
 
 
@@ -26,8 +27,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/image_badge"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/fit_space"
-            android:src="@drawable/avto"
+            android:src="@drawable/img_badge_bronze_star"
             />
 
         <ImageView
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/fit_space"
-            android:src="@drawable/img_result_flag"
+            android:src="@drawable/img_badge_name"
             android:id="@+id/image_reward_card"
             android:layout_marginBottom="@dimen/fit_space"
             />
@@ -58,6 +58,8 @@
         android:layout_height="@dimen/fit_red_btn_height"
         android:layout_gravity="center"
         android:text="확인"
+        android:textColor="@color/fit_white"
+        android:textSize="@dimen/fit_btn_size_complete"
         android:id="@+id/btn_ok"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

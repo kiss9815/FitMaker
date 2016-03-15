@@ -25,6 +25,11 @@ public class MainSpinnerAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public void clear(){
+        items.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return items.size();

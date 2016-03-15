@@ -29,6 +29,9 @@ public class PropertyManager {
     private static final String FIELD_PASSWORD = "password";
     private static final String FIELD_CURATION_TYPE_ID = "curation_type_id";
     private static final String FIELD_CURATION_TYPE_NAME = "curation_type_name";
+    private static final String FIELD_GENDER = "gender";
+
+
     public void setUserId(String userId){
         mEditor.putString(FIELD_USER_ID, userId);
         mEditor.commit();
@@ -43,16 +46,27 @@ public class PropertyManager {
         mEditor.commit();
     }
 
-    public String getPassword(String password){
+    public String getPassword(){
         return mPrefs.getString(FIELD_PASSWORD, "");
     }
 
-    public void setCurationType(int curationId, String curationName){
+    public void setCurationType(int curationId){
         mEditor.putInt(FIELD_CURATION_TYPE_ID, curationId);
-        mEditor.putString(FIELD_CURATION_TYPE_NAME, curationName);
         mEditor.commit();
-
     }
+    public String getCurationType(){
+        return mPrefs.getString(FIELD_CURATION_TYPE_ID, "");
+    }
+
+    public void setGender(String gender){
+        mEditor.putString(FIELD_GENDER, gender);
+        mEditor.commit();
+    }
+
+    public String getGender(){
+        return mPrefs.getString(FIELD_GENDER, "");
+    }
+
 
 
 

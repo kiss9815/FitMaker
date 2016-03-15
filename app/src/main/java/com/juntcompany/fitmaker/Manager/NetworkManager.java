@@ -450,7 +450,7 @@ public class NetworkManager {
 
 
     private static final String URL_FORMAT_FACEBOOK_LOGIN = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/auth/facebook/token";
-    private static final String POST_BODY_TOKEN ="registration_token";
+    private static final String POST_BODY_TOKEN ="access_token";
 
     public Request facebookLogin(Context context, String registrationToken, final OnResultListener<JoinResult> listener)throws UnsupportedEncodingException {
 

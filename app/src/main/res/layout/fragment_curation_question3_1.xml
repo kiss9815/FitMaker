@@ -14,6 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="@string/curation_answer3_1_A"
+        android:textColor="@color/fit_white"
+        android:textSize="@dimen/fit_text_size_curation_answer"
+        android:background="@drawable/img_cur_2a_3_a"
         android:id="@+id/btn_1"
         app:layout_rowWeight="1"
         />
@@ -21,6 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="@string/curation_answer3_1_B"
+        android:background="@drawable/img_cur_2a_3_b"
+        android:textColor="@color/fit_white"
+        android:textSize="@dimen/fit_text_size_curation_answer"
         android:id="@+id/btn_2"
         app:layout_rowWeight="1"
         />

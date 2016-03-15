@@ -86,6 +86,8 @@ public class SignUpFragment extends Fragment {
                             PropertyManager.getInstance().setUserId(userId); // 가입하면 sharedPrference에 저장
                             PropertyManager.getInstance().setPassword(password);
 
+                            Intent intent = new Intent(getContext(), StartActivity.class);
+                            startActivity(intent);
                             getActivity().finish();
                         }
 
@@ -97,23 +99,6 @@ public class SignUpFragment extends Fragment {
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-
-//                NetworkManager.getInstance().signUp(getContext(), userId, name, password, new NetworkManager.OnResultListener<String>() {
-//                    @Override
-//                    public void onSuccess(String result) {
-//                        //로컬에 저장하는 과정
-//                        PropertyManager.getInstance().setUserId(userId);
-//                        PropertyManager.getInstance().setPassword(password);
-//                        startActivity(new Intent(getContext(), MainActivity.class));
-//                        getActivity().finish();
-//                    }
-//
-//                    @Override
-//                    public void onFailure(int error) {
-//
-//
-//                    }
-//                });
 
             }
         });

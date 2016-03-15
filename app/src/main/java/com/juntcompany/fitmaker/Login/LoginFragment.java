@@ -4,6 +4,7 @@ package com.juntcompany.fitmaker.Login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -222,12 +223,14 @@ public class LoginFragment extends Fragment {
                 public void onSuccess(LoginResult loginResult) {
                     //페이스북 로그인 성공
                     startActivity(new Intent(getContext(), StartActivity.class));
-                    AccessToken accessToken = AccessToken.getCurrentAccessToken();
+                    final AccessToken accessToken = AccessToken.getCurrentAccessToken();
                     try {
                         NetworkManager.getInstance().facebookLogin(getContext(), accessToken.getToken(), new NetworkManager.OnResultListener<JoinResult>() {
+
                             @Override
                             public void onSuccess(Request request, JoinResult result) {
                                 Toast.makeText(getContext(), "페이스북 토큰 보냄", Toast.LENGTH_SHORT).show();
+                                Log.i("Token", accessToken.getToken());
                             }
 
                             @Override

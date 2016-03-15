@@ -11,16 +11,22 @@
 
     <!-- TODO: Update blank fragment layout -->
     <Button
+        android:text="@string/curation_answer4_A"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="@string/curation_answer4_A"
+        android:textColor="@color/fit_white"
+        android:textSize="@dimen/fit_text_size_curation_answer"
         android:id="@+id/btn_1"
         app:layout_rowWeight="1"
+        android:background="@drawable/img_cur_4_a"
         />
     <Button
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="@string/curation_answer4_B"
+        android:textSize="@dimen/fit_text_size_curation_answer"
+        android:background="@drawable/img_cur_4_b"
+        android:textColor="@color/fit_white"
         android:id="@+id/btn_2"
         app:layout_rowWeight="1"
         />
@@ -28,7 +34,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="@string/curation_answer4_C"
+        android:textSize="@dimen/fit_text_size_curation_answer"
+        android:textColor="@color/fit_white"
         android:id="@+id/btn_3"
+        android:background="@drawable/img_cur_4_c"
         app:layout_rowWeight="1"
         />
 

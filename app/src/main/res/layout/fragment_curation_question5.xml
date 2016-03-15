@@ -14,6 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="@string/curation_answer5_A"
+        android:background="@drawable/img_cur_5_a"
+        android:textSize="@dimen/fit_text_size_curation_answer"
+        android:textColor="@color/fit_white"
         android:id="@+id/btn_1"
         app:layout_rowWeight="1"
         />
@@ -21,6 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="@string/curation_answer5_B"
+        android:textSize="@dimen/fit_text_size_curation_answer"
+        android:textColor="@color/fit_white"
+        android:background="@drawable/img_cur_5_b"
         android:id="@+id/btn_2"
         app:layout_rowWeight="1"
         />
@@ -29,6 +35,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="@string/curation_answer5_C"
+        android:textSize="@dimen/fit_text_size_curation_answer"
+        android:textColor="@color/fit_white"
+        android:background="@drawable/img_cur_5_c"
         android:id="@+id/btn_3"
         app:layout_rowWeight="1"
         />
