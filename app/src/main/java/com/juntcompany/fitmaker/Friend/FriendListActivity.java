@@ -43,8 +43,10 @@ public class FriendListActivity extends AppCompatActivity {   // MainActivity의
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
 
         setTitle(ACTIVITY_TITLE);
+        setTitleColor(R.color.fit_white);
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         mAdapter = new FriendListAdapter();

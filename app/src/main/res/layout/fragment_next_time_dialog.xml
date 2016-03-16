@@ -1,8 +1,10 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="300dp"
+    android:layout_height="200dp"
     android:orientation="vertical"
+    android:background="@drawable/box_nextday"
+    android:layout_gravity="center"
     tools:context="com.juntcompany.fitmaker.Main.NextTime.NextTimeDialogFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -10,15 +12,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/main_dialog_next"
-        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/fit_light_black"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
         />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/fit_dialog_ok_button_width"
         android:layout_height="wrap_content"
         android:id="@+id/btn_confirm"
-        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
         android:text="@string/main_dialog_confirm"
+        android:textSize="@dimen/fit_btn_text_size_complete"
+        android:background="@drawable/btn_rounded_pink"
+        android:textColor="@color/fit_white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/fit_dialog_btn_margin_bottom"
         />
 
-</LinearLayout>
+</RelativeLayout>

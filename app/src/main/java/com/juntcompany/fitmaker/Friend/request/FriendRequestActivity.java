@@ -66,17 +66,9 @@ public class FriendRequestActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         setData(); // 친구 리스트를 adapter에 추가
-        //initData();
     }
 
-    private void initData(){
-        for(int i =0; i<6; i ++) {
-            Friend friend = new Friend();
-            friend.friendName = "이름" +i;
-            mAdapter.add(friend);
-        }
 
-    }
 
     private void setData(){
         try {

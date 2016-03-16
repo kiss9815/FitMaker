@@ -14,6 +14,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.juntcompany.fitmaker.Data.Friend;
 import com.juntcompany.fitmaker.Data.Structure.FriendSearchResult;
@@ -45,8 +46,9 @@ public class FriendSearchActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
         setTitle(ACTIVITY_TITLE);
+        setTitleColor(R.color.fit_white);
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         mAdapter = new FriendSearchAdapter();
@@ -54,8 +56,8 @@ public class FriendSearchActivity extends AppCompatActivity {
             @Override
             public void onAdapterItemAddClick(View view, int position) {
                 //...친구 추가....
-                Friend friend = (Friend)mAdapter.getItem(position);
-                sendFriend(""+friend.friendId); // 네트워크 메소드 사용, 친구에게 친구요청하기
+                Friend friend = (Friend) mAdapter.getItem(position);
+                sendFriend(friend.friendId); // 네트워크 메소드 사용, 친구에게 친구요청하기
             }
         });
 
@@ -66,11 +68,12 @@ public class FriendSearchActivity extends AppCompatActivity {
 
 
         editSearch = (EditText)findViewById(R.id.edit_search);
-         email = editSearch.getText().toString();
+
         Button btn = (Button)findViewById(R.id.btn_search);
         btn.setOnClickListener(new View.OnClickListener() { //친구 검색
             @Override
             public void onClick(View v) {
+                email = editSearch.getText().toString();
                 callFriend(email); //서버에서 친구를 부르는 네트워크 메소드 호출
             }
         });
@@ -97,12 +100,13 @@ public class FriendSearchActivity extends AppCompatActivity {
         }
     }
 
-    private void sendFriend(String friendId){
+    private void sendFriend(int friendId){
         try {
-            NetworkManager.getInstance().sendFriendRequest(getApplicationContext(), friendId, new NetworkManager.OnResultListener<Result>() {
+            NetworkManager.getInstance().sendFriendRequest(getApplicationContext(), "" + friendId, new NetworkManager.OnResultListener<Result>() {
                 @Override
                 public void onSuccess(Request request, Result result) {
                     //친구 요청 post
+                    Toast.makeText(getApplicationContext(), "친구를 요청하였습니다", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override

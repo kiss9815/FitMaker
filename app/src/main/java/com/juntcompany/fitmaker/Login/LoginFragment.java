@@ -40,6 +40,7 @@ import com.juntcompany.fitmaker.StartActivity;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 
 import okhttp3.Request;
 
@@ -256,7 +257,7 @@ public class LoginFragment extends Fragment {
             });
             loginManager.setLoginBehavior(LoginBehavior.NATIVE_WITH_FALLBACK);
             loginManager.setDefaultAudience(DefaultAudience.FRIENDS);
-            loginManager.logInWithReadPermissions(this, null);
+            loginManager.logInWithReadPermissions(this, Arrays.asList("email"));
         } else {
             loginManager.logOut();
         }

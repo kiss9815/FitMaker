@@ -53,11 +53,7 @@ public class SplashActivity extends AppCompatActivity {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-//        }else if(){
-//
-//            //페이스북 토큰값이 있으면
-//
-//        }
+
 
         }
     }

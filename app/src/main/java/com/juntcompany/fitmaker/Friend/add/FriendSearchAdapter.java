@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.juntcompany.fitmaker.Data.Friend;
-import com.juntcompany.fitmaker.Friend.request.FriendRequestAdapter;
-import com.juntcompany.fitmaker.Friend.request.FriendRequestViewHolder;
 import com.juntcompany.fitmaker.R;
 
 import java.util.ArrayList;

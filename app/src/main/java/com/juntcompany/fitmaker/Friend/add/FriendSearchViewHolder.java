@@ -17,7 +17,7 @@ import com.juntcompany.fitmaker.R;
  */
 public class FriendSearchViewHolder extends RecyclerView.ViewHolder {
 
-    TextView textEmail;
+    TextView textName, text_friend_State;
     ImageView imageProfile;
     Friend friend;
     Context mContext;
@@ -48,21 +48,35 @@ public class FriendSearchViewHolder extends RecyclerView.ViewHolder {
             }
         });
         mContext = itemView.getContext();
-        textEmail = (TextView) itemView.findViewById(R.id.text_email);
-//        text_accept = (TextView) itemView.findViewById(R.id.text_accept);
-//        text_reject = (TextView) itemView.findViewById(R.id.text_reject);
+        textName = (TextView) itemView.findViewById(R.id.text_friend_name);
+        text_friend_State = (TextView) itemView.findViewById(R.id.text_friend_State);
+
         imageProfile = (ImageView) itemView.findViewById(R.id.image_profile);
 
     }
 
     public void setData(Friend friend) {
         this.friend = friend;
-        textEmail.setText(friend.friendEmail);
+        textName.setText(friend.friendName);
+        if(friend.friendState == 1){
+            text_friend_State.setText("이미 친구입니다");
+            btnAddFriend.setBackgroundResource(R.drawable.ic_navigation_check);
+            btnAddFriend.setSelected(false);
+        }else if(friend.friendState == 0){
+            text_friend_State.setText("요청 중 입니다");
+            btnAddFriend.setBackgroundResource(R.drawable.ic_navigation_check);
+            btnAddFriend.setSelected(false);
+        }else if(friend.friendState == -1){
+            text_friend_State.setText("거절했습니다.");
+        }else if(friend.friendState == 2){
+            text_friend_State.setText("친구 합시다");
+            text_friend_State.setTextColor(android.R.color.black);
+        }
 
         if (!TextUtils.isEmpty(friend.friendProfile)) {
             Glide.with(mContext).load(friend.friendProfile).into(imageProfile);
         } else {
-            imageProfile.setImageResource(R.mipmap.ic_launcher);
+            imageProfile.setImageResource(R.drawable.default_friend);
         }
     }
 }

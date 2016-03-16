@@ -12,7 +12,9 @@ import android.view.View;
 
 import com.juntcompany.fitmaker.Curation.Result.CurriculumAdapter;
 import com.juntcompany.fitmaker.Data.Curriculum;
+import com.juntcompany.fitmaker.Data.Structure.TypeCurriculumResult;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
+import com.juntcompany.fitmaker.Manager.PropertyManager;
 import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.SpecificCurriculum.SpecificCurriculumActivity;
 import com.juntcompany.fitmaker.util.OnItemClickListener;
@@ -37,6 +39,7 @@ public class RecommendActivity extends AppCompatActivity {
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         setTitle("추천커리큘럼");
+        setTitleColor(R.color.fit_white);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mAdapter = new RecommendAdapter();
@@ -47,25 +50,48 @@ public class RecommendActivity extends AppCompatActivity {
                 Intent intent = new Intent(RecommendActivity.this, SpecificCurriculumActivity.class);
                 intent.putExtra(SpecificCurriculumActivity.CURRICULUM_MESSAGE, curriculum);
                 startActivity(intent);
+
             }
         });
         recyclerView.setAdapter(mAdapter);
         layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        setData();
+        int curationId = PropertyManager.getInstance().getCurationType(); //default 가 0
+        if(curationId != 0) {
+            callCurriculum(curationId);
+        }
+        else { // curation 타입이 없는 상태로 앱을 제일 먼저 들어왔을때
+            callCurriculum();
+        }
 
 
     }
 
-    private void setData() {
+    private void callCurriculum() {
         try {
             NetworkManager.getInstance().getCurriculum(getApplicationContext(), new NetworkManager.OnResultListener<List<Curriculum>>() {
                 @Override
                 public void onSuccess(Request request, List<Curriculum> result) {
-
                     mAdapter.addAll(result);
+                }
 
+                @Override
+                public void onFailure(Request request, int code, Throwable cause) {
+
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void callCurriculum(int curationId){
+        try {
+            NetworkManager.getInstance().getCurriculumByCuration(getApplicationContext(), ""+curationId, new NetworkManager.OnResultListener<TypeCurriculumResult>() {
+                @Override
+                public void onSuccess(Request request, TypeCurriculumResult result) {
+                    mAdapter.addAll(result.curriculums);
                 }
 
                 @Override

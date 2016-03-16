@@ -6,9 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.juntcompany.fitmaker.Data.Friend;
-import com.juntcompany.fitmaker.Friend.FriendListViewHolder;
 import com.juntcompany.fitmaker.R;
-import com.juntcompany.fitmaker.util.OnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +27,14 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestView
         items.addAll(friends);
         notifyDataSetChanged();
     }
+
     public void clear(){
         items.clear();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
     }
 
     @Override

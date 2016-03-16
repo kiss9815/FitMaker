@@ -2,6 +2,7 @@ package com.juntcompany.fitmaker.play;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.juntcompany.fitmaker.Data.Content;
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * Created by EOM on 2016-03-15.
  */
-public class PlayStatusViewPagerAdapter extends FragmentStatePagerAdapter {
+public class PlayStatusViewPagerAdapter extends FragmentPagerAdapter {
     List<Content> items = new ArrayList<Content>();
 
     public PlayStatusViewPagerAdapter(FragmentManager fm) {

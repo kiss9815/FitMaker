@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -29,6 +30,9 @@ public class FriendProfileActivity extends AppCompatActivity {
 
     ImageView imageFriendProfile;
     TextView textFriendExerciseHour, textFriendExctypeName, textFriendName, textFriendBadgeCount;
+    ListView listView;
+    FriendProjectAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,11 +57,15 @@ public class FriendProfileActivity extends AppCompatActivity {
         textFriendName = (TextView)findViewById(R.id.friend_name);
         textFriendBadgeCount = (TextView)findViewById(R.id.friend_badge_count);
 
-
         Intent intent = getIntent();
         int friendId = intent.getIntExtra(FRIEND_MESSAGE, 0);
 
         callFriendProfile(friendId);
+
+
+        listView = (ListView)findViewById(R.id.listView);
+        mAdapter = new FriendProjectAdapter();
+        listView.setAdapter(mAdapter);
 
     }
 
@@ -75,6 +83,7 @@ public class FriendProfileActivity extends AppCompatActivity {
                     textFriendName.setText(friend.friendName);
                     textFriendBadgeCount.setText(""+badges.size());
 
+                     mAdapter.addAll(result.friendProjects);
                 }
 
                 @Override

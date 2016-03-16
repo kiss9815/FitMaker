@@ -47,6 +47,14 @@
             android:layout_gravity="center"
             />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="짝짝짝! 수고하셨습니다. \n 매일매일 핏메이커와 함께라면 \n원하는 핏에 가까워질 수 있을거에요!"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/fit_space"
+            />
+
 
 
 
@@ -59,7 +67,7 @@
         android:layout_gravity="center"
         android:text="확인"
         android:textColor="@color/fit_white"
-        android:textSize="@dimen/fit_btn_size_complete"
+        android:textSize="@dimen/fit_btn_text_size_complete"
         android:id="@+id/btn_ok"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

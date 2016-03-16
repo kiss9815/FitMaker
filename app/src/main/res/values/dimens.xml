@@ -18,8 +18,9 @@
     <dimen name="dialog_course">45dp</dimen>
 
 
-    <dimen name="btn_text_size">14sp</dimen>
-    <dimen name="fit_btn_size_complete">19dp</dimen>
+
+    <dimen name="fit_text_size">14dp</dimen>
+    <dimen name="fit_btn_text_size_complete">19dp</dimen>
     <dimen name="btn_fit_complete_margin">21dp</dimen>
     <dimen name="fit_red_btn_width">350dp</dimen>
     <dimen name="fit_red_btn_height">48dp</dimen>

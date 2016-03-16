@@ -21,6 +21,9 @@ public class User {
 
     @SerializedName("badgeCnt")
     public int badgeCount;
+
+    @SerializedName("exctype_id")
+    public int curationId;
     @SerializedName("exctype_name")
     public String curationName;
 

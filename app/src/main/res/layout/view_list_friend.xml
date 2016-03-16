@@ -4,7 +4,7 @@
     android:layout_height="@dimen/fit_list_friend">
 
 
-    <com.github.siyamed.shapeimageview.CircularImageView
+    <com.mikhaellopez.circularimageview.CircularImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="@dimen/fit_friend_image_btn_width"
         android:layout_height="@dimen/fit_friend_image_btn_width"
@@ -12,12 +12,11 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"
         android:layout_centerVertical="true"
-        android:src="@android:mipmap/sym_def_app_icon"
-        app:civ_border_color="#EEEEEE"
-        app:civ_border_width="4dp"
+        android:src="@drawable/default_friend"
+        app:civ_border = "false"
         app:civ_shadow="true"
-        app:civ_shadow_radius="10"
-        app:civ_shadow_color="#8BC34A"
+        app:civ_shadow_radius="1"
+        app:civ_shadow_color="@color/fit_circle_image_shadow"
         />
 
     <TextView

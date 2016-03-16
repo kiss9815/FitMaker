@@ -6,13 +6,13 @@
     android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:orientation="vertical" android:layout_width="match_parent"
-            android:layout_height="@dimen/fit_curriculum_height">
+            android:layout_width="190dp"
+            android:layout_height="200dp">
 
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="120dp"
                 android:id="@+id/image_youtube"
 
                 />
@@ -22,15 +22,17 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:orientation="vertical"
-                android:gravity="center_vertical"
+                android:layout_below="@+id/image_youtube"
+
                 >
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/text_content_name"
-                    android:gravity="center"
                     android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/fit_space"
                     android:layout_marginBottom="@dimen/fit_space"
                     android:textSize="20sp"
                     android:text="이름"/>
@@ -43,7 +45,6 @@
                     android:textSize="18sp"
                     android:gravity="center"
                     android:text="운동 부위"/>
-
 
             </LinearLayout>
 

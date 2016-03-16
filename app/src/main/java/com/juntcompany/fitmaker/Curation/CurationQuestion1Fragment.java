@@ -84,13 +84,11 @@ public class CurationQuestion1Fragment extends Fragment implements View.OnClickL
         switch (id){
             case R.id.btn_1: {
                 ///////////////////////////////////////////////////////////////////////////////아직 디자인 안나와서 바꿔야함
-                Toast.makeText(getContext(), "여자", Toast.LENGTH_SHORT).show();
                  btnMessage = 1;
                 break;
             }
 
             case R.id.btn_2: {
-                Toast.makeText(getContext(), "남자", Toast.LENGTH_SHORT).show();
                  btnMessage = 2;
                 break;
             }

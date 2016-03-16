@@ -13,7 +13,7 @@
         android:layout_width="@dimen/fit_red_btn_width"
         android:layout_height="@dimen/fit_red_btn_height"
         android:text="가입 완료"
-        android:textSize="@dimen/btn_text_size"
+        android:textSize="@dimen/fit_btn_text_size_complete"
         android:textColor="@color/fit_white"
         android:id="@+id/btn_complete"
         android:layout_alignParentBottom="true"

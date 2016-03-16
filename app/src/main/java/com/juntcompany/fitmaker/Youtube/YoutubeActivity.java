@@ -34,7 +34,7 @@ public class YoutubeActivity extends AppCompatActivity implements YouTubePlayer.
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
         if (!wasRestored) {
-            player.cueVideo("zHMPpb8_H-E");
+            player.cueVideo(youtube);
             //0fzg1kL0Y2U
         }
     }

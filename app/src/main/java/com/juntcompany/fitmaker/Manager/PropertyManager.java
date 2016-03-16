@@ -54,8 +54,8 @@ public class PropertyManager {
         mEditor.putInt(FIELD_CURATION_TYPE_ID, curationId);
         mEditor.commit();
     }
-    public String getCurationType(){
-        return mPrefs.getString(FIELD_CURATION_TYPE_ID, "");
+    public int getCurationType(){
+        return mPrefs.getInt(FIELD_CURATION_TYPE_ID, 0);
     }
 
     public void setGender(String gender){

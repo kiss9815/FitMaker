@@ -3,6 +3,7 @@
     package="com.juntcompany.fitmaker">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".FitMaker"
@@ -53,7 +54,21 @@
         <activity android:name=".Friend.add.FriendSearchActivity" />
         <activity android:name=".Badge.BadgeActivity" />
         <activity android:name=".Friend.Profile.FriendProfileActivity" />
-        <activity android:name=".Youtube.YoutubeActivity"></activity>
+        <activity android:name=".Youtube.YoutubeActivity" />
+
+        <receiver
+            android:name=".Alarm.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".Alarm.AlarmProcessingService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

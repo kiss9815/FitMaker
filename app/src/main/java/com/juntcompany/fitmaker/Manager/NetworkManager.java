@@ -236,13 +236,13 @@ public class NetworkManager {
 
     }
 
-    private static final String URL_FORMAT_CURATION_QUESTION = "http://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/curriculum?q1=%s&q2=%s&q3=%s";
 
+    private static final String URL_FORMAT_CURRICULUM_BY_CURATION = "http://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/curriculum?exctype=%s";
     //파라미터에 Context 가 꼭 있어야 함 없으면 백키를 누를때 액티비티가 없는데어서도 구동하려 함
-    public Request getCuration(Context context, String q1, String q2, String q3, final OnResultListener<CurationType> listener) throws UnsupportedEncodingException {
+       public Request getCurriculumByCuration(Context context, String curationType, final OnResultListener<TypeCurriculumResult> listener) throws UnsupportedEncodingException {
 
-        String url = String.format(URL_FORMAT_CURATION_QUESTION, URLEncoder.encode(q1, "utf-8"), URLEncoder.encode(q1, "utf-8"), URLEncoder.encode(q1, "utf-8"));
-        final CallbackObject<CurationType> callbackObject = new CallbackObject<CurationType>();
+        String url = String.format(URL_FORMAT_CURRICULUM_BY_CURATION, URLEncoder.encode(curationType, "utf-8"));
+        final CallbackObject<TypeCurriculumResult> callbackObject = new CallbackObject<TypeCurriculumResult>();
 
         Request request = new Request.Builder().url(url)
                 .tag(context)
@@ -262,7 +262,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
                 TypeCurriculumResponse curriculum = gson.fromJson(response.body().string(), TypeCurriculumResponse.class);
-                callbackObject.result = curriculum.result.curationType;
+                callbackObject.result = curriculum.result;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }
@@ -270,8 +270,9 @@ public class NetworkManager {
         return request;
     }
 
-    private static final String URL_FORMAT_GET_CURRICULUM_CURATION = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/curriculum?q1=%s&q3=%s&q6=%s";
 
+    // 퀘스쳔 답이 있어야 나오는 메소드
+    private static final String URL_FORMAT_GET_CURRICULUM_CURATION = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/curriculum?q1=%s&q3=%s&q6=%s";
     public Request getCurriculumCuration(Context context, String q1, String q3, String q6, final OnResultListener<TypeCurriculumResult> listener)
             throws UnsupportedEncodingException {
 

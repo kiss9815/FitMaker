@@ -76,7 +76,7 @@ public class FriendRequestViewHolder extends RecyclerView.ViewHolder {
         if (!TextUtils.isEmpty(friend.friendProfile)) {
             Glide.with(mContext).load(friend.friendProfile).into(imageProfile);
         } else {
-            imageProfile.setImageResource(R.mipmap.ic_launcher);
+            imageProfile.setImageResource(R.drawable.default_friend);
         }
     }
 }

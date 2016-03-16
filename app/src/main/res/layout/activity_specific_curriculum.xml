@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/recyclerView"
         android:layout_below="@+id/image_title"
+        android:layout_above="@+id/btn_start"
         />
     <!--<include-->
         <!--android:layout_width="match_parent"-->
@@ -40,7 +41,7 @@
         android:layout_height="@dimen/fit_red_btn_height"
         android:layout_centerHorizontal="true"
         android:textColor="@color/fit_white"
-        android:textSize="@dimen/btn_text_size"
+        android:textSize="@dimen/fit_btn_text_size_complete"
         android:id="@+id/btn_start"
         android:background="@color/FitRed"
         android:text="운동 시작하기"

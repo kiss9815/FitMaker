@@ -81,11 +81,14 @@ public class RewardActivity extends AppCompatActivity {
             NetworkManager.getInstance().getBadge(getApplicationContext(), ""+ badgeId, new NetworkManager.OnResultListener<BadgeResult>() {
                 @Override
                 public void onSuccess(Request request, BadgeResult result) {
-                    badge = result.badge;
-                    textBadgeComment.setText(badge.badgeName);
-                    Glide.with(getApplicationContext()).load(badge.badgeImage).into(image_badge);
+                    if(result.badge != null) {
+                        badge = result.badge;
+                        textBadgeComment.setText(badge.badgeName);
 
-                    Log.i("aaa", badge.badgeName);
+                        Glide.with(getApplicationContext()).load(badge.badgeImage).into(image_badge);
+
+                        Log.i("aaa", badge.badgeName);
+                    }
                 }
 
                 @Override
