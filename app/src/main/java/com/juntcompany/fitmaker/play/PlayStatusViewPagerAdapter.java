@@ -30,6 +30,19 @@ public class PlayStatusViewPagerAdapter extends FragmentPagerAdapter {
         notifyDataSetChanged();
     }
 
+    public void setFinished(int position, boolean isFinished) {
+        items.get(position).isFinished = isFinished;
+    }
+
+    public void setSelectable(int position, boolean isSelectable) {
+        items.get(position).isSelectable = isSelectable;
+    }
+
+    public boolean getSelectable(int position){
+
+        return items.get(position).isSelectable;
+    }
+
     private ArrayList<PlayStatusPagerFragment> mFragments = new ArrayList<PlayStatusPagerFragment>();
 
     public PlayStatusPagerFragment getFragment(int position) {

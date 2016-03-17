@@ -18,7 +18,6 @@
     <dimen name="dialog_course">45dp</dimen>
 
 
-
     <dimen name="fit_text_size">14dp</dimen>
     <dimen name="fit_btn_text_size_complete">19dp</dimen>
     <dimen name="btn_fit_complete_margin">21dp</dimen>
@@ -37,6 +36,12 @@
     <dimen name="fit_dialog_ok_button_width">250dp</dimen>
 
     <dimen name="fit_text_size_curation_answer">16sp</dimen>
+
+
+    <dimen name="fit_dialog_course_width">300dp</dimen>
+    <dimen name="fit_dialog_course_height">200dp</dimen>
+
+    <dimen name="fit_text_size_dialog_list">19sp</dimen>
 
 
 </resources>

@@ -89,6 +89,7 @@ public class RewardActivity extends AppCompatActivity {
 
                         Log.i("aaa", badge.badgeName);
                     }
+
                 }
 
                 @Override

@@ -10,6 +10,8 @@ import java.util.ArrayList;
  * Created by EOM on 2016-03-02.
  */
 public class TypeCurriculumResult {
+
+    public String message;
     @SerializedName("exctype")
     public CurationType curationType;
     @SerializedName("curriculum")

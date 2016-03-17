@@ -75,8 +75,8 @@
 
     <!--메인페이지 메뉴-->
     <string name="main_menu_share">공유하기</string>
-    <string name="main_menu_picture_change">사진변경</string>
-    <string name="main_menu_edit_room">방 편집</string>
+    <string name="main_menu_my_profile_change">내 프로필 사진 변경</string>
+    <string name="main_menu_background_change">배경 사진 변경</string>
     <string name="main_dialog_confirm">확인</string>
     <string name="main_dialog_next">다음날에 도전해 주세요~</string>
 
@@ -112,6 +112,11 @@
     <string name="btn_yes">예</string>
 
 
+    <string name="project_youtube">해당 프로젝트의 유튜브 보고 오기</string>
+
+
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
+
+
 
 </resources>

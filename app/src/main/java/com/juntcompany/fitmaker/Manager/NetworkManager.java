@@ -64,6 +64,8 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.JavaNetCookieJar;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -453,10 +455,10 @@ public class NetworkManager {
     private static final String URL_FORMAT_FACEBOOK_LOGIN = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/auth/facebook/token";
     private static final String POST_BODY_TOKEN ="access_token";
 
-    public Request facebookLogin(Context context, String registrationToken, final OnResultListener<JoinResult> listener)throws UnsupportedEncodingException {
+    public Request facebookLogin(Context context, String registrationToken, final OnResultListener<JoinRequest> listener)throws UnsupportedEncodingException {
 
         String url = String.format(URL_FORMAT_FACEBOOK_LOGIN);
-        final CallbackObject<JoinResult> callbackObject = new CallbackObject<JoinResult>();
+        final CallbackObject<JoinRequest> callbackObject = new CallbackObject<JoinRequest>();
         RequestBody body = new FormBody.Builder()
                 .add(POST_BODY_TOKEN, registrationToken)
                 .build();
@@ -480,7 +482,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
                 JoinRequest join = gson.fromJson(response.body().string(), JoinRequest.class);
-                callbackObject.result = join.result;
+                callbackObject.result = join;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }
@@ -553,7 +555,8 @@ public class NetworkManager {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
-                ProjectResponse project = gson.fromJson(response.body().string(), ProjectResponse.class);
+                String text = response.body().string();
+                ProjectResponse project = gson.fromJson(text, ProjectResponse.class);
                 callbackObject.result = project.result;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
@@ -920,4 +923,48 @@ public class NetworkManager {
         });
         return request;
     }
+
+    private static final String URL_FORMAT_POST_MY_PICTURE = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/users/me";
+    private static final String PUT_BODY_PICTURE = "photo";
+    private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
+
+    public Request setMyProfilePicture(Context context, File file, final OnResultListener<Result> listener)throws UnsupportedEncodingException {
+
+        String url = String.format(URL_FORMAT_POST_MY_PICTURE);
+        final CallbackObject<Result> callbackObject = new CallbackObject<Result>();
+
+        RequestBody body = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart(PUT_BODY_PICTURE, file.getName(), RequestBody.create(MEDIA_TYPE_PNG, file))
+                .build();
+
+        Request request = new Request.Builder().url(url)
+                .tag(context)
+                .put(body)
+                .build();
+
+        callbackObject.request = request;
+        callbackObject.listener = listener;
+
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callbackObject.exception = e;
+                Message msg = mHandler.obtainMessage(MESSAGE_FAILURE, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                GeneralRequest project = gson.fromJson(response.body().string(), GeneralRequest.class);
+                callbackObject.result = project.result;
+                Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+        });
+        return request;
+    }
+
+
 }

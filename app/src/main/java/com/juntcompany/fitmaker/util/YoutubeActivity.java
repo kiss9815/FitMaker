@@ -1,4 +1,4 @@
-package com.juntcompany.fitmaker.Youtube;
+package com.juntcompany.fitmaker.util;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

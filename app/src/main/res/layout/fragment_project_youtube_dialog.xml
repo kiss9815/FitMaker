@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/box_logout"
+    tools:context="com.juntcompany.fitmaker.Main.YoutubeThumbnail.ProjectYoutubeDialogFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_title"
+            android:textColor="#000000"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:text="@string/project_youtube"
+            android:layout_marginTop="@dimen/fit_dialog_marginTop"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            />
+
+
+        <Button
+            android:layout_width="@dimen/fit_dismiss"
+            android:layout_height="@dimen/fit_dismiss"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/fit_space"
+            android:layout_alignParentRight="true"
+            android:id="@+id/btn_dismiss"
+            android:background="@drawable/btn_close"
+            />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recyclerView"
+        android:divider="@android:drawable/divider_horizontal_dark"
+        />
+
+
+</RelativeLayout>

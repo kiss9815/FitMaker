@@ -1,6 +1,10 @@
 package com.juntcompany.fitmaker.Friend;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Handler;
+import android.os.Looper;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,6 +36,8 @@ public class FriendListActivity extends AppCompatActivity {   // MainActivity의
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     FriendListAdapter mAdapter;
+    SwipeRefreshLayout refreshLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,9 @@ public class FriendListActivity extends AppCompatActivity {   // MainActivity의
 
         setTitle(ACTIVITY_TITLE);
         setTitleColor(R.color.fit_white);
+
+        refreshLayout = (SwipeRefreshLayout)findViewById(R.id.refreshlayout);
+
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         mAdapter = new FriendListAdapter();
@@ -65,11 +74,25 @@ public class FriendListActivity extends AppCompatActivity {   // MainActivity의
         layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        setData();
+                    }
+                }, 1500);
+            }
+        });
+        refreshLayout.setColorSchemeColors(Color.YELLOW, Color.RED, Color.GREEN);
+
         setData();
 
        // initData();
     }
 
+    Handler mHandler = new Handler(Looper.getMainLooper());
 
 
     private void setData(){
@@ -77,6 +100,7 @@ public class FriendListActivity extends AppCompatActivity {   // MainActivity의
             NetworkManager.getInstance().getFriendList(getApplicationContext(), new NetworkManager.OnResultListener<FriendListResult>() {
                 @Override
                 public void onSuccess(Request request, FriendListResult result) {
+                    mAdapter.clear();
                     mAdapter.addAll(result.friends);
                 }
 

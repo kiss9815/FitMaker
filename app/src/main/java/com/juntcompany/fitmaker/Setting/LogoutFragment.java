@@ -1,17 +1,21 @@
 package com.juntcompany.fitmaker.Setting;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.juntcompany.fitmaker.Data.JoinResult;
+import com.juntcompany.fitmaker.Login.LoginActivity;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
 import com.juntcompany.fitmaker.R;
+import com.juntcompany.fitmaker.StartActivity;
 
 import java.io.UnsupportedEncodingException;
 
@@ -23,9 +27,11 @@ import okhttp3.Request;
 public class LogoutFragment extends DialogFragment {
 
 
+    private static final String NETWORK_RESULT = "Network logout result";
+
     public LogoutFragment() {
         // Required empty public constructor
-        setStyle(STYLE_NO_TITLE, 0);
+        setStyle(STYLE_NO_TITLE, R.style.MyDialog);
     }
 
 
@@ -51,6 +57,7 @@ public class LogoutFragment extends DialogFragment {
                     NetworkManager.getInstance().logout(getContext(), new NetworkManager.OnResultListener<JoinResult>() {
                         @Override
                         public void onSuccess(Request request, JoinResult result) {
+                            Log.i(NETWORK_RESULT, result.message);
 
                         }
 
@@ -62,7 +69,9 @@ public class LogoutFragment extends DialogFragment {
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-                //..로그아웃 처리....
+
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
                 dismiss();
             }
         });

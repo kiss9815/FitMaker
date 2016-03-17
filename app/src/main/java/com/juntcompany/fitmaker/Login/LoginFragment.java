@@ -28,6 +28,7 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.juntcompany.fitmaker.Curation.CurationActivity;
+import com.juntcompany.fitmaker.Data.JoinRequest;
 import com.juntcompany.fitmaker.Data.JoinResult;
 import com.juntcompany.fitmaker.Data.Structure.LoginRequest;
 import com.juntcompany.fitmaker.Data.User;
@@ -79,6 +80,8 @@ public class LoginFragment extends Fragment {
         });
     }
 
+
+    private static final String NETWORK_LOGIN = "network_local_login";
     private static final String FRAGMENT_TITLE = "로그인";
 
     EditText edit_email, edit_password;
@@ -106,6 +109,7 @@ public class LoginFragment extends Fragment {
                     NetworkManager.getInstance().login(getContext(), userId, password, new NetworkManager.OnResultListener<LoginRequest>() {
                         @Override
                         public void onSuccess(Request request, LoginRequest result) {
+                            Log.i(NETWORK_LOGIN, result.message);
                             User user = new User();
                             user.userId = result.userId;
                             Toast.makeText(getContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
@@ -122,21 +126,8 @@ public class LoginFragment extends Fragment {
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-//                NetworkManager.getInstance().login(getContext(), userId, password, new NetworkManager.OnResultListener<String>() {
-//                    @Override
-//                    public void onSuccess(String result) {
-//                        PropertyManager.getInstance().setUserId(userId);
-//                        PropertyManager.getInstance().setPassword(password);
-//                        ////로그인
-//                        startActivity(new Intent(getContext(), MainActivity.class));
-//                        getActivity().finish();
-//                    }
-//
-//                    @Override
-//                    public void onFailure(int error) {
-//
-//                    }
-//                });
+
+
             }
         });
 
@@ -216,6 +207,7 @@ public class LoginFragment extends Fragment {
     }
 
 
+    private static final String NETWORK_FACEBOOK_LOGIN = "network facebook_login";
     private void loginOrLogout() {
          AccessToken token = AccessToken.getCurrentAccessToken();
         if (token == null) { //토큰이 있는 경우는 스플래시에서 한다. 이미 가입을 한 상태이므로
@@ -223,14 +215,17 @@ public class LoginFragment extends Fragment {
                 @Override
                 public void onSuccess(LoginResult loginResult) {
                     //페이스북 로그인 성공
-                    startActivity(new Intent(getContext(), StartActivity.class));
+
                     final AccessToken accessToken = AccessToken.getCurrentAccessToken();
                     try {
-                        NetworkManager.getInstance().facebookLogin(getContext(), accessToken.getToken(), new NetworkManager.OnResultListener<JoinResult>() {
+                        NetworkManager.getInstance().facebookLogin(getContext(), accessToken.getToken(), new NetworkManager.OnResultListener<JoinRequest>() {
 
                             @Override
-                            public void onSuccess(Request request, JoinResult result) {
+                            public void onSuccess(Request request, JoinRequest result) {
+
+                                startActivity(new Intent(getContext(), StartActivity.class));
                                 Toast.makeText(getContext(), "페이스북 토큰 보냄", Toast.LENGTH_SHORT).show();
+                                Log.i(NETWORK_FACEBOOK_LOGIN, result.error.message);
                                 Log.i("Token", accessToken.getToken());
                             }
 

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,6 +17,9 @@ import com.bumptech.glide.Glide;
 import com.juntcompany.fitmaker.Data.Badge;
 import com.juntcompany.fitmaker.Data.Friend;
 import com.juntcompany.fitmaker.Data.Structure.FriendResult;
+import com.juntcompany.fitmaker.Friend.FriendListActivity;
+import com.juntcompany.fitmaker.Friend.add.FriendSearchActivity;
+import com.juntcompany.fitmaker.Friend.request.FriendRequestActivity;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
 import com.juntcompany.fitmaker.R;
 
@@ -77,6 +81,10 @@ public class FriendProfileActivity extends AppCompatActivity {
                 public void onSuccess(Request request, FriendResult result) {
                         Friend friend = result.friend;
                         List<Badge> badges = result.friendBadges;
+                    if(friend.friendProfile == null){
+                        imageFriendProfile.setImageResource(R.drawable.default_friend);
+                    }
+
                     Glide.with(getApplicationContext()).load(friend.friendProfile).into(imageFriendProfile);
                     textFriendExerciseHour.setText(""+friend.friendExerciseHour);
                     textFriendExctypeName.setText(friend.curationType);
@@ -95,4 +103,17 @@ public class FriendProfileActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home: {
+                finish();
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

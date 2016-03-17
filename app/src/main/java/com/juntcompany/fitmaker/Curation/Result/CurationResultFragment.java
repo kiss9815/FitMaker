@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -55,6 +56,9 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
         curationKey = extra.getIntegerArrayList(FRAGMENT_CURATION_KEY);
     }
 
+
+    private static final String NETWORK_RESULT = "network result";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -81,6 +85,7 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
             NetworkManager.getInstance().getCurriculumCuration(getContext(),""+curationKey.get(0), ""+curationKey.get(2),""+curationKey.get(5),new NetworkManager.OnResultListener<TypeCurriculumResult>() {
                 @Override
                 public void onSuccess(Request request, TypeCurriculumResult result) {
+                    Log.i(NETWORK_RESULT, result.message);
                     for(Curriculum c : result.curriculums) {
                         mAdapter.add(c);
                     }

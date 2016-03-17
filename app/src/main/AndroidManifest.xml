@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".FitMaker"
@@ -41,7 +42,9 @@
         <activity android:name=".Curation.CurationActivity" />
         <activity android:name=".Curation.Recommend.RecommendActivity" />
         <activity android:name=".SpecificCurriculum.SpecificCurriculumActivity" />
-        <activity android:name=".Login.LoginActivity" />
+        <activity
+            android:name=".Login.LoginActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".Setting.SettingActivity" />
         <activity android:name=".Setting.NoticeActivity" />
         <activity android:name=".Setting.DevelopersActivity" />
@@ -54,7 +57,7 @@
         <activity android:name=".Friend.add.FriendSearchActivity" />
         <activity android:name=".Badge.BadgeActivity" />
         <activity android:name=".Friend.Profile.FriendProfileActivity" />
-        <activity android:name=".Youtube.YoutubeActivity" />
+        <activity android:name=".util.YoutubeActivity" />
 
         <receiver
             android:name=".Alarm.BootReceiver"
@@ -68,7 +71,9 @@
         <service
             android:name=".Alarm.AlarmProcessingService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".Main.YoutubeThumbnail.YoutubeThumbnailActivity"></activity>
     </application>
 
 </manifest>

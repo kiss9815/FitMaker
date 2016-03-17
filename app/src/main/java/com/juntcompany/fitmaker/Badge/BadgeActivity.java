@@ -33,6 +33,7 @@ public class BadgeActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         mAdapter = new BadgeAdapter();
 

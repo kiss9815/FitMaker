@@ -38,6 +38,7 @@ import com.juntcompany.fitmaker.Curation.Recommend.RecommendActivity;
 import com.juntcompany.fitmaker.Data.Project;
 import com.juntcompany.fitmaker.Data.ProjectResponseResult;
 import com.juntcompany.fitmaker.Data.Structure.MyResult;
+import com.juntcompany.fitmaker.Data.Structure.Result;
 import com.juntcompany.fitmaker.Data.User;
 import com.juntcompany.fitmaker.Friend.FriendListActivity;
 import com.juntcompany.fitmaker.Main.CourseDialog.CourseDialogFragment;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     RecyclerView.LayoutManager layoutManager;
     MainSpinnerAdapter spinnerAdapter;
 
+    NavigationView navigationView;
 
     List<Course> courses = new ArrayList<Course>();
 
@@ -159,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-                recyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(mAdapter);
 
         layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -168,7 +170,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = getIntent(); //SpecificActivity에서 넘어옴
         projectId =intent.getIntExtra(INTENT_PROJECT_ID, 100); //0은 default value // 프로젝트 id를 넘겨받음. main에서 다시 서버에 요청해야 함
         //String projectName = intent.getStringExtra(INTENT_PROJECT_NAME);
-        callProject(projectId); //전 페이지에서 해당 페이지로 넘어올때 생성된 프로젝트 id로 커리큘럼과 코스 생성.
+
+        PropertyManager.getInstance().setProjectId(projectId); // 프로젝트 id를 preference에 저장
+        if(projectId == 100){ // intent 못받아오면 100
+            int propertyProjectId = PropertyManager.getInstance().getProjectId();
+            callProject(propertyProjectId);
+        }
+
+       else { // 큐레이션 결과에서 받아온 프로젝트 id
+            callProject(projectId); //전 페이지에서 해당 페이지로 넘어올때 생성된 프로젝트 id로 커리큘럼과 코스 생성.
+        }
+
+
     }
 
 //////////////////////////////////////////////////////////////////////////////////////oncreate
@@ -185,10 +198,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.main_menu_picture_change:
+            case R.id.main_menu_my_profile_change:
                 callGallery();
                 break;
 
+            case R.id.main_menu_background_change:
+                callGallery();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -202,13 +218,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Cursor c = getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DATA}, null, null, null);
                 if (c.moveToNext()) {
                     String path = c.getString(c.getColumnIndex(MediaStore.Images.Media.DATA));
-                    Uri fileUri = Uri.fromFile(new File(path));
-                   // Glide.with(this).load(fileUri).into();
+                    File file = new File(path);
+                    Uri fileUri = Uri.fromFile(file);
+
+                    View headerview = navigationView.getHeaderView(0);
+                    ImageView imageProfile = (ImageView)headerview.findViewById(R.id.image_profile);
+                    Glide.with(this).load(fileUri).into(imageProfile); // 헤더뷰의 내 프로필 이미지 변경
+                    setMyProfilePicture(file);
                 }
-//                Glide.with(this).load(mFileUri).into(photoView);
+
             }
         }
     }
+
+    private void setMyProfilePicture(File file){
+        try {
+            NetworkManager.getInstance().setMyProfilePicture(getApplicationContext(), file, new NetworkManager.OnResultListener<Result>() {
+                @Override
+                public void onSuccess(Request request, Result result) {
+
+                }
+
+                @Override
+                public void onFailure(Request request, int code, Throwable cause) {
+
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 
     private static final int RC_GALLERY = 1;
     private void callGallery() {
@@ -275,17 +317,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     Log.i("aaa", courses.toString()) ;
                     boolean flag = true;
-                    for (int i = 0 ; i < result.today.position; i++) { // position이 완료된 날//
+                    for (int i = 0 ; i < result.today.position-1; i++) { // position이 운동을 해야하는날// position은 인덱스 1부터 시작
                         Course c = courses.get(i);
-                        c.isFinish = true;
-                        c.isSelectable = true;
+
+                            c.isFinish = true;
+                            c.isSelectable = true;
+
                         ///
                         Intent intent = getIntent();
                         c.badgeName = intent.getStringExtra(BADGE_MESSAGE);
                         ///..동작 안함..
                     }
                     if (result.today.position < courses.size()) {
-                        Course c = courses.get(result.today.position); // courses 인덱스는 0부터 시작하고 today는 1부터 시작하므로
+                        Course c = courses.get(result.today.position-1); // courses 인덱스는 0부터 시작하고 today. position는 1부터 시작하므로
                         c.isSelectable = true;
                     }
 
@@ -326,7 +370,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onSuccess(Request request, MyResult result) {
 
-                    NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+                     navigationView = (NavigationView) findViewById(R.id.nav_view);
                     navigationView.setNavigationItemSelectedListener(MainActivity.this);
 
                     View headerview = navigationView.getHeaderView(0);   //헤더뷰를 가져와서 버튼 눌리게 하는 코드
@@ -334,6 +378,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     User user = result.user;
 
                     PropertyManager.getInstance().setCurationType(result.user.curationId); // 네트워크에서 가져온 큐레이셔타입을 Preference에 저장
+                    int a = PropertyManager.getInstance().getCurationType();
+                    Toast.makeText(getApplicationContext(), "큐레이션 id" + a, Toast.LENGTH_SHORT).show();
+
 
                     TextView btn_nav = (TextView)headerview.findViewById(R.id.btn_nav_badge);
 //                    btn_nav.setText(user.badgeCount);

@@ -11,14 +11,14 @@
 
 
         <item
-            android:id="@+id/main_menu_picture_change"
+            android:id="@+id/main_menu_my_profile_change"
             android:orderInCategory="200"
-            android:title="@string/main_menu_picture_change"
+            android:title="@string/main_menu_my_profile_change"
             app:showAsAction="never" />
         <item
-            android:id="@+id/main_menu_edit_room"
+            android:id="@+id/main_menu_background_change"
             android:orderInCategory="300"
-            android:title="@string/main_menu_edit_room"
+            android:title="@string/main_menu_background_change"
             app:showAsAction="never" />
 
 </menu>

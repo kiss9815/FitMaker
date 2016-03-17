@@ -1,6 +1,7 @@
 package com.juntcompany.fitmaker.Main.NextTime;
 
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -45,4 +46,15 @@ public class NextTimeDialogFragment extends DialogFragment {
         return view;
     }
 
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+
+        int width = getResources().getDimensionPixelSize(R.dimen.fit_dialog_course_width);
+        int height = getResources().getDimensionPixelSize(R.dimen.fit_dialog_course_height);
+        getDialog().getWindow().setLayout(width, height);
+
+    }
 }

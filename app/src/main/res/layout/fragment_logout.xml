@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/text_title"
+            android:textColor="@color/fit_light_black"
             android:layout_centerHorizontal="true"
             android:text="@string/setting_logout"
             android:layout_marginTop="@dimen/fit_dialog_marginTop"
@@ -34,6 +35,7 @@
         android:layout_height="wrap_content"
         android:text="@string/logout_text"
         android:layout_below="@+id/text_title"
+        android:textColor="@color/fit_light_black"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:textSize="25dp"
@@ -49,19 +51,29 @@
         >
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="165dp"
             android:layout_height="wrap_content"
             android:text="@string/btn_no"
-            android:layout_weight="1"
+            android:background="@drawable/btn_rounded_pink"
+            android:textSize="@dimen/fit_btn_text_size_complete"
+            android:textColor="@color/fit_white"
             android:id="@+id/btn_no"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/fit_space"
+            android:layout_marginRight="@dimen/fit_space"
             />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="165dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:background="@drawable/btn_rounded_gray"
+            android:textSize="@dimen/fit_btn_text_size_complete"
+            android:textColor="@color/fit_white"
             android:id="@+id/btn_yes"
             android:text="@string/btn_yes"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/fit_space"
+            android:layout_marginRight="@dimen/fit_space"
             />
 
 

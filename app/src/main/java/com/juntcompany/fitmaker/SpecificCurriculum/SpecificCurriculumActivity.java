@@ -1,16 +1,12 @@
 package com.juntcompany.fitmaker.SpecificCurriculum;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -20,16 +16,14 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.juntcompany.fitmaker.Data.Content;
 import com.juntcompany.fitmaker.Data.Curriculum;
-import com.juntcompany.fitmaker.Data.Image;
 import com.juntcompany.fitmaker.Data.ProjectRequestResult;
 import com.juntcompany.fitmaker.Main.MainActivity;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
 import com.juntcompany.fitmaker.R;
-import com.juntcompany.fitmaker.Youtube.YoutubeActivity;
+import com.juntcompany.fitmaker.util.YoutubeActivity;
 import com.juntcompany.fitmaker.util.OnItemClickListener;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URI;
 import java.util.List;
 
 import okhttp3.Request;

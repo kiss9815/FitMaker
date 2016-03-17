@@ -93,10 +93,12 @@ public class PlayStatusPagerFragment extends Fragment {
          imageStatus = (ImageView)view.findViewById(R.id.image_status);
          textContentName = (TextView)view.findViewById(R.id.text_content_name);
 
-        if(mContent.isSelectable){
-            imageStatus.setImageResource(Image.imageRedButtonPlay[mContent.content_status -1]);
-        }else if(mContent.isFinished){
+
+
+         if(mContent.isFinished){
             imageStatus.setImageResource(Image.imagePuppleButtonPlay[mContent.content_status-1]);
+        }else if(mContent.isSelectable){
+            imageStatus.setImageResource(Image.imageRedButtonPlay[mContent.content_status -1]);
         }else {
             imageStatus.setImageResource(Image.imageWhiteButtonPlay[mContent.content_status - 1]);
         }
