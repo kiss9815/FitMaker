@@ -15,6 +15,27 @@ import java.util.List;
 public class MainSpinnerAdapter extends BaseAdapter {
     List<Project> items = new ArrayList<Project>();
 
+    public void insert(Project project, int index) {
+            if (project != null) {
+                items.add(index, project);
+            } else {
+                items.add(index, project);
+            }
+
+        notifyDataSetChanged();
+    }
+
+    public void remove(Project project) {
+
+            if (project != null) {
+                items.remove(project);
+            } else {
+                items.remove(project);
+            }
+
+         notifyDataSetChanged();
+    }
+
     public void add(Project p) {
         items.add(p);
         notifyDataSetChanged();
@@ -29,6 +50,12 @@ public class MainSpinnerAdapter extends BaseAdapter {
         items.clear();
         notifyDataSetChanged();
     }
+
+    public List<Project> getItems(){
+
+        return new ArrayList<>(items);
+    }
+
 
     @Override
     public int getCount() {

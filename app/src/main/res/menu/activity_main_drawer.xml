@@ -3,10 +3,6 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_exercise_play"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/navigation_button_exercise_play" />
-        <item
             android:id="@+id/nav_recommend_curriculum"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/navigation_button_recommend_curriculum" />
@@ -27,23 +23,20 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/navigation_button_ongoing_project" />
 
-        <item
-            android:id="@+id/nav_setting"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="설정하기" />
-    </group>
-
-    <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_expert_talk"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="코치와 상담하기" />
+
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="설정하기" />
         </menu>
-    </item>
+
+    </group>
+
+
 
 </menu>

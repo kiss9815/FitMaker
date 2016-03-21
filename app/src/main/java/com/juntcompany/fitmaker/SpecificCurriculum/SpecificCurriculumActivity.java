@@ -18,6 +18,7 @@ import com.juntcompany.fitmaker.Data.Content;
 import com.juntcompany.fitmaker.Data.Curriculum;
 import com.juntcompany.fitmaker.Data.ProjectRequestResult;
 import com.juntcompany.fitmaker.Main.MainActivity;
+import com.juntcompany.fitmaker.Main.YoutubeThumbnail.YoutubeThumbnailAdapter;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
 import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.util.YoutubeActivity;
@@ -37,7 +38,7 @@ public class SpecificCurriculumActivity extends AppCompatActivity {
     SpecificCurriculumViewPagerAdapter pagerAdapter;
     YoutubeAdapter mAdapter;
     RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
+    GridLayoutManager layoutManager;
 
     ImageView imageTitle;
 
@@ -88,7 +89,18 @@ public class SpecificCurriculumActivity extends AppCompatActivity {
         //layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
 //        layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         layoutManager = new GridLayoutManager(getApplicationContext(), 2, GridLayoutManager.VERTICAL, false);
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                switch (mAdapter.getItemViewType(position)){
+                    case YoutubeAdapter.VIEW_TYPE_HEADER:
+                        return 2;
+                }
+                return 1;
+            }
+        });
         recyclerView.setLayoutManager(layoutManager);
+
         List<Content> contents = curriculum.contents;
         mAdapter.addAll(contents);
         mAdapter.addHeader("커리큘럼 운동 유튜브 영상으로 미리 보기");

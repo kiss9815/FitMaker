@@ -14,6 +14,7 @@ import android.widget.Button;
 import com.juntcompany.fitmaker.Data.JoinResult;
 import com.juntcompany.fitmaker.Login.LoginActivity;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
+import com.juntcompany.fitmaker.Manager.PropertyManager;
 import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.StartActivity;
 
@@ -58,7 +59,8 @@ public class LogoutFragment extends DialogFragment {
                         @Override
                         public void onSuccess(Request request, JoinResult result) {
                             Log.i(NETWORK_RESULT, result.message);
-
+                            PropertyManager.getInstance().setUserId(""); // 로그아웃 하면 자동로그인이 안되도록
+                            PropertyManager.getInstance().setPassword("");
                         }
 
                         @Override
@@ -71,6 +73,7 @@ public class LogoutFragment extends DialogFragment {
                 }
 
                 Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 dismiss();
             }

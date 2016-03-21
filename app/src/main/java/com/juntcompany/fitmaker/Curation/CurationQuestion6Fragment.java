@@ -31,6 +31,8 @@ public class CurationQuestion6Fragment extends Fragment implements View.OnClickL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        ((CurationActivity) getActivity()).setTitle("당신이 원하는 몸매는 무엇인가요?");
+
         // Inflate the layout for this fragment
         Bundle extra = getArguments();
         curationValues = extra.getIntegerArrayList(CurationQuestion3Fragment.FRAGMENT_CURATION_KEY); //큐레이션5에서 결과값 받아오고 리스트에 넣기

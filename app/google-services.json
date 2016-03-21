@@ -1,0 +1,75 @@
+{
+  "project_info": {
+    "project_id": "default-demo-app-d7cd",
+    "project_number": "16965973147",
+    "name": "Default Demo App"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16965973147:android:eb1addb7e8b0da62",
+        "client_id": "android:com.juntcompany.samplegcm1",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.juntcompany.samplegcm1",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 2,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 1
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16965973147:android:6b449186ba5bdccf",
+        "client_id": "android:com.juntcompany.fitmaker",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.juntcompany.fitmaker",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 2,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 1
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}

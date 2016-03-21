@@ -31,6 +31,8 @@ public class CurationQuestion2Fragment extends Fragment implements View.OnClickL
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_curation_question2, container, false);
+        ((CurationActivity) getActivity()).setTitle("운동은 자주 하시는 편인가요?");
+
         Button btn = (Button)view.findViewById(R.id.btn_1);
         btn.setOnClickListener(this);
         btn = (Button)view.findViewById(R.id.btn_2);

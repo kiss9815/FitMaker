@@ -18,22 +18,29 @@ import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.StartActivity;
 import com.juntcompany.fitmaker.util.OnItemClickListener;
 
+import java.util.List;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ProjectYoutubeDialogFragment extends DialogFragment {
 
 
-
+    public static final String PROJECT_ID_MESSAGE = "project_id_message";
 
     public ProjectYoutubeDialogFragment() {
         // Required empty public constructor
     }
 
+    List<Project> projects;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NO_TITLE, R.style.MyDialog);
+
+        Bundle args = getArguments();
+        projects =  (List<Project>)args.getSerializable(PROJECT_ID_MESSAGE);
+
 
     }
 
@@ -51,7 +58,7 @@ public class ProjectYoutubeDialogFragment extends DialogFragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                dismiss();
             }
         });
 
@@ -68,10 +75,10 @@ public class ProjectYoutubeDialogFragment extends DialogFragment {
                 startActivity(intent);
             }
         });
-
+        mAdapter.addAll(projects);
         recyclerView.setAdapter(mAdapter);
 
-        layoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
+        layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
         return view;

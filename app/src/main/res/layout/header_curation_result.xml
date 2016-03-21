@@ -21,6 +21,7 @@
         android:textColor="#585858"
         android:id="@+id/text_type_name"
         android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/fit_space"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -30,14 +31,24 @@
         android:textColor="#585858"
         android:text="인포"
         android:id="@+id/text_type_info"
+        android:layout_marginBottom="@dimen/fit_space"
         />
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@android:color/darker_gray"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/recommend"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"
         />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@android:color/darker_gray"/>
 
 </LinearLayout>

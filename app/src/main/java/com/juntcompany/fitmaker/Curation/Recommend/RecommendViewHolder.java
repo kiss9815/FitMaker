@@ -24,7 +24,7 @@ public class RecommendViewHolder extends RecyclerView.ViewHolder{
     }
 
     TextView textName;
-    ImageView image_picture;
+    ImageView imagePicture, imageLevel;
     Curriculum curriculum;
     Context mContext;
 
@@ -39,7 +39,8 @@ public class RecommendViewHolder extends RecyclerView.ViewHolder{
             }
         });
         mContext = itemView.getContext();
-        image_picture = (ImageView)itemView.findViewById(R.id.image_picture);
+        imagePicture = (ImageView)itemView.findViewById(R.id.image_picture);
+        imageLevel = (ImageView)itemView.findViewById(R.id.image_level);
         textName = (TextView)itemView.findViewById(R.id.text_name);
     }
 
@@ -49,9 +50,19 @@ public class RecommendViewHolder extends RecyclerView.ViewHolder{
         if(!TextUtils.isEmpty(curriculum.curriculum_image)) {
             Glide.with(mContext)
                     .load(curriculum.curriculum_image)
-                    .into(image_picture);
+                    .into(imagePicture);
+
         }else {
-            image_picture.setImageResource(Integer.parseInt(String.valueOf(R.mipmap.ic_launcher)));
+            imagePicture.setImageResource(Integer.parseInt(String.valueOf(R.mipmap.ic_launcher)));
+        }
+
+        ////레벨에 따른 이미지 처리......
+        if(curriculum.curriculum_level.equals("초급")){
+            imageLevel.setImageResource(R.drawable.ic_curriculum_level_1);
+        }else if(curriculum.curriculum_level.equals("중급")){
+            imageLevel.setImageResource(R.drawable.ic_curriculum_level_2);
+        }else if(curriculum.curriculum_level.equals("상급")){
+            imageLevel.setImageResource(R.drawable.ic_curriculum_level_3);
         }
     }
 }

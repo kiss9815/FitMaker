@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/fit_space"
+        android:src="@drawable/img_badge_name"
+        android:id="@+id/image_reward_card"
+        android:layout_marginBottom="@dimen/fit_space"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_reward_coment"
+        android:layout_marginTop="@dimen/fit_space"
+        android:text="배지 코멘트"
+        android:layout_gravity="center"
+        />
+
+</merge>

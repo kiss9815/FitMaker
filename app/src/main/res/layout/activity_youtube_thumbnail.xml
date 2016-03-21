@@ -12,20 +12,32 @@
         layout="@layout/toolbar"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/fit_curriculum_height"
-        android:id="@+id/image_title"
         android:layout_below="@id/curriculum_toolbar"
-        android:src="@drawable/avto"/>
+        android:id="@+id/relative">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fit_curriculum_height"
+            android:id="@+id/image_title"
+
+            android:src="@drawable/avto"/>
+        <me.grantland.widget.AutofitTextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/fit_white"
+            android:id="@+id/text_name"
+            android:singleLine="true"/>
+    </RelativeLayout>
 
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recyclerView"
-        android:layout_below="@+id/image_title"
+        android:layout_below="@+id/relative"
 
         />
     <!--<include-->

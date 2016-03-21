@@ -35,7 +35,7 @@ public class YoutubeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         notifyDataSetChanged();
     }
 
-    private static final int VIEW_TYPE_HEADER = 0;
+    public static final int VIEW_TYPE_HEADER = 0;
     private static final int VIEW_TYPE_ITEM = 100;
 
 

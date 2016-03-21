@@ -4,6 +4,8 @@ package com.juntcompany.fitmaker.Login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +45,8 @@ public class SignUpFragment extends Fragment {
     private static final String FRAGMENT_TITLE = "회원 가입";
 
     EditText editEmail, editPassword, editName;
+    DatePicker datePicker;
+    String birth = "";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,6 +74,15 @@ public class SignUpFragment extends Fragment {
         });
         editPassword = (EditText)view.findViewById(R.id.edit_password);
 
+        datePicker = (DatePicker)view.findViewById(R.id.datePicker);
+        datePicker.init(1990, 01, 13, new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                 birth = ""+year+monthOfYear+dayOfMonth;
+            }
+        });
+
         Button btn = (Button)view.findViewById(R.id.btn_complete);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,18 +91,21 @@ public class SignUpFragment extends Fragment {
                 final String userId = editEmail.getText().toString();
                 final String password = editPassword.getText().toString();
                 String name = editName.getText().toString();
-                String birthDay = "19900905";
+                if(birth.equals("")){
+                    birth = ""+19900905;
+                }
+                String birthDay = birth;
+                Log.i("birth", birthDay);
                 try {
                     NetworkManager.getInstance().signUp(getContext(), name, userId, password, birthDay, new NetworkManager.OnResultListener<JoinResult>() {
                         @Override
                         public void onSuccess(Request request, JoinResult result) {
 
-                            PropertyManager.getInstance().setUserId(userId); // 가입하면 sharedPrference에 저장
-                            PropertyManager.getInstance().setPassword(password);
 
-                            Intent intent = new Intent(getContext(), StartActivity.class);
-                            startActivity(intent);
-                            getActivity().finish();
+                            getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//                            Intent intent = new Intent(getContext(), LoginActivity.class);
+//                            startActivity(intent);
+//                            getActivity().finish();
                         }
 
                         @Override

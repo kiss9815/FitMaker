@@ -29,33 +29,37 @@
             android:layout_gravity="center"
             android:src="@drawable/img_badge_bronze_star"
             />
-
-        <ImageView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_marginTop="@dimen/fit_space"
-            android:src="@drawable/img_badge_name"
-            android:id="@+id/image_reward_card"
-            android:layout_marginBottom="@dimen/fit_space"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/text_reward_coment"
-            android:text="배지 코멘트"
-            android:layout_gravity="center"
-            />
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/img_badge_name"
+                android:id="@+id/image_reward_card"
+                android:layout_marginBottom="@dimen/fit_space"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_reward_coment"
+                android:layout_centerHorizontal="true"
+                android:text="축하합니다"
+                android:layout_marginTop="42dp"
+                android:layout_gravity="center"
+                />
+        </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="짝짝짝! 수고하셨습니다. \n 매일매일 핏메이커와 함께라면 \n원하는 핏에 가까워질 수 있을거에요!"
+            android:text="짝짝짝! 수고하셨습니다. \n\n 매일매일 핏메이커와 함께라면 \n\n원하는 핏에 가까워질 수 있을거에요!"
             android:gravity="center"
             android:layout_marginTop="@dimen/fit_space"
             />
-
-
 
 
     </LinearLayout>

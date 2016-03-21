@@ -4,7 +4,10 @@ package com.juntcompany.fitmaker.Login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -94,7 +98,17 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-        getActivity().setTitle(FRAGMENT_TITLE);
+
+        Toolbar toolbar = (Toolbar)view.findViewById(R.id.toolbar);
+        ((LoginActivity) getActivity()).setSupportActionBar(toolbar);
+
+        ActionBar actionBar = ((LoginActivity) getActivity()).getSupportActionBar();
+        //actionBar.setDisplayShowCustomEnabled(true);
+//        actionBar.setDisplayShowTitleEnabled(false);
+
+//        View viewToolbar = getActivity().getLayoutInflater().inflate(R.layout.toolbar_login, null);
+//        actionBar.setCustomView(viewToolbar, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER));
+
 
         edit_email = (EditText)view.findViewById(R.id.edit_email);
         edit_password = (EditText)view.findViewById(R.id.edit_password);
@@ -112,10 +126,16 @@ public class LoginFragment extends Fragment {
                             Log.i(NETWORK_LOGIN, result.message);
                             User user = new User();
                             user.userId = result.userId;
+                            Log.i("local_login", "user : " + userId);
                             Toast.makeText(getContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getContext(), StartActivity.class); // sharedPreference 값 exctype 이 있으면 메인, 없으면 큐레이션으로 가자.
+                            //int curationId = PropertyManager.getInstance().getCurationType();
+
+                            PropertyManager.getInstance().setUserId(userId);
+                            PropertyManager.getInstance().setPassword(password);
+                                Intent intent = new Intent(getContext(), StartActivity.class);
 //                            intent.putExtra(MainActivity.USER_MESSAGE, userId);
-                            startActivity(intent);
+                                startActivity(intent);
+
                         }
 
                         @Override
@@ -139,58 +159,6 @@ public class LoginFragment extends Fragment {
                 loginOrLogout();
             }
         });
-//        loginButton.setFragment(this); // 프래그먼트일 경우 이 코드 꼭 해야함
-//        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() { // 페이스북 로그인
-//            @Override
-//            public void onSuccess(LoginResult loginResult) {
-//                AccessToken token = AccessToken.getCurrentAccessToken();
-//                if (token == null) { //토큰이 만료된 경우 로그인 매니저로 로그인
-//                    loginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-//                        @Override
-//                        public void onSuccess(LoginResult loginResult) {
-//
-//                        }
-//
-//                        @Override
-//                        public void onCancel() {
-//
-//                        }
-//
-//                        @Override
-//                        public void onError(FacebookException error) {
-//
-//                        }
-//                    });
-//                    Toast.makeText(getContext(), "success : " + token.getToken(), Toast.LENGTH_SHORT).show();
-//                    loginManager.setLoginBehavior(LoginBehavior.NATIVE_WITH_FALLBACK);
-//                    loginManager.setDefaultAudience(DefaultAudience.FRIENDS);
-//                    LoginManager.getInstance().logInWithReadPermissions(getActivity(), null);
-//
-//                }else { //토큰이 있는 경우 토큰을 서버에 전송
-//                    GraphRequest request = GraphRequest.newMeRequest(token, new GraphRequest.GraphJSONObjectCallback() {
-//                        @Override
-//                        public void onCompleted(JSONObject object, GraphResponse response) {
-//                            if(response.getError() == null){ // 토큰이 잘 넘어간 경우
-//                                Toast.makeText(getContext(), "data : " + response.getJSONObject().toString(), Toast.LENGTH_SHORT).show();
-//                            }else {
-//                                Toast.makeText(getContext(), "error : " + response.getError().toString(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//                    request.executeAsync();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancel() {
-//                Toast.makeText(getContext(), "cancel", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onError(FacebookException error) {
-//                Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
 
          btn = (Button)view.findViewById(R.id.btn_sign_up); // 아이디 없을때 회원 가입하기 페이지로 이동

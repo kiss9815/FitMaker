@@ -33,6 +33,8 @@ import com.juntcompany.fitmaker.Data.Structure.RankingResponse;
 import com.juntcompany.fitmaker.Data.Structure.Result;
 import com.juntcompany.fitmaker.Data.Structure.TypeCurriculumResponse;
 import com.juntcompany.fitmaker.Data.Structure.TypeCurriculumResult;
+import com.juntcompany.fitmaker.Data.Structure.YoutubeResponse;
+import com.juntcompany.fitmaker.Data.Structure.YoutubeResult;
 import com.juntcompany.fitmaker.FitMaker;
 import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.util.PersistentCookieStore;
@@ -597,7 +599,8 @@ public class NetworkManager {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
-                RecordRequest project = gson.fromJson(response.body().string(), RecordRequest.class);
+                String text = response.body().string();
+                RecordRequest project = gson.fromJson(text, RecordRequest.class);
                 callbackObject.result = project.result;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
@@ -967,4 +970,38 @@ public class NetworkManager {
     }
 
 
+
+    private static final String URL_FORMAT_GET_YOUTUBE = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/projects/%s/video";
+
+    public Request getYoutube(Context context, String projectId, final OnResultListener<YoutubeResult> listener)throws UnsupportedEncodingException {
+
+        String url = String.format(URL_FORMAT_GET_YOUTUBE , URLEncoder.encode(projectId, "utf-8"));
+        final CallbackObject<YoutubeResult> callbackObject = new CallbackObject<YoutubeResult>();
+
+        Request request = new Request.Builder().url(url)
+                .tag(context)
+                .build();
+
+        callbackObject.request = request;
+        callbackObject.listener = listener;
+
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callbackObject.exception = e;
+                Message msg = mHandler.obtainMessage(MESSAGE_FAILURE, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                YoutubeResponse youtube = gson.fromJson(response.body().string(), YoutubeResponse.class);
+                callbackObject.result = youtube.result;
+                Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+        });
+        return request;
+    }
 }

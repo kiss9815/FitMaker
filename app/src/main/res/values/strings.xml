@@ -112,11 +112,10 @@
     <string name="btn_yes">예</string>
 
 
-    <string name="project_youtube">해당 프로젝트의 유튜브 보고 오기</string>
+    <string name="project_youtube">프로젝트 별 운동영상 보기</string>
 
 
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
-
 
 
 </resources>

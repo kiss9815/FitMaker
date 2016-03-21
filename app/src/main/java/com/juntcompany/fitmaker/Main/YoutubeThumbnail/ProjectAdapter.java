@@ -45,7 +45,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectViewHolder> impl
 
     @Override
     public void onBindViewHolder(ProjectViewHolder holder, int position) {
-        holder.setData(items.get(position));
+        holder.setData(items.get(position), position);
 
     }
 

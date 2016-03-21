@@ -19,6 +19,7 @@ import com.juntcompany.fitmaker.Data.Curriculum;
 import com.juntcompany.fitmaker.Data.CurationType;
 import com.juntcompany.fitmaker.Data.Structure.TypeCurriculumResult;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
+import com.juntcompany.fitmaker.Manager.PropertyManager;
 import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.SpecificCurriculum.SpecificCurriculumActivity;
 import com.juntcompany.fitmaker.util.OnItemClickListener;
@@ -52,8 +53,11 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Bundle extra = getArguments();
-        curationKey = extra.getIntegerArrayList(FRAGMENT_CURATION_KEY);
+
+            Bundle extra = getArguments();
+        if(extra != null) {
+            curationKey = extra.getIntegerArrayList(FRAGMENT_CURATION_KEY);
+        }
     }
 
 
@@ -80,12 +84,71 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
         recyclerView.setLayoutManager(layoutManager);
       //  initData();
 
+        if(curationKey != null) {
+            getCurationQuestion(curationKey.get(0), curationKey.get(2), curationKey.get(5)); // 큐레이션을 다 하고 온 경우
+        }else {
+            getCurriculumByCuration(); // 메인 네비에서 큐레이션이 있을때 온 경우
+        }
 
-        try { //큐레이션만 받아오게 함 , 큐레이션 질문은 1번, 4번, 6번만 받아오게 함
-            NetworkManager.getInstance().getCurriculumCuration(getContext(),""+curationKey.get(0), ""+curationKey.get(2),""+curationKey.get(5),new NetworkManager.OnResultListener<TypeCurriculumResult>() {
+//        try { //큐레이션만 받아오게 함 , 큐레이션 질문은 1번, 4번, 6번만 받아오게 함
+//            NetworkManager.getInstance().getCurriculumCuration(getContext(),""+curationKey.get(0), ""+curationKey.get(2),""+curationKey.get(5),new NetworkManager.OnResultListener<TypeCurriculumResult>() {
+//                @Override
+//                public void onSuccess(Request request, TypeCurriculumResult result) {
+//                    Log.i(NETWORK_RESULT, result.message);
+//                    for(Curriculum c : result.curriculums) {
+//                        mAdapter.add(c);
+//                    }
+//                    mAdapter.addHeader(result.curationType);
+//
+//                    PropertyManager.getInstance().setCurationType(result.curationType.typeId);
+//                }
+//
+//                @Override
+//                public void onFailure(Request request, int code, Throwable cause) {
+//
+//                }
+//            });
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+
+//////////////////////////////////
+
+
+        return view;
+    }
+
+
+    private void getCurationQuestion(int q1, int q2, int q3){
+
+        try {
+            NetworkManager.getInstance().getCurriculumCuration(getContext(), "" + q1, "" + q2, "" + q3, new NetworkManager.OnResultListener<TypeCurriculumResult>() {
                 @Override
                 public void onSuccess(Request request, TypeCurriculumResult result) {
                     Log.i(NETWORK_RESULT, result.message);
+                    for(Curriculum c : result.curriculums) {
+                        mAdapter.add(c);
+                    }
+                    mAdapter.addHeader(result.curationType);
+
+                    PropertyManager.getInstance().setCurationType(result.curationType.typeId);
+                }
+
+                @Override
+                public void onFailure(Request request, int code, Throwable cause) {
+
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getCurriculumByCuration(){
+        try {
+            NetworkManager.getInstance().getCurriculumByCuration(getContext(), "" + PropertyManager.getInstance().getCurationType(), new NetworkManager.OnResultListener<TypeCurriculumResult>() {
+                @Override
+                public void onSuccess(Request request, TypeCurriculumResult result) {
                     for(Curriculum c : result.curriculums) {
                         mAdapter.add(c);
                     }
@@ -100,20 +163,6 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
-//////////////////////////////////
-
-
-        return view;
-    }
-
-    private void initData(){
-        CurationType type = new CurationType();
-        type.typeName = "ddd";
-        type.typePicture = String.valueOf(R.mipmap.ic_launcher);
-        type.typeInfo = "asdasdfasdffad";
-
-//        mAdapter.addHeader(type);
     }
 
     @Override

@@ -14,7 +14,6 @@ import com.juntcompany.fitmaker.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final String ACTIVITY_TITLE = "로그인";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
+
 
 
 

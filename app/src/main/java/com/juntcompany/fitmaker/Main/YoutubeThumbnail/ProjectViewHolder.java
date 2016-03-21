@@ -40,9 +40,14 @@ public class ProjectViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void setData(Project project) {
+    public void setData(Project project,int position) {
         this.project = project;
 
+        if(position%2 == 1){
+            itemView.setBackgroundResource(R.color.FitGray);
+        }else {
+            itemView.setBackgroundResource(R.color.FitGray_light);
+        }
         textName.setText(project.projectName);
 
     }

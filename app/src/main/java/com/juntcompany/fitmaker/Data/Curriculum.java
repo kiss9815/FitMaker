@@ -20,6 +20,9 @@ public class Curriculum implements Serializable{
     @SerializedName("curri_photourl")
     public String curriculum_image;//o
 
+    @SerializedName("curri_type")
+    public String curriculum_level;
+
     @SerializedName("curri_info")
     public String curriculum_info;//o
 

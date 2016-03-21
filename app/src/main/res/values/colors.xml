@@ -15,10 +15,9 @@
     <color name="fit_white">#ffffff</color>
     <color name="fit_light_black">#1b1b1b</color>
 
-
+    <color name="FitGray_light">#f8f8f8</color>
 
     <color name="fit_status_bar_red">#BA274D</color>
-
 
     <color name="fit_circle_image_shadow">#8BC34A</color>
 </resources>

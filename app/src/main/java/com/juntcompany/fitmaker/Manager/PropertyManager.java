@@ -5,6 +5,8 @@ import android.preference.PreferenceManager;
 
 import com.juntcompany.fitmaker.FitMaker;
 
+import java.io.File;
+
 
 /**
  * Created by EOM on 2016-02-28.
@@ -28,13 +30,13 @@ public class PropertyManager {
     private static final String FIELD_USER_ID = "userId";
     private static final String FIELD_PASSWORD = "password";
 
-    private static final String FIELD_FACEBOOK_USER_ID = "facebook_userId";
-    private static final String FIELD_FACEBOOK_PASSWORD = "facebook_password";
+    private static final String FIELD_BACKGROUND = "background_image";
+
 
     private static final String FIELD_CURATION_TYPE_ID = "curation_type_id";
     private static final String FIELD_CURATION_TYPE_NAME = "curation_type_name";
 
-    private static final String FIELD_PROJECT_D = "project_id";
+    private static final String FIELD_PROJECT_ID = "project_id";
 
 
     private static final String FIELD_GENDER = "gender";
@@ -58,12 +60,6 @@ public class PropertyManager {
         return mPrefs.getString(FIELD_PASSWORD, "");
     }
 
-    public void setFacebook(String facebookId, String facebookPassword){
-
-        mEditor.putString(FIELD_FACEBOOK_USER_ID, facebookId);
-        mEditor.putString(FIELD_FACEBOOK_PASSWORD, facebookPassword);
-        mEditor.commit();
-    }
 
 
     public void setCurationType(int curationId){
@@ -75,11 +71,11 @@ public class PropertyManager {
     }
 
     public void setProjectId(int projectId){
-        mEditor.putInt(FIELD_PROJECT_D, projectId);
+        mEditor.putInt(FIELD_PROJECT_ID, projectId);
         mEditor.commit();
     }
     public int getProjectId(){
-        return mPrefs.getInt(FIELD_PROJECT_D, 0);
+        return mPrefs.getInt(FIELD_PROJECT_ID, 0);
     }
 
     public void setGender(String gender){
@@ -91,7 +87,25 @@ public class PropertyManager {
         return mPrefs.getString(FIELD_GENDER, "");
     }
 
+    public void setBackgroundImage(String file){
+        mEditor.putString(FIELD_BACKGROUND, file);
+        mEditor.commit();
+    }
+    public String getBackgroundImage(){
+        return mPrefs.getString(FIELD_BACKGROUND, "");
+    }
 
+
+    private static final String REG_ID = "regToken";
+
+    public void setRegistrationToken(String regId) {
+        mEditor.putString(REG_ID, regId);
+        mEditor.commit();
+    }
+
+    public String getRegistrationToken() {
+        return mPrefs.getString(REG_ID, "");
+    }
 
 
 }

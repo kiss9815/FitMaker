@@ -39,11 +39,12 @@ public class CurationQuestion1Fragment extends Fragment implements View.OnClickL
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_curation_question1, container, false);
 
-
+        ((CurationActivity) getActivity()).setTitle("성별은 어떻게 되시나요?");
         Button btn = (Button)view.findViewById(R.id.btn_1);
         btn.setOnClickListener(this);
         btn = (Button)view.findViewById(R.id.btn_2);
         btn.setOnClickListener(this);
+
 
 
         return view;
@@ -69,13 +70,6 @@ public class CurationQuestion1Fragment extends Fragment implements View.OnClickL
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser){
-            getActivity().setTitle("성별은 어떻게 되시나요?");
-        }
-    }
 
     private int btnMessage;
     @Override

@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+     <me.grantland.widget.AutofitTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="프로젝트명"
-        android:gravity="center"
+         android:layout_marginTop="@dimen/fit_space"
+         android:layout_marginBottom="@dimen/fit_space"
+         android:gravity="center"
+         android:text="프로젝트명"
+         android:id="@+id/text_name"
+         android:textColor="@color/fit_light_black"
+         android:textSize="@dimen/fit_text_size_dialog_list"
+         android:layout_marginLeft="@dimen/fit_space"
+         android:layout_marginRight="@dimen/fit_space"
+         >
 
-        android:textSize="@dimen/fit_text_size_dialog_list"
-        android:layout_marginTop="@dimen/fit_space"
-        android:layout_marginBottom="@dimen/fit_space"
-        />
+     </me.grantland.widget.AutofitTextView>
 
-</LinearLayout>
+</RelativeLayout>
+
+<!--<TextView-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:text="프로젝트명"-->
+<!--android:id="@+id/text_name"-->
+<!--android:textColor="@color/fit_light_black"-->
+<!--android:textSize="@dimen/fit_text_size_dialog_list"-->
+
+    <!--/>-->

@@ -77,12 +77,7 @@ public class FriendListActivity extends AppCompatActivity {   // MainActivity의
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        setData();
-                    }
-                }, 1500);
+                setData();
             }
         });
         refreshLayout.setColorSchemeColors(Color.YELLOW, Color.RED, Color.GREEN);
@@ -92,8 +87,6 @@ public class FriendListActivity extends AppCompatActivity {   // MainActivity의
        // initData();
     }
 
-    Handler mHandler = new Handler(Looper.getMainLooper());
-
 
     private void setData(){
         try {
@@ -102,6 +95,7 @@ public class FriendListActivity extends AppCompatActivity {   // MainActivity의
                 public void onSuccess(Request request, FriendListResult result) {
                     mAdapter.clear();
                     mAdapter.addAll(result.friends);
+                    refreshLayout.setRefreshing(false);
                 }
 
                 @Override

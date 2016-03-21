@@ -37,7 +37,7 @@ public class YoutubeThumbnailAdapter extends RecyclerView.Adapter<RecyclerView.V
         notifyDataSetChanged();
     }
 
-    private static final int VIEW_TYPE_HEADER = 0;
+    public static final int VIEW_TYPE_HEADER = 0;
     private static final int VIEW_TYPE_ITEM = 100;
 
 
