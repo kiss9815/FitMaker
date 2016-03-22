@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,11 +41,12 @@ public class RewardActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
+        ActionBar actionBar =getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
 
-        setTitle(ACTIVITY_TITLE);
+        View view = getLayoutInflater().inflate(R.layout.toolbar_reward, null);
+        actionBar.setCustomView(view, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         image_badge = (ImageView)findViewById(R.id.image_badge);
         image_reward_card = (ImageView)findViewById(R.id.image_reward_card);
@@ -60,8 +62,9 @@ public class RewardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(), MainActivity.class);
-                intent.putExtra(MainActivity.BADGE_MESSAGE, badge.badgeName);
+                //intent.putExtra(MainActivity.BADGE_MESSAGE, badge.badgeName);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_right_out, R.anim.slide_left_in);
             }
         });
     }

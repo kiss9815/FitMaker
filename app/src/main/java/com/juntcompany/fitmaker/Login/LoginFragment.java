@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -99,15 +101,7 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-        Toolbar toolbar = (Toolbar)view.findViewById(R.id.toolbar);
-        ((LoginActivity) getActivity()).setSupportActionBar(toolbar);
-
-        ActionBar actionBar = ((LoginActivity) getActivity()).getSupportActionBar();
-        //actionBar.setDisplayShowCustomEnabled(true);
-//        actionBar.setDisplayShowTitleEnabled(false);
-
-//        View viewToolbar = getActivity().getLayoutInflater().inflate(R.layout.toolbar_login, null);
-//        actionBar.setCustomView(viewToolbar, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER));
+//        Toolbar toolbar = (Toolbar)view.findViewById(R.id.toolbar);
 
 
         edit_email = (EditText)view.findViewById(R.id.edit_email);
@@ -117,10 +111,11 @@ public class LoginFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() { // 일반 로그인 기능 버튼
             @Override
             public void onClick(View v) {
+                String regToken = PropertyManager.getInstance().getRegistrationToken();
                 final String userId = edit_email.getText().toString();
                 final String password = edit_password.getText().toString();
                 try {
-                    NetworkManager.getInstance().login(getContext(), userId, password, new NetworkManager.OnResultListener<LoginRequest>() {
+                    NetworkManager.getInstance().login(getContext(), userId, password, regToken,  new NetworkManager.OnResultListener<LoginRequest>() {
                         @Override
                         public void onSuccess(Request request, LoginRequest result) {
                             Log.i(NETWORK_LOGIN, result.message);
@@ -251,5 +246,15 @@ public class LoginFragment extends Fragment {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ActionBar actionBar = ((LoginActivity) getActivity()).getSupportActionBar();
+        View view = actionBar.getCustomView();
+        TextView textView = (TextView)view.findViewById(R.id.text_toolbar);
+        textView.setText("로그인");
+        //textView.setLayoutParams();
     }
 }

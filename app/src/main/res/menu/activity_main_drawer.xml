@@ -4,39 +4,29 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_recommend_curriculum"
-            android:icon="@drawable/ic_menu_gallery"
             android:title="@string/navigation_button_recommend_curriculum" />
         <item
             android:id="@+id/nav_friend_list"
-            android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/navigation_button_friend_list" />
         <item
             android:id="@+id/nav_my_style"
-            android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/navigation_button_my_style" />
         <item
             android:id="@+id/nav_setting_curation"
-            android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/navigation_button_setting_curation" />
         <item
             android:id="@+id/nav_ongoing_project"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/navigation_button_ongoing_project" />
+            android:title="한 눈에 보는 프로젝트 유튜브" />
 
-        <menu>
+
             <item
                 android:id="@+id/nav_expert_talk"
-                android:icon="@drawable/ic_menu_manage"
                 android:title="코치와 상담하기" />
 
             <item
                 android:id="@+id/nav_setting"
-                android:icon="@drawable/ic_menu_manage"
                 android:title="설정하기" />
-        </menu>
 
     </group>
-
-
 
 </menu>

@@ -46,7 +46,6 @@
     <!--navigation 버튼-->
 
     <string name="navigation_button_login">로그인</string>
-    <string name="navigation_button_exercise_play">운동플레이</string>
     <string name="navigation_button_recommend_curriculum">추천 커리큘럼</string>
     <string name="navigation_button_friend_list">친구 목록</string>
     <string name="navigation_button_my_style">내 큐레이션 추천운동 보기</string>

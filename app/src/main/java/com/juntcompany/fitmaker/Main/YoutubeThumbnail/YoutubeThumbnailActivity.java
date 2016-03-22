@@ -1,12 +1,14 @@
 package com.juntcompany.fitmaker.Main.YoutubeThumbnail;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,6 +44,15 @@ public class YoutubeThumbnailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_youtube_thumbnail);
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+        View view = getLayoutInflater().inflate(R.layout.toolbar_youtube_thumbnail, null);
+        actionBar.setCustomView(view, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         imageTitle = (ImageView)findViewById(R.id.image_title);
         textName = (TextView)findViewById(R.id.text_name);
@@ -94,6 +105,14 @@ public class YoutubeThumbnailActivity extends AppCompatActivity {
                     mAdapter.addAll(result.curriculum.contents);
                     Glide.with(getApplicationContext()).load(result.curriculum.curriculum_image).into(imageTitle);
                     textName.setText(result.curriculum.curriculumName);
+                    ImageView imageLevel = (ImageView)findViewById(R.id.image_level);
+                    if(result.curriculum.curriculum_level.equals("초급")){
+                        imageLevel.setImageResource(R.drawable.ic_curriculum_level_1);
+                    }else if(result.curriculum.curriculum_level.equals("중급")){
+                        imageLevel.setImageResource(R.drawable.ic_curriculum_level_2);
+                    }else if(result.curriculum.curriculum_level.equals("상급")){
+                        imageLevel.setImageResource(R.drawable.ic_curriculum_level_3);
+                    }
                 }
 
                 @Override

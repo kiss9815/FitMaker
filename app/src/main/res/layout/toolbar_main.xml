@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:dropDownWidth="match_parent"
-        android:background="@drawable/ic_navigation_arrow_drop_down"
         android:dropDownVerticalOffset="50dp"
         android:spinnerMode="dropdown">
 

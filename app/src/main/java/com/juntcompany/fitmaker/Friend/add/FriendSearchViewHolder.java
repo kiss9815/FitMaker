@@ -1,6 +1,7 @@
 package com.juntcompany.fitmaker.Friend.add;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
@@ -44,6 +45,10 @@ public class FriendSearchViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 if (mAdapterClickListener != null) {
                     mAdapterClickListener.onAdapterItemAddClick(itemView, getAdapterPosition());
+
+                    text_friend_State.setText("요청 중 입니다");
+                    btnAddFriend.setBackgroundResource(R.drawable.ic_navigation_check);
+                    btnAddFriend.setSelected(false);
                 }
             }
         });
@@ -69,8 +74,8 @@ public class FriendSearchViewHolder extends RecyclerView.ViewHolder {
         }else if(friend.friendState == -1){
             text_friend_State.setText("거절했습니다.");
         }else if(friend.friendState == 2){
-            text_friend_State.setText("친구 합시다");
-            text_friend_State.setTextColor(android.R.color.black);
+            //text_friend_State.setText("친구 추가해주세요");
+            text_friend_State.setTextColor(Color.BLACK);
         }
 
         if (!TextUtils.isEmpty(friend.friendProfile)) {

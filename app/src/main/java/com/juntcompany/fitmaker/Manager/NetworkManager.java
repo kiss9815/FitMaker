@@ -89,6 +89,7 @@ public class NetworkManager {
     private static final String URL_FORMAT = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com";
     private static final String POST_BODY_LOGIN_NAME = "user_name";
     private static final String POST_BODY_LOGIN_EMAIL = "email";
+    private static final String POST_BODY_LOGIN_REG_TOKEN = "registration_token";
     private static final String POST_BODY_LOGIN_PASSWORD = "password";
     private static final String POST_BODY_LOGIN_BIRTHDAY = "birthday";
     OkHttpClient mClient;
@@ -382,14 +383,16 @@ public class NetworkManager {
 
     private static final String URL_FORMAT_LOGIN = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/auth/login";//post는 url에 요청하는거 안들어감
 
-    public Request login(Context context, String email, String password, final OnResultListener<LoginRequest> listener)throws UnsupportedEncodingException {
+    public Request login(Context context, String email, String password, String token, final OnResultListener<LoginRequest> listener)throws UnsupportedEncodingException {
 
         String url = String.format(URL_FORMAT_LOGIN);
         final CallbackObject<LoginRequest> callbackObject = new CallbackObject<LoginRequest>();
         RequestBody body = new FormBody.Builder()
                 .add(POST_BODY_LOGIN_EMAIL, email)
                 .add(POST_BODY_LOGIN_PASSWORD, password)
+                .add(POST_BODY_LOGIN_REG_TOKEN, token)
                 .build();
+
         Request request = new Request.Builder().url(url)
                 .post(body)
                 .build();

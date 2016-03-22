@@ -4,5 +4,6 @@
 
     <item android:id="@+id/menu_curation_again"
         android:title="다시하기"
+
         app:showAsAction="always"/>
 </menu>

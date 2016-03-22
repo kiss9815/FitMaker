@@ -43,5 +43,6 @@
 
     <dimen name="fit_text_size_dialog_list">19sp</dimen>
 
+    <dimen name="fit_toolbar_text_size">20sp</dimen>
 
 </resources>

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,10 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.juntcompany.fitmaker.Curation.Recommend.RecommendActivity;
-import com.juntcompany.fitmaker.Curation.Result.CurationResultFragment;
 import com.juntcompany.fitmaker.R;
 
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class CurationQuestion1Fragment extends Fragment implements View.OnClickL
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_curation_question1, container, false);
 
-        ((CurationActivity) getActivity()).setTitle("성별은 어떻게 되시나요?");
+
         Button btn = (Button)view.findViewById(R.id.btn_1);
         btn.setOnClickListener(this);
         btn = (Button)view.findViewById(R.id.btn_2);
@@ -95,10 +95,21 @@ public class CurationQuestion1Fragment extends Fragment implements View.OnClickL
         bundle.putIntegerArrayList(CurationQuestion2Fragment.FRAGMENT_CURATION_KEY, curationValues);
         f.setArguments(bundle);
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.slide_right_in, R.anim.slide_left_out);
         ft.replace(R.id.curation_container, f);
         ft.addToBackStack(""+count);
         ft.commit();    //어떤 버튼이 눌리던 백스택에 해당 프래그먼트가 저장됨
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ActionBar actionBar = ((CurationActivity) getActivity()).getSupportActionBar();
+        View view = actionBar.getCustomView();
+        TextView textView = (TextView)view.findViewById(R.id.text_toolbar);
+        textView.setText("성별은 어떻게 되시나요?");
+        //textView.setLayoutParams();
     }
 
 

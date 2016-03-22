@@ -44,7 +44,8 @@ public class MyGcmListenerService extends GcmListenerService {
     // [START receive_message]
     @Override
     public void onMessageReceived(String from, Bundle data) {
-        String message = data.getString("message");
+        String message = data.getString("key1");
+        String message2 = data.getString("key2");
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
 
@@ -80,13 +81,13 @@ public class MyGcmListenerService extends GcmListenerService {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT);
+                PendingIntent.FLAG_UPDATE_CURRENT);
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setTicker("GCM Message")
+                .setTicker("새로운 알림이 있습니다")
                 .setSmallIcon(R.mipmap.fit_logo)
-                .setContentTitle("GCM Message")
+                .setContentTitle("Fit Maker")
                 .setContentText(message)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)

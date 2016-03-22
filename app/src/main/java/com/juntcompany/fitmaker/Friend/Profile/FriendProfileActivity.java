@@ -45,15 +45,15 @@ public class FriendProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ActionBar actionBar =getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
-
-        actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
 
         View view = getLayoutInflater().inflate(R.layout.toolbar_friend_profile, null);
         actionBar.setCustomView(view, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER));
+
 
         imageFriendProfile = (ImageView)findViewById(R.id.image_friend_profile);
         textFriendExerciseHour = (TextView)findViewById(R.id.friend_exercise_hour);

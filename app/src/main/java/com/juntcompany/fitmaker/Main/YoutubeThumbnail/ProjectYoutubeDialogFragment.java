@@ -71,8 +71,8 @@ public class ProjectYoutubeDialogFragment extends DialogFragment {
 
                 Intent intent = new Intent(getContext(), YoutubeThumbnailActivity.class);
                 intent.putExtra(YoutubeThumbnailActivity.PROJECT_MESSAGE, project);
-
                 startActivity(intent);
+                dismiss();
             }
         });
         mAdapter.addAll(projects);

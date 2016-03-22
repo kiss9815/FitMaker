@@ -2,10 +2,13 @@ package com.juntcompany.fitmaker;
 
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
@@ -26,7 +29,14 @@ public class StartActivity extends AppCompatActivity { // 로딩 되고 나오�
         setContentView(R.layout.activity_start);
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        setTitle(ACTIVITY_TITLE);
+
+        ActionBar actionBar = getSupportActionBar();
+
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+
+        View view = getLayoutInflater().inflate(R.layout.toolbar_start, null);
+        actionBar.setCustomView(view, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER));
 
 
 

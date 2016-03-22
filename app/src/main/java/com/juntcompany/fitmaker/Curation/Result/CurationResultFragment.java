@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,7 +15,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.juntcompany.fitmaker.Curation.CurationActivity;
 import com.juntcompany.fitmaker.Data.Curriculum;
 import com.juntcompany.fitmaker.Data.CurationType;
 import com.juntcompany.fitmaker.Data.Structure.TypeCurriculumResult;
@@ -149,7 +152,7 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
             NetworkManager.getInstance().getCurriculumByCuration(getContext(), "" + PropertyManager.getInstance().getCurationType(), new NetworkManager.OnResultListener<TypeCurriculumResult>() {
                 @Override
                 public void onSuccess(Request request, TypeCurriculumResult result) {
-                    for(Curriculum c : result.curriculums) {
+                    for (Curriculum c : result.curriculums) {
                         mAdapter.add(c);
                     }
                     mAdapter.addHeader(result.curationType);
@@ -178,10 +181,20 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
             case R.id.menu_curation_again:
                 getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE); //스택에 있는걸 다 팝하는 효과 , null 에 값쓰면 그 프래그 먼트 까지 팝
                                                                                                                             //0을 쓰면 해당 되는 거 위까지 팝 ,inclusive는 해당까지 pop
-
+                break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ActionBar actionBar = ((CurationActivity) getActivity()).getSupportActionBar();
+        View view = actionBar.getCustomView();
+        TextView textView = (TextView)view.findViewById(R.id.text_toolbar);
+        textView.setText("큐레이션 결과");
+        //textView.setLayoutParams();
     }
 
 

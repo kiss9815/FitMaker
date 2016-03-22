@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_confirm"
         android:layout_centerHorizontal="true"
-        android:text="매일 매일 하나의 코스 씩 운동하세요"
+        android:text="매일 매일 하나의 \n코스를 운동하세요"
         android:textSize="@dimen/fit_btn_text_size_complete"
         android:background="@drawable/btn_rounded_pink"
         android:textColor="@color/fit_white"

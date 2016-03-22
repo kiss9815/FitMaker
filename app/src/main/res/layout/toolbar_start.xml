@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
+    <me.grantland.widget.AutofitTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:id="@+id/toolbar"
-        android:background="@color/colorActionBar"
-
+        android:gravity="center"
+        android:id="@+id/text_toolbar"
+        android:text="반갑습니다"
+        android:textSize="@dimen/fit_toolbar_text_size"
+        android:textColor="@color/fit_white"
         />
-
-
 
 </LinearLayout>

@@ -4,12 +4,13 @@ package com.juntcompany.fitmaker.Curation;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.juntcompany.fitmaker.Curation.Result.CurationResultFragment;
 import com.juntcompany.fitmaker.R;
@@ -31,7 +32,7 @@ public class CurationQuestion6Fragment extends Fragment implements View.OnClickL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((CurationActivity) getActivity()).setTitle("당신이 원하는 몸매는 무엇인가요?");
+       // ((CurationActivity) getActivity()).setTitle("당신이 원하는 몸매는 무엇인가요?");
 
         // Inflate the layout for this fragment
         Bundle extra = getArguments();
@@ -93,9 +94,20 @@ public class CurationQuestion6Fragment extends Fragment implements View.OnClickL
         f.setArguments(args);
 
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.slide_right_in, R.anim.slide_left_out);
         ft.replace(R.id.curation_container, f);
         ft.addToBackStack("" + count);
         ft.commit();
         Log.i(BACK_STACK_COUNT, "" + count);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ActionBar actionBar = ((CurationActivity) getActivity()).getSupportActionBar();
+        View view = actionBar.getCustomView();
+        TextView textView = (TextView)view.findViewById(R.id.text_toolbar);
+        textView.setText("당신이 원하는 몸매는 무엇인가요?");
+
     }
 }

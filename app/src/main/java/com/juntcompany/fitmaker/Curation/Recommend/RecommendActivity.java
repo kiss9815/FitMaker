@@ -1,14 +1,17 @@
 package com.juntcompany.fitmaker.Curation.Recommend;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.juntcompany.fitmaker.Curation.Result.CurriculumAdapter;
 import com.juntcompany.fitmaker.Data.Curriculum;
@@ -38,8 +41,14 @@ public class RecommendActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recommend);
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        setTitle("추천커리큘럼");
-        setTitleColor(R.color.fit_white);
+
+        ActionBar actionBar = getSupportActionBar();
+
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+
+        View view = getLayoutInflater().inflate(R.layout.toolbar_recommend, null);
+        actionBar.setCustomView(view, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER));
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mAdapter = new RecommendAdapter();

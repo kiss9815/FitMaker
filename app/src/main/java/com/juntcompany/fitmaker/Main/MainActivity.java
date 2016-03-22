@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -110,6 +111,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBar.setCustomView(view, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER));
 
 
+        setBackGround(); // 배경사진 바꾸게 하는 메소드
+
 //        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinString);
         spinnerAdapter = new MainSpinnerAdapter();
         Spinner spinner = (Spinner)view.findViewById(R.id.spinner);
@@ -165,6 +168,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } else if (course.isFinish == true) { ////....
                     FinishedDialogFragment df = new FinishedDialogFragment();
                     df.show(getSupportFragmentManager(), MAIN_DIALOG_TAG);
+                    for(Course a : courses){
+                        position++;
+                        if(!courses.get(position).isFinish){
+
+                            recyclerView.scrollToPosition(position);
+                        };
+
+                    }
+
 
 //                    while (course.isFinish) {
 //                        position++;
@@ -208,6 +220,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             callProject(projectId); //전 페이지에서 해당 페이지로 넘어올때 생성된 프로젝트 id로 커리큘럼과 코스 생성.
         }
 
+    }
+
+    private void setBackGround(){
+        if(!TextUtils.isEmpty(PropertyManager.getInstance().getBackgroundImage())) {
+            File file = new File(PropertyManager.getInstance().getBackgroundImage());
+            Uri fileUri = Uri.fromFile(file);
+            final RelativeLayout relativeLayout = (RelativeLayout)findViewById(R.id.background);
+
+            Glide.with(this).load(fileUri).asBitmap().into(new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                    Drawable drawable = new BitmapDrawable(resource);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        relativeLayout.setBackground(drawable);
+                    }
+                }
+            });
+        }
     }
 
 //////////////////////////////////////////////////////////////////////////////////////oncreate
@@ -263,8 +293,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Cursor c = getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DATA}, null, null, null);
                 if (c.moveToNext()) {
                     String path = c.getString(c.getColumnIndex(MediaStore.Images.Media.DATA));
-                    File file = new File(path);
 
+                    PropertyManager.getInstance().setBackgroundImage(path); // 파일 path를 preference에 저장
+
+                    File file = new File(path);
                     Uri fileUri = Uri.fromFile(file);
 
 
@@ -389,11 +421,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                    argsProject.putSerializable(ProjectYoutubeDialogFragment.PROJECT_ID_MESSAGE, (Serializable) projects); // 프로젝트
 
                     spinnerAdapter.addAll(projects);
-                    spinnerAdapter.insert((Project) spinnerAdapter.getItem(projects.size()-1), 0);
-                    spinnerAdapter.remove((Project)spinnerAdapter.getItem(projects.size()-1));
+                    spinnerAdapter.insert((Project) spinnerAdapter.getItem(projects.size() - 1), 0);
+                    spinnerAdapter.remove((Project) spinnerAdapter.getItem(projects.size() - 1));
 
                     mAdapter.clear();
                     courses = result.courses;
+                    recyclerView.scrollToPosition(result.today.position);
                     // ....
 
                     Log.i("aaa", courses.toString());
@@ -412,7 +445,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     if (result.today.position < courses.size()) {
                         Course c = courses.get(result.today.position - 1); // courses 인덱스는 0부터 시작하고 today. position는 1부터 시작하므로
                         c.isSelectable = true;
-                        if(result.today.check && c.isSelectable){
+                        if(result.today.check && c.isSelectable){ // 운동하고 나서 리뉴하게 하는 것
                             c.isFinish = true;
                         }
                     }
@@ -457,7 +490,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
                     TextView textBadgeCount = (TextView)headerview.findViewById(R.id.text_badge_count);
-                    textBadgeCount.setText("배지개수 : " + user.badgeCount);
+                    textBadgeCount.setText("배지 : " + user.badgeCount + "개");
 //                    btn_nav.setText(user.badgeCount);
                     TextView textCurationType = (TextView)headerview.findViewById(R.id.text_curation_type);
                     textCurationType.setText(user.curationName);
@@ -472,15 +505,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }else {
                         imageProfile.setImageResource(R.drawable.default_friend);
                     }
-
+//
 //                    int myWidth = 512;
 //                    int myHeight = 384;
-
+//
 //                    Glide.with(getApplicationContext()).load(user.userProfile).asBitmap().into(new SimpleTarget<Bitmap>(myWidth, myHeight) {
 //                        @Override
 //                        public void onResourceReady(Bitmap bitmap, GlideAnimation anim) {
 //                             Bitmap originalBit = bitmap;
-//
 //                            ///이미지 블러드 처리
 //
 //                            RenderScript rs = RenderScript.create(getApplicationContext());
@@ -505,12 +537,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                    });
 
 
-
+                    imageProfile.setClickable(true);
                     imageProfile.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            //......내 프로필 이미지를 눌렀을 때 처리.... 아직 생각중....
-
+                            callGallery();
                         }
                     });
 
@@ -540,6 +571,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onResume();
         int propertyProjectId = PropertyManager.getInstance().getProjectId();
         callProject(propertyProjectId);
+        setBackGround();
     }
 
     class ImageBlurredTask extends AsyncTask<String, Integer, Boolean>{

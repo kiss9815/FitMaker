@@ -4,11 +4,13 @@ package com.juntcompany.fitmaker.Curation;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.juntcompany.fitmaker.R;
 
@@ -30,7 +32,7 @@ public class CurationQuestion4Fragment extends Fragment implements View.OnClickL
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_curation_question4, container, false);
-        ((CurationActivity) getActivity()).setTitle("핏메이커를 찾으신 이유를 알려주세요!");
+        //((CurationActivity) getActivity()).setTitle("핏메이커를 찾으신 이유를 알려주세요!");
 
         Button btn = (Button)view.findViewById(R.id.btn_1);
         btn.setOnClickListener(this);
@@ -69,9 +71,20 @@ public class CurationQuestion4Fragment extends Fragment implements View.OnClickL
         bundle.putIntegerArrayList(CurationQuestion5Fragment.FRAGMENT_CURATION_KEY, curationValues);
         f.setArguments(bundle);
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.slide_right_in, R.anim.slide_left_out);
         ft.replace(R.id.curation_container, f);
         ft.addToBackStack("" + count);
         ft.commit();
         Log.i(BACK_STACK_COUNT, "" + count);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ActionBar actionBar = ((CurationActivity) getActivity()).getSupportActionBar();
+        View view = actionBar.getCustomView();
+        TextView textView = (TextView)view.findViewById(R.id.text_toolbar);
+        textView.setText("핏메이커를 찾으신 이유를 알려주세요!");
+        //textView.setLayoutParams();
     }
 }
