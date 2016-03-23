@@ -81,15 +81,16 @@ public class FriendProfileActivity extends AppCompatActivity {
                 public void onSuccess(Request request, FriendResult result) {
                         Friend friend = result.friend;
                         List<Badge> badges = result.friendBadges;
-                    if(friend.friendProfile.equals("")){
+                    if(friend.friendProfile == null){
                         imageFriendProfile.setImageResource(R.drawable.default_friend);
                     }
-
-                    Glide.with(getApplicationContext()).load(friend.friendProfile).into(imageFriendProfile);
+                    else {
+                        Glide.with(getApplicationContext()).load(friend.friendProfile).into(imageFriendProfile);
+                    }
                     textFriendExerciseHour.setText(""+friend.friendExerciseHour + "분");
                     textFriendExctypeName.setText(friend.curationType);
                     textFriendName.setText(friend.friendName);
-                    textFriendBadgeCount.setText("배지 개수 : "+badges.size() + "개");
+                    textFriendBadgeCount.setText("배지 개수 : " + badges.size() + "개");
 
                      mAdapter.addAll(result.friendProjects);
                 }

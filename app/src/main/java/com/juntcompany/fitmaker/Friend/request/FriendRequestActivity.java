@@ -122,7 +122,7 @@ public class FriendRequestActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(Request request, Result result) {
                     //친구 수락, 거절을 서버에 보냄
-                    Toast.makeText(getApplicationContext(), "서버 성공", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(), "서버 성공", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override

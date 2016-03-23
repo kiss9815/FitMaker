@@ -163,7 +163,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onAdapterItemButtonClick(View view, int position) {
                 Course course = mAdapter.getItem(position);
-                //  Toast.makeText(getApplicationContext(), "course" + course.courseSeq, Toast.LENGTH_SHORT).show();
                 if (course.isSelectable == false && course.isFinish == false) {   // 흰색 플레이 버튼을 누르는 경우
                     NextTimeDialogFragment df = new NextTimeDialogFragment();
                     df.show(getSupportFragmentManager(), MAIN_DIALOG_TAG);
@@ -489,7 +488,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     PropertyManager.getInstance().setCurationType(result.user.curationId); // 네트워크에서 가져온 큐레이셔타입을 Preference에 저장
                     int a = PropertyManager.getInstance().getCurationType();
-                    Toast.makeText(getApplicationContext(), "큐레이션 id" + a, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "큐레이션 id" + a, Toast.LENGTH_SHORT).show();
 
 
                     TextView textBadgeCount = (TextView)headerview.findViewById(R.id.text_badge_count);
