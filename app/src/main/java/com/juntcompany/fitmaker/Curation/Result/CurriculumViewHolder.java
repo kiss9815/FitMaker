@@ -51,11 +51,11 @@ public class CurriculumViewHolder extends RecyclerView.ViewHolder{
             Glide.with(mContext).load(curriculum.curriculum_image).into(image_picture);
         }
 
-        if(curriculum.curriculum_level.equals("초급")){
+        if(curriculum.curriculumLevel.equals("초급")){
             imageLevel.setImageResource(R.drawable.ic_curriculum_level_1);
-        }else if(curriculum.curriculum_level.equals("중급")){
+        }else if(curriculum.curriculumLevel.equals("중급")){
             imageLevel.setImageResource(R.drawable.ic_curriculum_level_2);
-        }else if(curriculum.curriculum_level.equals("상급")){
+        }else if(curriculum.curriculumLevel.equals("상급")){
             imageLevel.setImageResource(R.drawable.ic_curriculum_level_3);
         }
     }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -89,6 +90,7 @@ public class CurationQuestion1Fragment extends Fragment implements View.OnClickL
         }
         ArrayList<Integer> curationValues = new ArrayList<Integer>();
         curationValues.add(btnMessage);
+        Log.i("question", "question : " + btnMessage);
         int count = getActivity().getSupportFragmentManager().getBackStackEntryCount();
         Fragment f = new CurationQuestion2Fragment();
         Bundle bundle = new Bundle();

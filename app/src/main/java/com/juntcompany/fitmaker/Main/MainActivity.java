@@ -130,7 +130,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                Project p = (Project)parent.getItemAtPosition(0);
+                Log.i("project", "spinner nothingSelected project_id : " + p.projectId);
+                PropertyManager.getInstance().setProjectId(p.projectId);
             }
         });
 
@@ -168,14 +170,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } else if (course.isFinish == true) { ////....
                     FinishedDialogFragment df = new FinishedDialogFragment();
                     df.show(getSupportFragmentManager(), MAIN_DIALOG_TAG);
-                    for(Course a : courses){
-                        position++;
-                        if(!courses.get(position).isFinish){
-
-                            recyclerView.scrollToPosition(position);
-                        };
-
-                    }
+//                    for(Course a : courses){
+//                        position++;
+//                        if(!courses.get(position).isFinish){
+//
+//                            recyclerView.scrollToPosition(position);
+//                        };
+//
+//                    }
 
 
 //                    while (course.isFinish) {
@@ -203,22 +205,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        Intent intent = getIntent(); //SpecificActivity에서 넘어옴
-        projectId =intent.getIntExtra(INTENT_PROJECT_ID, 0); //0은 default value // 프로젝트 id를 넘겨받음. main에서 다시 서버에 요청해야 함
+//        Intent intent = getIntent(); //SpecificActivity에서 넘어옴
+ //       projectId =intent.getIntExtra(INTENT_PROJECT_ID, 0); //0은 default value // 프로젝트 id를 넘겨받음. main에서 다시 서버에 요청해야 함
         //String projectName = intent.getStringExtra(INTENT_PROJECT_NAME);
 
 
-        PropertyManager.getInstance().setProjectId(projectId); // 프로젝트 id를 preference에 저장
-        if(projectId == 0){ // intent 못받아오면 100
-            int propertyProjectId = PropertyManager.getInstance().getProjectId();
-            Log.i("project_id", "preference_project_id : " + propertyProjectId);
-
-            callProject(propertyProjectId);
-        }
-
-       else { // 큐레이션 결과에서 받아온 프로젝트 id
-            callProject(projectId); //전 페이지에서 해당 페이지로 넘어올때 생성된 프로젝트 id로 커리큘럼과 코스 생성.
-        }
+//        PropertyManager.getInstance().setProjectId(projectId); // 프로젝트 id를 preference에 저장
+//        if(projectId == 0){ // intent 못받아오면 100
+//            int propertyProjectId = PropertyManager.getInstance().getProjectId();
+//            Log.i("project_id", "preference_project_id : " + propertyProjectId);
+//
+//            callProject(propertyProjectId);
+//        }
+//
+//       else { // 큐레이션 결과에서 받아온 프로젝트 id
+//            callProject(projectId); //전 페이지에서 해당 페이지로 넘어올때 생성된 프로젝트 id로 커리큘럼과 코스 생성.
+//        }
 
     }
 
@@ -411,6 +413,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void callProject(int projectId){ //
         try {
+            Log.i("MainActivity","projectId : " + projectId);
             NetworkManager.getInstance().getProject(MainActivity.this, "" + projectId, new NetworkManager.OnResultListener<ProjectResponseResult>() {
                 @Override
                 public void onSuccess(Request request, ProjectResponseResult result) {
@@ -421,8 +424,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                    argsProject.putSerializable(ProjectYoutubeDialogFragment.PROJECT_ID_MESSAGE, (Serializable) projects); // 프로젝트
 
                     spinnerAdapter.addAll(projects);
-                    spinnerAdapter.insert((Project) spinnerAdapter.getItem(projects.size() - 1), 0);
-                    spinnerAdapter.remove((Project) spinnerAdapter.getItem(projects.size() - 1));
+                   // spinnerAdapter.insert((Project) spinnerAdapter.getItem(projects.size()-1), 0);
+                   // spinnerAdapter.remove((Project) spinnerAdapter.getItem(projects.size()-1));
 
                     mAdapter.clear();
                     courses = result.courses;
@@ -497,7 +500,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     TextView textUserName = (TextView)headerview.findViewById(R.id.text_user_name);
                     textUserName.setText(user.userName);
                     TextView textHours = (TextView)headerview.findViewById(R.id.text_exercise_hour);
-                    textHours.setText("" + user.userExerciseHours);
+                    textHours.setText(user.userExerciseHours + "분");
                     ImageView imageProfile = (ImageView)headerview.findViewById(R.id.image_profile);
                     if(!TextUtils.isEmpty(user.userProfile)){
                         Glide.with(getApplicationContext()).load(user.userProfile).into(imageProfile);
@@ -570,24 +573,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onResume() {
         super.onResume();
         int propertyProjectId = PropertyManager.getInstance().getProjectId();
+        Log.i("projectId", "onRusume property projectId : " + propertyProjectId );
         callProject(propertyProjectId);
         setBackGround();
     }
 
-    class ImageBlurredTask extends AsyncTask<String, Integer, Boolean>{
 
-      @Override
-      protected Boolean doInBackground(String... params) {
-
-          return true;
-      }
-
-      @Override
-      protected void onPostExecute(Boolean aBoolean) {
-          super.onPostExecute(aBoolean);
-
-
-      }
-  }
 
 }

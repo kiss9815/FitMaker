@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:id="@+id/text_title"
         android:textColor="@color/fit_white"
-        android:textSize="@dimen/fit_btn_text_size_complete"
+        android:textSize="@dimen/fit_toolbar_text_size"
         android:gravity="center"
         android:text="스피너"
         />

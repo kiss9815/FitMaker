@@ -21,7 +21,7 @@ public class Curriculum implements Serializable{
     public String curriculum_image;//o
 
     @SerializedName("curri_type")
-    public String curriculum_level;
+    public String curriculumLevel;
 
     @SerializedName("curri_info")
     public String curriculum_info;//o

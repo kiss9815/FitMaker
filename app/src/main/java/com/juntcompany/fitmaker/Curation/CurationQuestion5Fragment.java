@@ -53,8 +53,10 @@ public class CurationQuestion5Fragment extends Fragment implements View.OnClickL
         switch (v.getId()){
             case R.id.btn_1:
                 btnMessage =1;
+                break;
             case R.id.btn_2:
                 btnMessage =2;
+                break;
             case R.id.btn_3:
                 btnMessage =3;
                 break;
@@ -65,11 +67,12 @@ public class CurationQuestion5Fragment extends Fragment implements View.OnClickL
         curationValues = extra.getIntegerArrayList(CurationQuestion3Fragment.FRAGMENT_CURATION_KEY); //큐레이션4에서 결과값 받아오고 리스트에 넣기
         curationValues.add(btnMessage);
 
+        Log.i("question", "question5 : " + btnMessage);
         int count = getActivity().getSupportFragmentManager().getBackStackEntryCount();
 
 
-        if((curationValues.get(0) ==1 && curationValues.get(2) == 3) || (curationValues.get(0) == 2 && curationValues.get(2) ==3)) { // 1번질문이 1(여성) 이고 3번 질문이 3번을 선택한 경우에만 6번 질문을 물어봄
-                                                                                            //// 1번질문이 2(남성) 이고 3번 질문이 3번을 선택한 경우에만 6번 질문을 물어봄
+        if((curationValues.get(0) ==1 && curationValues.get(3) == 3) || (curationValues.get(0) == 2 && curationValues.get(3) ==3)) { // 1번질문이 1(여성) 이고 4번 질문이 3번을 선택한 경우에만 6번 질문을 물어봄
+                                                                                            //// 1번질문이 2(남성) 이고 4번 질문이 3번을 선택한 경우에만 6번 질문을 물어봄
             Fragment f = new CurationQuestion6Fragment();
             Bundle bundle = new Bundle();
             bundle.putIntegerArrayList(CurationQuestion6Fragment.FRAGMENT_CURATION_KEY, curationValues);
@@ -90,6 +93,9 @@ public class CurationQuestion5Fragment extends Fragment implements View.OnClickL
 //            ft.commit();
         }else {
             Fragment f = new CurationResultFragment();
+            Bundle bundle = new Bundle();
+            bundle.putIntegerArrayList(CurationQuestion6Fragment.FRAGMENT_CURATION_KEY, curationValues);
+            f.setArguments(bundle);
             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.anim.slide_right_in, R.anim.slide_left_out);
             ft.replace(R.id.curation_container, f);

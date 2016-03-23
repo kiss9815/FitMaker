@@ -9,13 +9,15 @@
         android:id="@+id/image_picture"
 
         />
-    <TextView
-        android:layout_width="wrap_content"
+    <me.grantland.widget.AutofitTextView
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="네임"
         android:textColor="@color/fit_white"
+        android:gravity="center"
         android:textSize="@dimen/fit_text_size_curation_answer"
         android:layout_centerInParent="true"
+        android:singleLine="true"
         android:id="@+id/text_name"
 
         />
@@ -25,8 +27,8 @@
         android:layout_height="match_parent"
         android:src="@drawable/ic_menu_camera"
         android:id="@+id/image_level"
-        android:layout_toLeftOf="@+id/text_name"
-        android:layout_marginRight="@dimen/fit_space"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/fit_level_margin_right"
         />
 
 </RelativeLayout>

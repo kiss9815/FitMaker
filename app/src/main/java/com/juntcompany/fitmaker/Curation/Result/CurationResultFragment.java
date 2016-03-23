@@ -88,34 +88,17 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
       //  initData();
 
         if(curationKey != null) {
-            getCurationQuestion(curationKey.get(0), curationKey.get(2), curationKey.get(5)); // 큐레이션을 다 하고 온 경우
+            Log.i("question all", "question all : " + curationKey.toString());
+
+            if(curationKey.size() == 5) {
+                int que6 =0;
+                getCurationQuestion(curationKey.get(0), curationKey.get(3), que6); // 6번을 안해서 값이 없는 경우
+            }else {
+                getCurationQuestion(curationKey.get(0), curationKey.get(3), curationKey.get(5)); // 큐레이션을 다 하고 온 경우
+            }
         }else {
             getCurriculumByCuration(); // 메인 네비에서 큐레이션이 있을때 온 경우
         }
-
-//        try { //큐레이션만 받아오게 함 , 큐레이션 질문은 1번, 4번, 6번만 받아오게 함
-//            NetworkManager.getInstance().getCurriculumCuration(getContext(),""+curationKey.get(0), ""+curationKey.get(2),""+curationKey.get(5),new NetworkManager.OnResultListener<TypeCurriculumResult>() {
-//                @Override
-//                public void onSuccess(Request request, TypeCurriculumResult result) {
-//                    Log.i(NETWORK_RESULT, result.message);
-//                    for(Curriculum c : result.curriculums) {
-//                        mAdapter.add(c);
-//                    }
-//                    mAdapter.addHeader(result.curationType);
-//
-//                    PropertyManager.getInstance().setCurationType(result.curationType.typeId);
-//                }
-//
-//                @Override
-//                public void onFailure(Request request, int code, Throwable cause) {
-//
-//                }
-//            });
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-
-//////////////////////////////////
 
 
         return view;
@@ -123,7 +106,7 @@ public class CurationResultFragment extends Fragment { // 헤더는 무조건 �
 
 
     private void getCurationQuestion(int q1, int q2, int q3){
-
+        Log.i("q_three", "q_three : " + q1+ ", " + q2 + ", "+ q3);
         try {
             NetworkManager.getInstance().getCurriculumCuration(getContext(), "" + q1, "" + q2, "" + q3, new NetworkManager.OnResultListener<TypeCurriculumResult>() {
                 @Override

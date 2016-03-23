@@ -52,8 +52,10 @@ public class CurationQuestion4Fragment extends Fragment implements View.OnClickL
         switch (v.getId()){
             case R.id.btn_1:
                 btnMessage =1;
+                break;
             case R.id.btn_2:
                 btnMessage =2;
+                break;
             case R.id.btn_3:
                 btnMessage =3;
                 break;
@@ -63,7 +65,7 @@ public class CurationQuestion4Fragment extends Fragment implements View.OnClickL
         Bundle extra = getArguments();
         curationValues = extra.getIntegerArrayList(CurationQuestion3Fragment.FRAGMENT_CURATION_KEY); //큐레이션3에서 결과값 받아오고 리스트에 넣기
         curationValues.add(btnMessage);
-
+        Log.i("question", "question4 : " + btnMessage);
 
         int count = getActivity().getSupportFragmentManager().getBackStackEntryCount();
         Fragment f = new CurationQuestion5Fragment();

@@ -31,7 +31,7 @@
         />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:id="@+id/btn_accept"
         android:layout_toLeftOf="@+id/btn_reject"
@@ -43,7 +43,7 @@
         />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:id="@+id/btn_reject"
         android:layout_alignParentRight="true"

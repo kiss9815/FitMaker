@@ -18,12 +18,10 @@ import com.juntcompany.fitmaker.Data.Project;
 import com.juntcompany.fitmaker.Data.Structure.YoutubeResult;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
 import com.juntcompany.fitmaker.R;
-import com.juntcompany.fitmaker.SpecificCurriculum.YoutubeAdapter;
 import com.juntcompany.fitmaker.util.OnItemClickListener;
 import com.juntcompany.fitmaker.util.YoutubeActivity;
 
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 import okhttp3.Request;
 
@@ -106,11 +104,11 @@ public class YoutubeThumbnailActivity extends AppCompatActivity {
                     Glide.with(getApplicationContext()).load(result.curriculum.curriculum_image).into(imageTitle);
                     textName.setText(result.curriculum.curriculumName);
                     ImageView imageLevel = (ImageView)findViewById(R.id.image_level);
-                    if(result.curriculum.curriculum_level.equals("초급")){
+                    if(result.curriculum.curriculumLevel.equals("초급")){
                         imageLevel.setImageResource(R.drawable.ic_curriculum_level_1);
-                    }else if(result.curriculum.curriculum_level.equals("중급")){
+                    }else if(result.curriculum.curriculumLevel.equals("중급")){
                         imageLevel.setImageResource(R.drawable.ic_curriculum_level_2);
-                    }else if(result.curriculum.curriculum_level.equals("상급")){
+                    }else if(result.curriculum.curriculumLevel.equals("상급")){
                         imageLevel.setImageResource(R.drawable.ic_curriculum_level_3);
                     }
                 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.juntcompany.fitmaker.Data.Curriculum;
@@ -277,11 +278,11 @@ public class NetworkManager {
 
 
     // 퀘스쳔 답이 있어야 나오는 메소드
-    private static final String URL_FORMAT_GET_CURRICULUM_CURATION = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/curriculum?q1=%s&q3=%s&q6=%s";
-    public Request getCurriculumCuration(Context context, String q1, String q3, String q6, final OnResultListener<TypeCurriculumResult> listener)
+    private static final String URL_FORMAT_GET_CURRICULUM_CURATION = "https://ec2-52-79-78-37.ap-northeast-2.compute.amazonaws.com/curriculum?q1=%s&q4=%s&q6=%s";
+    public Request getCurriculumCuration(Context context, String q1, String q4, String q6, final OnResultListener<TypeCurriculumResult> listener)
             throws UnsupportedEncodingException {
 
-        String url = String.format(URL_FORMAT_GET_CURRICULUM_CURATION, URLEncoder.encode(q1, "utf-8"), URLEncoder.encode(q3, "utf-8"), URLEncoder.encode(q6, "utf-8"));
+        String url = String.format(URL_FORMAT_GET_CURRICULUM_CURATION, URLEncoder.encode(q1, "utf-8"), URLEncoder.encode(q4, "utf-8"), URLEncoder.encode(q6, "utf-8"));
         final CallbackObject<TypeCurriculumResult> callbackObject = new CallbackObject<TypeCurriculumResult>();
 
         Request request = new Request.Builder().url(url)
@@ -559,12 +560,17 @@ public class NetworkManager {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Gson gson = new Gson();
-                String text = response.body().string();
-                ProjectResponse project = gson.fromJson(text, ProjectResponse.class);
-                callbackObject.result = project.result;
-                Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
-                mHandler.sendMessage(msg);
+                if (response.isSuccessful()) {
+                    Gson gson = new Gson();
+                    String text = response.body().string();
+                    Log.i("project text", "getproject : " + text);
+                    ProjectResponse project = gson.fromJson(text, ProjectResponse.class);
+                    callbackObject.result = project.result;
+                    Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
+                    mHandler.sendMessage(msg);
+                } else {
+                    Log.i("NetworkManager", response.message());
+                }
             }
         });
         return request;
@@ -601,12 +607,17 @@ public class NetworkManager {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Gson gson = new Gson();
-                String text = response.body().string();
-                RecordRequest project = gson.fromJson(text, RecordRequest.class);
-                callbackObject.result = project.result;
-                Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
-                mHandler.sendMessage(msg);
+                if(response.isSuccessful()) {
+                    Gson gson = new Gson();
+                    String text = response.body().string();
+                    Log.i("Network", "record : " + text);
+                    RecordRequest project = gson.fromJson(text, RecordRequest.class);
+                    callbackObject.result = project.result;
+                    Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
+                    mHandler.sendMessage(msg);
+                }else {
+                    Log.i("NetworkManager", response.message());
+                }
             }
         });
         return request;
@@ -636,11 +647,16 @@ public class NetworkManager {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Gson gson = new Gson();
-                BadgeResponse badge = gson.fromJson(response.body().string(), BadgeResponse.class);
-                callbackObject.result = badge.result;
-                Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
-                mHandler.sendMessage(msg);
+                if (response.isSuccessful()) {
+                    Gson gson = new Gson();
+                    String text = response.body().string();
+                    BadgeResponse badge = gson.fromJson(text, BadgeResponse.class);
+                    callbackObject.result = badge.result;
+                    Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
+                    mHandler.sendMessage(msg);
+                }else {
+                    Log.i("NetworkManager", response.message());
+                }
             }
         });
         return request;

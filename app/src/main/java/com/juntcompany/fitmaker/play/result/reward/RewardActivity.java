@@ -64,7 +64,7 @@ public class RewardActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplication(), MainActivity.class);
                 //intent.putExtra(MainActivity.BADGE_MESSAGE, badge.badgeName);
                 startActivity(intent);
-                overridePendingTransition(R.anim.slide_right_out, R.anim.slide_left_in);
+                overridePendingTransition(R.anim.slide_left_in, R.anim.slide_right_out);
             }
         });
     }

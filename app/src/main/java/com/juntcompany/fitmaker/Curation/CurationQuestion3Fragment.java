@@ -73,15 +73,17 @@ public class CurationQuestion3Fragment extends Fragment implements View.OnClickL
         switch (v.getId()){
             case R.id.btn_1:
                 btnMessage =1;
+                break;
             case R.id.btn_2:
                 btnMessage =2;
+                break;
             case R.id.btn_3:
                 btnMessage =3;
                 break;
         }
 
         curationValues.add(btnMessage);
-
+        Log.i("question", "question3 : " + btnMessage);
         int count = getActivity().getSupportFragmentManager().getBackStackEntryCount();
         Fragment f = new CurationQuestion4Fragment();
         Bundle bundle = new Bundle();

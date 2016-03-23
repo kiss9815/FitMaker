@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:id="@+id/text_toolbar"
-        android:text="설정하기"
+        android:text="이용약관"
         android:textSize="@dimen/fit_toolbar_text_size"
         android:textColor="@color/fit_white"
         />

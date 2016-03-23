@@ -19,7 +19,8 @@
         android:icon="@mipmap/fit_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -80,25 +81,42 @@
 
         <activity
             android:name=".StartActivity"
-            android:launchMode="singleTask" />
-        <activity android:name=".Curation.CurationActivity" />
-        <activity android:name=".Curation.Recommend.RecommendActivity" />
-        <activity android:name=".SpecificCurriculum.SpecificCurriculumActivity" />
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Curation.CurationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Curation.Recommend.RecommendActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SpecificCurriculum.SpecificCurriculumActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Login.LoginActivity"
-            android:launchMode="singleTask" />
-        <activity android:name=".Setting.SettingActivity" />
-        <activity android:name=".Setting.NoticeActivity" />
-        <activity android:name=".Setting.DevelopersActivity" />
-        <activity android:name=".Setting.PolicyActivity" />
-        <activity android:name=".play.PlayActivity" />
-        <activity android:name=".play.result.ResultActivity" />
-        <activity android:name=".play.result.reward.RewardActivity" />
-        <activity android:name=".Friend.FriendListActivity" />
-        <activity android:name=".Friend.request.FriendRequestActivity" />
-        <activity android:name=".Friend.add.FriendSearchActivity" />
-        <activity android:name=".Badge.BadgeActivity" />
-        <activity android:name=".Friend.Profile.FriendProfileActivity" />
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Setting.SettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Setting.NoticeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Setting.DevelopersActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Setting.PolicyActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".play.PlayActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".play.result.ResultActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".play.result.reward.RewardActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Friend.FriendListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Friend.request.FriendRequestActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Friend.add.FriendSearchActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Badge.BadgeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Friend.Profile.FriendProfileActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".util.YoutubeActivity" />
 
         <receiver
@@ -115,7 +133,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".Main.YoutubeThumbnail.YoutubeThumbnailActivity" />
+        <activity android:name=".Main.YoutubeThumbnail.YoutubeThumbnailActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Alarm.NotificationActivity" />
 
         <service

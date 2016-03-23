@@ -51,7 +51,7 @@ public class FriendRequestActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
 
         View view = getLayoutInflater().inflate(R.layout.toolbar_request, null);
-        actionBar.setCustomView(view, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER));
+        actionBar.setCustomView(view, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
 
         refreshLayout = (SwipeRefreshLayout)findViewById(R.id.refreshlayout);

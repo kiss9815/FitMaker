@@ -25,14 +25,20 @@
             android:layout_height="wrap_content"
             android:id="@+id/edit_search"
             android:hint="친구의 이메일 일부를 검색해주세요"
+            android:layout_weight="1"
+            android:textSize="15sp"
             android:singleLine="true"
             android:drawableLeft="@android:drawable/ic_menu_search"
             />
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="검색"
             android:id="@+id/btn_search"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/selector_button_check"
+            android:background="@null"
+            android:layout_marginRight="@dimen/fit_space"
             />
     </LinearLayout>
 

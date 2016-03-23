@@ -3,23 +3,27 @@ package com.juntcompany.fitmaker.SpecificCurriculum;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.juntcompany.fitmaker.Data.Content;
 import com.juntcompany.fitmaker.Data.Curriculum;
 import com.juntcompany.fitmaker.Data.ProjectRequestResult;
 import com.juntcompany.fitmaker.Main.MainActivity;
-import com.juntcompany.fitmaker.Main.YoutubeThumbnail.YoutubeThumbnailAdapter;
 import com.juntcompany.fitmaker.Manager.NetworkManager;
+import com.juntcompany.fitmaker.Manager.PropertyManager;
 import com.juntcompany.fitmaker.R;
 import com.juntcompany.fitmaker.util.YoutubeActivity;
 import com.juntcompany.fitmaker.util.OnItemClickListener;
@@ -40,7 +44,8 @@ public class SpecificCurriculumActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     GridLayoutManager layoutManager;
 
-    ImageView imageTitle;
+    ImageView imageTitle, imageLevel;
+    TextView textName;
 
     public static final String CURRICULUM_MESSAGE = "intent_curriculum_result";
     private static final String CURRICULUM_ID_NUMBER = "curriculum_id_number";
@@ -51,7 +56,15 @@ public class SpecificCurriculumActivity extends AppCompatActivity {
         setContentView(R.layout.activity_specific_curriculum);
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        setTitle("추천 커리큘럼");
+        ActionBar actionBar =getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
+
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+
+        View view = getLayoutInflater().inflate(R.layout.toolbar_specific, null);
+        actionBar.setCustomView(view, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
 //        tabLayout = (TabLayout)findViewById(R.id.tab_layout);
 //        viewPager = (ViewPager)findViewById(R.id.pager);
@@ -70,7 +83,21 @@ public class SpecificCurriculumActivity extends AppCompatActivity {
         final Intent intent = getIntent();
         final Curriculum curriculum =(Curriculum)intent.getSerializableExtra(CURRICULUM_MESSAGE); // 큐레이션 결과에서 선택한 커리큘럼 객체를 가져옴
         imageTitle = (ImageView)findViewById(R.id.image_title);
+        imageLevel = (ImageView)findViewById(R.id.image_level);
+        textName = (TextView)findViewById(R.id.text_name);
         Glide.with(getApplicationContext()).load(curriculum.curriculum_image).into(imageTitle);
+
+        textName.setText(curriculum.curriculumName);
+
+        if(curriculum.curriculumLevel.equals("초급")){
+            imageLevel.setImageResource(R.drawable.ic_curriculum_level_1);
+        }else if(curriculum.curriculumLevel.equals("중급")){
+            imageLevel.setImageResource(R.drawable.ic_curriculum_level_2);
+        }else if(curriculum.curriculumLevel.equals("상급")){
+            imageLevel.setImageResource(R.drawable.ic_curriculum_level_3);
+        }
+
+
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         mAdapter = new YoutubeAdapter();
@@ -117,6 +144,7 @@ public class SpecificCurriculumActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Request request, ProjectRequestResult result) {
                             int projectId =result.projectId;
+                            PropertyManager.getInstance().setProjectId(projectId);
                             Log.i(PROJECT_ID_NUMBER , "" + projectId);
                             //String projectName =curriculum.curriculumName; // 선택한 커리큘럼 네임이 프로젝트 네임이 됨
                             Intent intent = new Intent(SpecificCurriculumActivity.this, MainActivity.class);
@@ -139,5 +167,14 @@ public class SpecificCurriculumActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 }

@@ -52,7 +52,7 @@ public class FriendProfileActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
 
         View view = getLayoutInflater().inflate(R.layout.toolbar_friend_profile, null);
-        actionBar.setCustomView(view, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER));
+        actionBar.setCustomView(view, new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
 
         imageFriendProfile = (ImageView)findViewById(R.id.image_friend_profile);
@@ -81,15 +81,15 @@ public class FriendProfileActivity extends AppCompatActivity {
                 public void onSuccess(Request request, FriendResult result) {
                         Friend friend = result.friend;
                         List<Badge> badges = result.friendBadges;
-                    if(friend.friendProfile == null){
+                    if(friend.friendProfile.equals("")){
                         imageFriendProfile.setImageResource(R.drawable.default_friend);
                     }
 
                     Glide.with(getApplicationContext()).load(friend.friendProfile).into(imageFriendProfile);
-                    textFriendExerciseHour.setText(""+friend.friendExerciseHour);
+                    textFriendExerciseHour.setText(""+friend.friendExerciseHour + "분");
                     textFriendExctypeName.setText(friend.curationType);
                     textFriendName.setText(friend.friendName);
-                    textFriendBadgeCount.setText(""+badges.size());
+                    textFriendBadgeCount.setText("배지 개수 : "+badges.size() + "개");
 
                      mAdapter.addAll(result.friendProjects);
                 }

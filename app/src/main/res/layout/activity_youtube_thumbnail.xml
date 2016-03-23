@@ -21,8 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/fit_curriculum_height"
             android:id="@+id/image_title"
-
-            android:src="@drawable/avto"/>
+            />
         <me.grantland.widget.AutofitTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,8 +35,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/image_level"
-            android:layout_toLeftOf="@+id/text_name"
-            android:layout_marginRight="@dimen/fit_space"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/fit_level_margin_right"
             />
     </RelativeLayout>
 

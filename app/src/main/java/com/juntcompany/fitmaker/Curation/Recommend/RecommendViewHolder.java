@@ -57,11 +57,11 @@ public class RecommendViewHolder extends RecyclerView.ViewHolder{
         }
 
         ////레벨에 따른 이미지 처리......
-        if(curriculum.curriculum_level.equals("초급")){
+        if(curriculum.curriculumLevel.equals("초급")){
             imageLevel.setImageResource(R.drawable.ic_curriculum_level_1);
-        }else if(curriculum.curriculum_level.equals("중급")){
+        }else if(curriculum.curriculumLevel.equals("중급")){
             imageLevel.setImageResource(R.drawable.ic_curriculum_level_2);
-        }else if(curriculum.curriculum_level.equals("상급")){
+        }else if(curriculum.curriculumLevel.equals("상급")){
             imageLevel.setImageResource(R.drawable.ic_curriculum_level_3);
         }
     }

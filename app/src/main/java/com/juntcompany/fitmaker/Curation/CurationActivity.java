@@ -20,6 +20,8 @@ public class CurationActivity extends AppCompatActivity {
 
     public static final String CURATION_MESSAGE = "curation_message";
 
+
+    boolean isResult; // 메인 네비에서 true 인 경우만 오도록
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +39,7 @@ public class CurationActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        boolean isResult = intent.getBooleanExtra(CURATION_MESSAGE, false);
+        isResult = intent.getBooleanExtra(CURATION_MESSAGE, false);
         if(isResult == true){
             Fragment f = new CurationResultFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -52,12 +54,13 @@ public class CurationActivity extends AppCompatActivity {
         }
     }
 
-    boolean isBackPressed = false;
+
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        if(isResult){
+            finish();
+        }
 
-//        if(getSupportFragmentManager().findFragmentById(R.id.))
     }
 
 
