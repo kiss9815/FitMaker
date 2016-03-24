@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <me.grantland.widget.AutofitTextView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="프로젝트 HISTORY"
+        android:textSize="20sp"
         android:gravity="center"
-        android:id="@+id/text_toolbar"
-        android:text="운동 플레이"
-        android:textSize="@dimen/fit_toolbar_text_size"
-        android:textColor="@color/fit_white"
+        android:layout_marginTop="@dimen/fit_space"
+        android:layout_marginBottom="@dimen/fit_space"
+
         />
 
 </LinearLayout>

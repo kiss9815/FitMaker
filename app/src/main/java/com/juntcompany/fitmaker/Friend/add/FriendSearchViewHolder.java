@@ -73,9 +73,14 @@ public class FriendSearchViewHolder extends RecyclerView.ViewHolder {
             btnAddFriend.setSelected(false);
         }else if(friend.friendState == -1){
             text_friend_State.setText("거절했습니다.");
-        }else if(friend.friendState == 2){
+            btnAddFriend.setBackgroundResource(R.drawable.btn_friend_add_selector);
+        }else if(friend.friendState == 2){ // 친구요청 가능
             //text_friend_State.setText("친구 추가해주세요");
-            text_friend_State.setTextColor(Color.BLACK);
+            text_friend_State.setText("");
+            btnAddFriend.setBackgroundResource(R.drawable.btn_friend_add_selector);
+        }else {
+            text_friend_State.setText("");
+            btnAddFriend.setBackgroundResource(R.drawable.btn_friend_add_selector);
         }
 
         if (!TextUtils.isEmpty(friend.friendProfile)) {

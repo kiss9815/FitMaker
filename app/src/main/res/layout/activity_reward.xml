@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/image_badge"
             android:layout_gravity="center"
-            android:src="@drawable/img_badge_bronze_star"
+
             />
         <RelativeLayout
             android:layout_width="match_parent"

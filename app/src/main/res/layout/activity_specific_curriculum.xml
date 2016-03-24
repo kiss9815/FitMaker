@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/fit_curriculum_height"
             android:id="@+id/image_title"
-            android:src="@drawable/avto"/>
+            />
 
         <me.grantland.widget.AutofitTextView
             android:layout_width="300dp"
@@ -54,6 +54,8 @@
         android:id="@+id/recyclerView"
         android:layout_below="@+id/relative"
         android:layout_above="@+id/btn_start"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         />
     <!--<include-->
         <!--android:layout_width="match_parent"-->

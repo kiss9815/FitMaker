@@ -386,9 +386,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
            df.setArguments(argsProject);
            df.show(getSupportFragmentManager(), MAIN_DIALOG_TAG);
 
-        }else if(id==R.id.nav_expert_talk){
-            Intent intent = new Intent(MainActivity.this, NoticeActivity.class);
-            startActivity(intent);
+//        }else if(id==R.id.nav_expert_talk){
+//            Intent intent = new Intent(MainActivity.this, NoticeActivity.class);
+//            startActivity(intent);
         }else if (id== R.id.nav_setting){
             Intent intent = new Intent(MainActivity.this, SettingActivity.class);
             startActivity(intent);

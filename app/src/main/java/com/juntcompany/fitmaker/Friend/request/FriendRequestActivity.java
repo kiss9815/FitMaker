@@ -116,13 +116,19 @@ public class FriendRequestActivity extends AppCompatActivity {
         }
     }
 
-    private void acceptFriend(int friendId, int state){
+    private void acceptFriend(int friendId, final int state){
         try {
             NetworkManager.getInstance().answerFriendRequest(getApplicationContext(),"" + friendId ,"" + state, new NetworkManager.OnResultListener<Result>() {
                 @Override
                 public void onSuccess(Request request, Result result) {
                     //친구 수락, 거절을 서버에 보냄
-                   // Toast.makeText(getApplicationContext(), "서버 성공", Toast.LENGTH_SHORT).show();
+                    if(state == 1) {
+                        Toast.makeText(getApplicationContext(), "친구를 수락했습니다.", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(getApplicationContext(), "친구를 거절했습니다", Toast.LENGTH_SHORT).show();
+                    }
+
+
                 }
 
                 @Override

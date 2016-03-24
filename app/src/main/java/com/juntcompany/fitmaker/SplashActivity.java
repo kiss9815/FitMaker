@@ -100,6 +100,8 @@ public class SplashActivity extends AppCompatActivity {
         final AccessToken accessToken = AccessToken.getCurrentAccessToken();
         Handler mHandler = new Handler(Looper.getMainLooper());
 
+       // Toast.makeText(this, "start doRealStart", Toast.LENGTH_SHORT).show();
+
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -128,7 +130,7 @@ public class SplashActivity extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Request request, int code, Throwable cause) {
-
+                                Toast.makeText(SplashActivity.this, "fail code : " + code  + ", exception : " + ((cause != null)?cause.toString():""), Toast.LENGTH_SHORT).show();
                             }
                         });
                     } catch (UnsupportedEncodingException e) {
@@ -159,7 +161,7 @@ public class SplashActivity extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Request request, int code, Throwable cause) {
-
+                                Toast.makeText(SplashActivity.this, "Fail... Facebook", Toast.LENGTH_SHORT).show();
                             }
                         });
                     } catch (UnsupportedEncodingException e) {

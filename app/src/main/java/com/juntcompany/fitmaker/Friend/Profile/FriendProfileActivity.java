@@ -71,6 +71,9 @@ public class FriendProfileActivity extends AppCompatActivity {
         mAdapter = new FriendProjectAdapter();
         listView.setAdapter(mAdapter);
 
+        View headerView = getLayoutInflater().inflate(R.layout.view_friend_history_header, null);
+        listView.addHeaderView(headerView);
+
     }
 
 
@@ -87,10 +90,10 @@ public class FriendProfileActivity extends AppCompatActivity {
                     else {
                         Glide.with(getApplicationContext()).load(friend.friendProfile).into(imageFriendProfile);
                     }
-                    textFriendExerciseHour.setText(""+friend.friendExerciseHour + "분");
+                    textFriendExerciseHour.setText(friend.friendExerciseHour + "분");
                     textFriendExctypeName.setText(friend.curationType);
                     textFriendName.setText(friend.friendName);
-                    textFriendBadgeCount.setText("배지 개수 : " + badges.size() + "개");
+                    textFriendBadgeCount.setText("배지 : " + badges.size() + "개");
 
                      mAdapter.addAll(result.friendProjects);
                 }

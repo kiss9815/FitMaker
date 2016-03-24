@@ -18,7 +18,6 @@ import com.juntcompany.fitmaker.Main.MainActivity;
 
 public class StartActivity extends AppCompatActivity { // 로딩 되고 나오는 페이지로 처음 시작하는 유저만 나오는 페이지
 
-    private static final String ACTIVITY_TITLE = "반갑습니다!";
 
 //    ViewPager viewPager;
 //    Cir
@@ -54,13 +53,7 @@ public class StartActivity extends AppCompatActivity { // 로딩 되고 나오�
                 startActivity(new Intent(StartActivity.this, RecommendActivity.class));
             }
         });
-        btn = (Button)findViewById(R.id.button_test);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-        });
+
     }
 
 

@@ -20,4 +20,6 @@
     <color name="fit_status_bar_red">#BA274D</color>
 
     <color name="fit_circle_image_shadow">#8BC34A</color>
+
+    <color name="fit_badge_color">#8066aa</color>
 </resources>

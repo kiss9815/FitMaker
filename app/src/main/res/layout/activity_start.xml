@@ -13,12 +13,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="테스트용 메인"
-        android:id="@+id/button_test"
-        />
 
     <Button
         android:layout_width="@dimen/fit_red_btn_width"

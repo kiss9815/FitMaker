@@ -187,7 +187,7 @@ public class NetworkManager {
                     listener.onSuccess(request, object.result);
                     break;
                 case MESSAGE_FAILURE:
-                    listener.onFailure(request, -1, object.exception);
+                    listener.onFailure(request, object.code, object.exception);
                     break;
             }
         }
@@ -197,6 +197,8 @@ public class NetworkManager {
         Request request;
         T result;
         IOException exception;
+        int code;
+        String message;
         OnResultListener<T> listener;
     }
 
@@ -617,6 +619,10 @@ public class NetworkManager {
                     mHandler.sendMessage(msg);
                 }else {
                     Log.i("NetworkManager", response.message());
+                    callbackObject.code = response.code();
+                    callbackObject.message = response.message();
+                    Message msg = mHandler.obtainMessage(MESSAGE_FAILURE, callbackObject);
+                    mHandler.sendMessage(msg);
                 }
             }
         });

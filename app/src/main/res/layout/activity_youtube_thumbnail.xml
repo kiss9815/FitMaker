@@ -47,10 +47,11 @@
         android:layout_height="match_parent"
         android:id="@+id/recyclerView"
         android:layout_below="@+id/relative"
-
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
         />
     <!--<include-->
-    <!--android:layout_width="match_parent"-->
+    <!--android:layout_width="math_parent"-->
     <!--android:layout_height="wrap_content"-->
     <!--layout="@layout/content_specific_curriculum"-->
     <!--android:layout_below="@id/image_title"-->
