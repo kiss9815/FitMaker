@@ -257,6 +257,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()){
             case R.id.main_menu_my_profile_change:
                 callGallery();
+
                 break;
 
             case R.id.main_menu_background_change:
@@ -572,9 +573,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onResume() {
         super.onResume();
         int propertyProjectId = PropertyManager.getInstance().getProjectId();
-        Log.i("projectId", "onRusume property projectId : " + propertyProjectId );
+      //  callMyProfile(); // 메인에서 내 프로필도 네트워크에서 가져옴
+        Log.i("projectId", "onRusume property projectId : " + propertyProjectId);
         callProject(propertyProjectId);
         setBackGround();
+
+
     }
 
 
