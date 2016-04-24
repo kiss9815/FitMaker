@@ -15,35 +15,46 @@ android {
         renderscriptTargetApi 18
         renderscriptSupportModeEnabled true
     }
-    buildTypes {
+
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            storeFile file('release.keystore')
+            storePassword 'awesomedev'
+            keyAlias 'FitMaker'
+            keyPassword 'awesomedev'
         }
     }
-    repositories {
-        mavenCentral()
+
+        buildTypes {
+            release {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                signingConfig signingConfigs.release
+            }
+        }
+        repositories {
+            mavenCentral()
+        }
     }
-}
 
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile files('libs/YouTubeAndroidPlayerApi.jar')
-    compile project(':library')
+    dependencies {
+        compile fileTree(include: ['*.jar'], dir: 'libs')
+        testCompile 'junit:junit:4.12'
+        compile files('libs/YouTubeAndroidPlayerApi.jar')
+        compile project(':library')
 
-    compile 'com.android.support:appcompat-v7:23.2.0'
-    compile 'com.android.support:support-v4:23.2.0'
-    compile 'com.android.support:gridlayout-v7:23.2.0'
-    compile 'com.android.support:design:23.2.0'
-    compile 'com.android.support:preference-v7:23.1.1'
-    compile 'com.squareup.okhttp3:okhttp-urlconnection:3.2.0'
-    compile 'com.squareup.okhttp3:okhttp:3.2.0'
-    compile 'com.google.code.gson:gson:2.6.2'
-    compile 'com.facebook.android:facebook-android-sdk:4.+'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
-    compile 'com.mikhaellopez:circularimageview:3.0.2'
-    compile 'me.grantland:autofittextview:0.2.+'
-    compile 'com.google.android.gms:play-services-gcm:8.3.0'
-}
+        compile 'com.android.support:appcompat-v7:23.2.0'
+        compile 'com.android.support:support-v4:23.2.0'
+        compile 'com.android.support:gridlayout-v7:23.2.0'
+        compile 'com.android.support:design:23.2.0'
+        compile 'com.android.support:preference-v7:23.1.1'
+        compile 'com.squareup.okhttp3:okhttp-urlconnection:3.2.0'
+        compile 'com.squareup.okhttp3:okhttp:3.2.0'
+        compile 'com.google.code.gson:gson:2.6.2'
+        compile 'com.facebook.android:facebook-android-sdk:4.+'
+        compile 'com.github.bumptech.glide:glide:3.7.0'
+        compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
+        compile 'com.mikhaellopez:circularimageview:3.0.2'
+        compile 'me.grantland:autofittextview:0.2.+'
+        compile 'com.google.android.gms:play-services-gcm:8.3.0'
+    }
